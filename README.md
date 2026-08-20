@@ -1,2 +1,3 @@
 # Tunkeutumistestaus
-Tunkeutumistestaus opintojakso (syksy 2026)
+
+Tämä repositorio sisältää Tunkeutumistestaus opintojakson tehtäviä.
