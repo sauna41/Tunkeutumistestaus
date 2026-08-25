@@ -10,12 +10,12 @@ _Tämä raportti on osa Haaga-Helian Tunkeutumistestaus -kurssia syksyllä 2026.
 
 ________________________________________________________________________________________________________________________________________________________________________________________
 
-#### x) Lue/katso/kuuntele ja tiivistä. 
+#### x) Lue/katso/kuuntele ja tiivistä.
 
-**[Herrasmieshakkerit (RSS)](https://herrasmieshakkerit.fi/)**
+[Herrasmieshakkerit (RSS)](https://herrasmieshakkerit.fi/)
 
-- 
-- 
+Kuuntelin Mikko Hyppösen ja Tomi Tuomisen luotsaamasta_ Herrasmieshakkerit_ -podcastista jakson _Suomesta maailmalle, vieraana Otto Ebeling__. Ebeling kertoi omasta taustastaan ja työhistoriastaan niin Metalla kuin pienemmissä yrityksissä. Erityisesti jaksosta jäi mieleen Ebelingin kertomat tilanteet "mahdottomista tilanteista", joita oli kuitenkin sattunut useaan otteeseen. Esimerkiksi epäilty hyökkäys osoittautuikin vain yksittäiseksi, pieneksi sähköviaksi.
+
 - 
 - 
 
@@ -35,8 +35,12 @@ ________________________________________________________________________________
 - sadad
 - 
 
-#### a) Asenna Kali virtuaalikoneeseen.
-(Jos asennuksessa ei ole mitään ongelmia tai olet asentanut jo aiemmin, tarkkaa raporttia tästä alakohdasta ei tarvita. Kerro silloin kuitenkin, mikä versio ja millä asennustavalla. Jos on ongelmia, niin tarkka ja toistettava raportti).
+### a) Asenna Kali virtuaalikoneeseen
+
+VirtualBox minulta löytyi jo entuudestaan. Riitti, että latasin Kali Linux Installerin ja asensin uuden virtuaalikoneen. Tein normaalit määritykset ja testasin, että näppäimistö ja verkko toimivat niin kuin kuuluukin. 
+
+<img width="383" height="124" alt="image" src="https://github.com/user-attachments/assets/47ae2312-d1e8-4e95-895d-34f13e6b59bb" />
+
 
 ________________________________________________________________________________________________________________________________________________________________________________________
 
@@ -53,29 +57,58 @@ Tämän jälkeen navigoin VirtualBoxin verkkoasetuksiin, josta kytkin verkon poi
 
 ________________________________________________________________________________________________________________________________________________________________________________________
 
-#### c) Porttiskannaa 1000 tavallisinta tcp-porttia omasta koneestasi
+### c) Porttiskannaa 1000 tavallisinta tcp-porttia omasta koneestasi
 
 Porttiskannaus tapahtui komennolla
 
     nmap -T4 -A localhost
 
-- nmap on porttiskannaustyökalu, joka lähettää paketteja ja analysoi vastauksia niihin.
-- T4 on vipu skannauksen nopeudelle.
-- -A vipu määrittää useita 
+- nmap on tiedustelu- ja porttiskannaustyökalu, joka lähettää paketteja ja analysoi vastauksia niihin.
+- T4 on vipu skannauksen nopeudelle ja "agressiivisuudelle". Asteikko skannausvauhdille on T1-T5. 
+- -A ottaa käyttöön edistyneitä ominaisuuksia. Esimerkiksi palvelu- ja verkkotunnistuksen ja käyttöjärjestelmän tunnistamisen. 
+
+Skannaus tuotti kuvanmukaisen tulosteen: 
+
 <img width="1277" height="332" alt="image" src="https://github.com/user-attachments/assets/9c644ad7-934c-4018-9b74-57ae8e7359ba" />
 
+Odotetusti, kaikki 1000 yleistä TCP-porttia jotka Nmap skannasi olivat suljettuina eli mikään palvelu ei kuunnellut niissä. Network Distance: 0 oli myöskin odotettavissa, sillä liikenne ei kulkenut kuin paikallisesti. Nmap suoritti myös OS detection -toiminnon, jolla se pyrkii päättelemään käyttöjärjestelmää lähettämällä paketteja ja analysoimalla niiden vastauksia. Tässä tapauksessa se ei kuitenkaan onnistunut, sillä kaikki portit olivat suljettuina eikä yksilöitävää dataa saatu riittävästi.
 
 
-
-
-
-________________________________________________________________________________________________________________________________________________________________________________________
+_____________________________________________________________________________________________________________________________________________________________________________________
 
 ### d) Asenna kaksi vapaavalintaista demonia ja skannaa uudelleen. Analysoi ja selitä erot.
 
+Kalista löytyi valmiiksi SSH & Apache2, joten päätin käyttää näitä kahta. Käynnistin demonit 
+
+    sudo systemctl start ssh
+    sudo systemctl start apache2
+    
+komennoilla ja ajoin porttiskannauksen uudelleen.
+
+
+<img width="829" height="264" alt="image" src="https://github.com/user-attachments/assets/2e247eb2-2123-4dea-a1c7-af7fb0d33ecd" />
+
+Tällä kertaa tulos oli erilainen. Porttiskannaus löysi SSH:n kuuntelemasta porttia 22 & Apachen puolestaan porttia 80. Porttinumeroiden lisäksi selvisi niiden tila (open), palvelu (ssh/http) ja versio. -A -vivulla saatiin selville myös palvelutunnistus, jolloin Nmapin oli mahdollista suorittaa HTTP-pyyntö palvelimelle ja palauttamaan HTTP-vastauksen otsikon (_Apache2 Debian Default Page: It works_)
+
+Skannaukseen oli avattu ainoastaan edellämainitut kaksi demonia, joten Nmapin tuhannesta yleisestä TCP-portista 998 oli edelleen suljettuna.
+
 ________________________________________________________________________________________________________________________________________________________________________________________
 
-e) Ratkaise vapaavalintainen kone HackTheBoxista. Omalle tasolle sopiva, useimmille varmaan Starting Pointista. Valitse kone, jota et ole ratkaissut vielä. Ei tunnilla näytetty Meow. (Propellihatuille: jos teet vaikeampia ei-starting-point koneita, niin retired tai vastaava kone, josta saa julkaista writeupin).
+### e) Ratkaise vapaavalintainen kone HackTheBoxista
+
+HackTheBox ei ollut itselleni entuudestaan tuttu. Luennolla oli yhteisesti katsottu, kuinka VPN yhteys määritettiin HTB:n harjoituskoneeseen, joten se ei tuottanut suurempia ongelmia. Käynnistin HTB:n sivulla harjoituskoneen ja latasin itselleni OpenVPN:n konffitiedoston, jonka avulla pääsisin kiinni oikeaan IP-osoitteeseen. 
+
+Päädyin ratkomaan HackTheBoxin Fawn-konetta. Heti alkuun tuskailin huomattavan pitkään yhteyden muodostuksen kanssa. Sain yhdistettyä VPN yhteyden **sudo openvpn** -komennolla mutta tästä huolimatta pingaus ei onnistunut. Kokeilin kahta eri konetta (Meow & Fawn) mutta sama ongelma toistui. Lopulta pitkän troubleshootingin jälkeen tajusin kuitenkin, että HTB:ssa aloittelijoiden Starting Point ja tavalliset koneet toimivat eri .opvn konffitiedostojen avulla. Ladattuani oikean konffitiedoston, homma alkoi rullaamaan.
+
+Kun vihdoin sain yhteyden toimimaan, kokeilin tässä vaiheessa jo tuttua ```nmap -T4 -A <IP-OSOITE>``` komentoa, jolla sain skannattua tietoa esiin: 
+
+<img width="727" height="829" alt="image" src="https://github.com/user-attachments/assets/bc030766-7d98-459d-a4d8-844c9c3e09a7" />
+
+Skannaus osoitti, että portissa 21 oli avoinna FTP palvelu. Lisäksi selvisi, että anonyymi kirjautuminen on sallittu ja haussa ollut lippu, _flag.txt_ löytyy palvelimelta. Pystyin seuraavaksi yhdistämään FTP:hen ja kirjautumaan anonymous -käyttäjänä. Kirjautumisessa kysettiin myös salasanaa mutta jättämällä sen vain tyhjäksi päästiin sisään. Sen jälkeen oli yksinkertaista vain listata (ls) sisältö ja ladata (get) itselleen haluttu flag.txt -tiedosto. 
+
+```get``` -komennolla sain ladattua flag.txt tiedoston itselleni ja syöttämällä sen sisällön läpäisin harjoituksen. 
+
+<img width="531" height="456" alt="image" src="https://github.com/user-attachments/assets/df78595b-69d0-4ffb-8280-e2cd7841f27c" />
 
 ________________________________________________________________________________________________________________________________________________________________________________________
 
@@ -92,5 +125,9 @@ Intrusion Kill Chains. Luettavissa: https://lockheedmartin.com/content/dam/lockh
 Santos O, Taylor R, Sternstein J, McCoy C. The Art of Hacking (Video Collection). 2019. Luettavissa: https://www.oreilly.com/videos/the-art-of/9780135767849/9780135767849-SPTT_04_00/. Luettu 22.8.2026.
 
 KKO:2003:36. 2023. Luettavissa: https://www.finlex.fi/fi/oikeuskaytanto/korkein-oikeus/ennakkopaatokset/2003/36. Luettu 22.8.2026.
+
+Kali Linux. https://www.kali.org/get-kali/#kali-installer-images. Luettu 22.8.2026.
+
+House, N. Nmap Cheat Sheet 2026: All the Commands & Flags. 2026. Luettavissa: https://www.stationx.net/nmap-cheat-sheet/. Luettu 25.8.2026.
 
 
