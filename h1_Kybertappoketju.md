@@ -22,6 +22,12 @@ Kuuntelin Mikko Hyppösen ja Tomi Tuomisen luotsaamasta __Herrasmieshakkerit__ -
 
 **[KKO 2003:36](https://www.finlex.fi/fi/oikeuskaytanto/korkein-oikeus/ennakkopaatokset/2003/36)**
 
+17-vuotias henkilö A teki porttiskannauksen Osuuspankin verkkoon. Huolimatta siitä, että skannaus ei onnistunut, Korkein oikeus katsoi järjestelmällisen skannauksen tietomurto yritykseksi. A tuomitiin tämän toimesta tietomurron yrityksestä ja hänet määrättiin maksamaan mittavat korvaukset sekä Osuuspankille. 
+
+[Intelligence-Driven Computer Network Defense
+Informed by Analysis of Adversary Campaigns and
+Intrusion Kill Chains](https://lockheedmartin.com/content/dam/lockheed-martin/rms/documents/cyber/LM-White-Paper-Intel-Driven-Defense.pdf)
+
 Kill Chain on järjestelmällinen prosessi, jolla hyödytään vastustajaan hyökkäämisestä. Sitä kuvataan ketjuna, sillä yhden vaiheen epäonnistuminen voi rikkoa koko prosessin.
 
 1. Reconnaissance
