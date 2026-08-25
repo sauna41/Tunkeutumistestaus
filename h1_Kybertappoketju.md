@@ -11,12 +11,29 @@ _Tämä raportti on osa Haaga-Helian Tunkeutumistestaus -kurssia syksyllä 2026.
 ________________________________________________________________________________________________________________________________________________________________________________________
 
 #### x) Lue/katso/kuuntele ja tiivistä. 
-    (Tässä x-alakohdassa ei tarvitse tehdä testejä tietokoneella, vain lukeminen tai kuunteleminen ja tiivistelmä riittää. Tiivistämiseen riittää muutama ranskalainen viiva. Kannataa lisätä kustakin oma huomio, idea tai kysymys.)
-    
-    - Herrasmieshakkerit (RSS) tai Darknet Diaries (RSS) , yksi vapaavalintainen jakso jommasta kummasta. Voi kuunnella myös lenkillä, pyykiä viikatessa tms. Siisti koti / hyvä kunto kaupan päälle.
-    - Hutchins et al 2011: Intelligence-Driven Computer Network Defense Informed by Analysis of Adversary Campaigns and Intrusion Kill Chains, chapters Abstract, 3.2 Intrusion Kill Chain.
-    - € Santos et al: The Art of Hacking (Video Collection): 4.3 Surveying Essential Tools for Active Reconnaissance. Sisältää porttiskannauksen. 5 videota, yhteensä noin 20 min.
-    KKO 2003:36. (Vain silmäily, ei tarvitse lukea kokonaan eikä varsinkaan tehdä syvällistä analyysia).
+
+**[Herrasmieshakkerit (RSS)](https://herrasmieshakkerit.fi/)**
+
+- 
+- 
+- 
+- 
+
+
+
+- sad
+- sadad
+- sdas
+
+
+**€ Santos et al: The Art of Hacking (Video Collection): 4.3 Surveying Essential Tools for Active Reconnaissance.**
+
+
+**[KKO 2003:36](https://www.finlex.fi/fi/oikeuskaytanto/korkein-oikeus/ennakkopaatokset/2003/36)**
+
+- asdas
+- sadad
+- 
 
 #### a) Asenna Kali virtuaalikoneeseen.
 (Jos asennuksessa ei ole mitään ongelmia tai olet asentanut jo aiemmin, tarkkaa raporttia tästä alakohdasta ei tarvita. Kerro silloin kuitenkin, mikä versio ja millä asennustavalla. Jos on ongelmia, niin tarkka ja toistettava raportti).
@@ -24,12 +41,32 @@ ________________________________________________________________________________
 ________________________________________________________________________________________________________________________________________________________________________________________
 
 ### b) Irrota Kali-virtuaalikone verkosta.
-Todista testein, että kone ei saa yhteyttä Internetiin (esim. 'ping 8.8.8.8')
+
+Ennen kuin irrotin Kalia verkosta, varmistin, että verkko kuitenkin toimii. Pingasin Googlen DNSää 8.8.8.8. ja sain sieltä vastauksen. 
+
+<img width="675" height="112" alt="image" src="https://github.com/user-attachments/assets/1913d625-a0b7-43ec-b251-3153bea28b23" />
+
+Tämän jälkeen navigoin VirtualBoxin verkkoasetuksiin, josta kytkin verkon pois päältä. Boottasin Kalin uudestaan ja varmistin komennoilla, että kone ei saanut yhteyttä verkkoon. Komentorivin lisäksi yritin myös avata Firefox selaimen, mutta sekään ei ollut yhteydessä verkkoon.
+
+<img width="1163" height="491" alt="image" src="https://github.com/user-attachments/assets/df3de18d-35f6-444a-947d-4542b7685a52" />
+
 
 ________________________________________________________________________________________________________________________________________________________________________________________
 
-#### c) Porttiskannaa 1000 tavallisinta tcp-porttia omasta koneestasi (nmap -T4 -A localhost). 
-Selitä komennon paramterit. Analysoi ja selitä tulokset.
+#### c) Porttiskannaa 1000 tavallisinta tcp-porttia omasta koneestasi
+
+Porttiskannaus tapahtui komennolla
+
+    nmap -T4 -A localhost
+
+- nmap on porttiskannaustyökalu, joka lähettää paketteja ja analysoi vastauksia niihin.
+- T4 on vipu skannauksen nopeudelle.
+- -A vipu määrittää useita 
+<img width="1277" height="332" alt="image" src="https://github.com/user-attachments/assets/9c644ad7-934c-4018-9b74-57ae8e7359ba" />
+
+
+
+
 
 
 ________________________________________________________________________________________________________________________________________________________________________________________
@@ -46,5 +83,14 @@ ________________________________________________________________________________
 ### Lähteet
 
 Karvinen, T. Tunkeutumistestaus. Opintojakson kurssimateriaali. 2026. Luettavissa: https://terokarvinen.com/tunkeutumistestaus/#laksyt. Luettu 22.8.2026.
+
+Hutchins, M. Cloppert, M, Amid R. Intelligence-Driven Computer Network Defense
+Informed by Analysis of Adversary Campaigns and
+Intrusion Kill Chains. Luettavissa: https://lockheedmartin.com/content/dam/lockheed-martin/rms/documents/cyber/LM-White-Paper-Intel-Driven-Defense.pdf. Luettu 22.8.2026.
+
+ 
+Santos O, Taylor R, Sternstein J, McCoy C. The Art of Hacking (Video Collection). 2019. Luettavissa: https://www.oreilly.com/videos/the-art-of/9780135767849/9780135767849-SPTT_04_00/. Luettu 22.8.2026.
+
+KKO:2003:36. 2023. Luettavissa: https://www.finlex.fi/fi/oikeuskaytanto/korkein-oikeus/ennakkopaatokset/2003/36. Luettu 22.8.2026.
 
 
