@@ -14,16 +14,7 @@ ________________________________________________________________________________
 
 [Herrasmieshakkerit (RSS)](https://herrasmieshakkerit.fi/)
 
-Kuuntelin Mikko Hyppösen ja Tomi Tuomisen luotsaamasta_ Herrasmieshakkerit_ -podcastista jakson _Suomesta maailmalle, vieraana Otto Ebeling__. Ebeling kertoi omasta taustastaan ja työhistoriastaan niin Metalla kuin pienemmissä yrityksissä. Erityisesti jaksosta jäi mieleen Ebelingin kertomat tilanteet "mahdottomista tilanteista", joita oli kuitenkin sattunut useaan otteeseen. Esimerkiksi epäilty hyökkäys osoittautuikin vain yksittäiseksi, pieneksi sähköviaksi.
-
-- 
-- 
-
-
-
-- sad
-- sadad
-- sdas
+Kuuntelin Mikko Hyppösen ja Tomi Tuomisen luotsaamasta __Herrasmieshakkerit__ -podcastista jakson _Suomesta maailmalle, vieraana Otto Ebeling__. Ebeling kertoi omasta taustastaan ja työhistoriastaan niin Metalla kuin pienemmissä yrityksissä. Erityisesti jaksosta jäi mieleen Ebelingin kertomat tilanteet "mahdottomista tilanteista", joita oli kuitenkin sattunut useaan otteeseen. Esimerkiksi epäilty hyökkäys osoittautuikin vain yksittäiseksi, pieneksi sähköviaksi.
 
 
 **€ Santos et al: The Art of Hacking (Video Collection): 4.3 Surveying Essential Tools for Active Reconnaissance.**
@@ -31,9 +22,23 @@ Kuuntelin Mikko Hyppösen ja Tomi Tuomisen luotsaamasta_ Herrasmieshakkerit_ -po
 
 **[KKO 2003:36](https://www.finlex.fi/fi/oikeuskaytanto/korkein-oikeus/ennakkopaatokset/2003/36)**
 
-- asdas
-- sadad
-- 
+Kill Chain on järjestelmällinen prosessi, jolla hyödytään vastustajaan hyökkäämisestä. Sitä kuvataan ketjuna, sillä yhden vaiheen epäonnistuminen voi rikkoa koko prosessin.
+
+1. Reconnaissance
+   - Kohteen tai kohteiden etsiminen, tunnistaminen ja valitseminen.
+   - Teknologioiden, sosiaalisten yhteyksien, sähköpostilistojen kerääminen, jne.
+3. Weaponization
+   - Haittaohjelman liittäminen kohteelle toimitettavaan payloadiin. PDF- tai Office-tiedostot hyviä esimerkkejä.
+4. Delivery
+   - Payloadin toimittaminen kohteelle. Yleisiä tapoja ovat esimerkiksi sähköpostiliitteet tai USB-laitteet.
+5. Exploitation
+   - Kun hyökkäävä payload on onnistuneesti syötetty kohteelle, se voidaan aktivoida
+6. Installation
+   - Hyökkääjä asentaa takaoven, jonka avulla pääsy järjestelmään säilyy pitkäaikaisesti.
+7. Command and Control (C2)
+   - Hyökkääjä pääsee hallitsemaan yhteyttä kohdekoneeseen sen muodostaessa yhteys hyökkääjän ylläpitämään palvelimeen.
+8. Actions on Objections
+   - Hyökkääjä suorittaa tavoitteensa, oli se sitten tietojen keräämistä, varastamista tai häirintää.
 
 ### a) Asenna Kali virtuaalikoneeseen
 
@@ -48,9 +53,12 @@ ________________________________________________________________________________
 
 Ennen kuin irrotin Kalia verkosta, varmistin, että verkko kuitenkin toimii. Pingasin Googlen DNSää 8.8.8.8. ja sain sieltä vastauksen. 
 
+
 <img width="675" height="112" alt="image" src="https://github.com/user-attachments/assets/1913d625-a0b7-43ec-b251-3153bea28b23" />
 
+
 Tämän jälkeen navigoin VirtualBoxin verkkoasetuksiin, josta kytkin verkon pois päältä. Boottasin Kalin uudestaan ja varmistin komennoilla, että kone ei saanut yhteyttä verkkoon. Komentorivin lisäksi yritin myös avata Firefox selaimen, mutta sekään ei ollut yhteydessä verkkoon.
+
 
 <img width="1163" height="491" alt="image" src="https://github.com/user-attachments/assets/df3de18d-35f6-444a-947d-4542b7685a52" />
 
@@ -69,7 +77,9 @@ Porttiskannaus tapahtui komennolla
 
 Skannaus tuotti kuvanmukaisen tulosteen: 
 
+
 <img width="1277" height="332" alt="image" src="https://github.com/user-attachments/assets/9c644ad7-934c-4018-9b74-57ae8e7359ba" />
+
 
 Odotetusti, kaikki 1000 yleistä TCP-porttia jotka Nmap skannasi olivat suljettuina eli mikään palvelu ei kuunnellut niissä. Network Distance: 0 oli myöskin odotettavissa, sillä liikenne ei kulkenut kuin paikallisesti. Nmap suoritti myös OS detection -toiminnon, jolla se pyrkii päättelemään käyttöjärjestelmää lähettämällä paketteja ja analysoimalla niiden vastauksia. Tässä tapauksessa se ei kuitenkaan onnistunut, sillä kaikki portit olivat suljettuina eikä yksilöitävää dataa saatu riittävästi.
 
@@ -88,6 +98,7 @@ komennoilla ja ajoin porttiskannauksen uudelleen.
 
 <img width="829" height="264" alt="image" src="https://github.com/user-attachments/assets/2e247eb2-2123-4dea-a1c7-af7fb0d33ecd" />
 
+
 Tällä kertaa tulos oli erilainen. Porttiskannaus löysi SSH:n kuuntelemasta porttia 22 & Apachen puolestaan porttia 80. Porttinumeroiden lisäksi selvisi niiden tila (open), palvelu (ssh/http) ja versio. -A -vivulla saatiin selville myös palvelutunnistus, jolloin Nmapin oli mahdollista suorittaa HTTP-pyyntö palvelimelle ja palauttamaan HTTP-vastauksen otsikon (_Apache2 Debian Default Page: It works_)
 
 Skannaukseen oli avattu ainoastaan edellämainitut kaksi demonia, joten Nmapin tuhannesta yleisestä TCP-portista 998 oli edelleen suljettuna.
@@ -102,11 +113,14 @@ Päädyin ratkomaan HackTheBoxin Fawn-konetta. Heti alkuun tuskailin huomattavan
 
 Kun vihdoin sain yhteyden toimimaan, kokeilin tässä vaiheessa jo tuttua ```nmap -T4 -A <IP-OSOITE>``` komentoa, jolla sain skannattua tietoa esiin: 
 
+
 <img width="727" height="829" alt="image" src="https://github.com/user-attachments/assets/bc030766-7d98-459d-a4d8-844c9c3e09a7" />
+
 
 Skannaus osoitti, että portissa 21 oli avoinna FTP palvelu. Lisäksi selvisi, että anonyymi kirjautuminen on sallittu ja haussa ollut lippu, _flag.txt_ löytyy palvelimelta. Pystyin seuraavaksi yhdistämään FTP:hen ja kirjautumaan anonymous -käyttäjänä. Kirjautumisessa kysettiin myös salasanaa mutta jättämällä sen vain tyhjäksi päästiin sisään. Sen jälkeen oli yksinkertaista vain listata (ls) sisältö ja ladata (get) itselleen haluttu flag.txt -tiedosto. 
 
 ```get``` -komennolla sain ladattua flag.txt tiedoston itselleni ja syöttämällä sen sisällön läpäisin harjoituksen. 
+
 
 <img width="531" height="456" alt="image" src="https://github.com/user-attachments/assets/df78595b-69d0-4ffb-8280-e2cd7841f27c" />
 
