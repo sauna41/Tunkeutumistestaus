@@ -14,15 +14,22 @@ ________________________________________________________________________________
 
 [Herrasmieshakkerit (RSS)](https://herrasmieshakkerit.fi/)
 
-Kuuntelin Mikko Hyppösen ja Tomi Tuomisen luotsaamasta __Herrasmieshakkerit__ -podcastista jakson _Suomesta maailmalle, vieraana Otto Ebeling__. Ebeling kertoi omasta taustastaan ja työhistoriastaan niin Metalla kuin pienemmissä yrityksissä. Erityisesti jaksosta jäi mieleen Ebelingin kertomat tilanteet "mahdottomista tilanteista", joita oli kuitenkin sattunut useaan otteeseen. Esimerkiksi epäilty hyökkäys osoittautuikin vain yksittäiseksi, pieneksi sähköviaksi.
+Kuuntelin Mikko Hyppösen ja Tomi Tuomisen luotsaamasta __Herrasmieshakkerit__ -podcastista jakson _Suomesta maailmalle, vieraana Otto Ebeling__. Ebeling kertoi omasta taustastaan ja työhistoriastaan niin Metalla kuin pienemmissä yrityksissä. Erityisesti jaksosta jäi mieleen Ebelingin kertomat tilanteet "mahdottomista tilanteista", joita oli kuitenkin sattunut useaan otteeseen. Esimerkiksi epäilty hyökkäys osoittautuikin vain yksittäiseksi, pieneksi sähköviaksi. Ebelingin kertomukset myös kansainvälisestä urasta olivat mielenkiintoista kuunneltavaa.
 
 
-**€ Santos et al: The Art of Hacking (Video Collection): 4.3 Surveying Essential Tools for Active Reconnaissance.**
+[The Art of Hacking: 4.3 Surveying Essential Tools for Active Reconnaissance](https://learning.oreilly.com/videos/the-art-of/9780135767849/9780135767849-SPTT_04_03/)
+
+- Videolla esiteltiin erilaisia skannaustyökaluja. Näitä olivat Nmap, Masscan, EyeWitness & Udpprotoscanner.
+- Jokaisella on omat vahvuutensa:
+   - Nmap on yleisin ja monipuolinen
+   - Masscan nopein vaihtoehto
+   - Udprotoscanner on hyvä vaihtoehto UDP-porttien skannaukseen.
+   - EyeWitness taas kerää yhteenvedon web-palveluista sen sijaan, että hakkerin täytyisi vierailla sadalla eri sivulla manuaalisesti.
 
 
 **[KKO 2003:36](https://www.finlex.fi/fi/oikeuskaytanto/korkein-oikeus/ennakkopaatokset/2003/36)**
 
-17-vuotias henkilö A teki porttiskannauksen Osuuspankin verkkoon. Huolimatta siitä, että skannaus ei onnistunut, Korkein oikeus katsoi järjestelmällisen skannauksen tietomurto yritykseksi. A tuomitiin tämän toimesta tietomurron yrityksestä ja hänet määrättiin maksamaan mittavat korvaukset sekä Osuuspankille. 
+17-vuotias henkilö A teki porttiskannauksen Osuuspankin verkkoon. Huolimatta siitä, että skannaus ei onnistunut, Korkein oikeus katsoi järjestelmällisen skannauksen tietomurto yritykseksi. A tuomittiin lopulta tietomurron yrityksestä ja hänet määrättiin maksamaan mittavat korvaukset sekä Osuuspankille. 
 
 [Intelligence-Driven Computer Network Defense
 Informed by Analysis of Adversary Campaigns and
@@ -45,6 +52,10 @@ Kill Chain on järjestelmällinen prosessi, jolla hyödytään vastustajaan hyö
    - Hyökkääjä pääsee hallitsemaan yhteyttä kohdekoneeseen sen muodostaessa yhteys hyökkääjän ylläpitämään palvelimeen.
 8. Actions on Objections
    - Hyökkääjä suorittaa tavoitteensa, oli se sitten tietojen keräämistä, varastamista tai häirintää.
+  
+
+________________________________________________________________________________________________________________________________________________________________________________________
+
 
 ### a) Asenna Kali virtuaalikoneeseen
 
@@ -115,7 +126,9 @@ ________________________________________________________________________________
 
 HackTheBox ei ollut itselleni entuudestaan tuttu. Luennolla oli yhteisesti katsottu, kuinka VPN yhteys määritettiin HTB:n harjoituskoneeseen, joten se ei tuottanut suurempia ongelmia. Käynnistin HTB:n sivulla harjoituskoneen ja latasin itselleni OpenVPN:n konffitiedoston, jonka avulla pääsisin kiinni oikeaan IP-osoitteeseen. 
 
-Päädyin ratkomaan HackTheBoxin Fawn-konetta. Heti alkuun tuskailin huomattavan pitkään yhteyden muodostuksen kanssa. Sain yhdistettyä VPN yhteyden **sudo openvpn** -komennolla mutta tästä huolimatta pingaus ei onnistunut. Kokeilin kahta eri konetta (Meow & Fawn) mutta sama ongelma toistui. Lopulta pitkän troubleshootingin jälkeen tajusin kuitenkin, että HTB:ssa aloittelijoiden Starting Point ja tavalliset koneet toimivat eri .opvn konffitiedostojen avulla. Ladattuani oikean konffitiedoston, homma alkoi rullaamaan.
+Päädyin ratkomaan HackTheBoxin Fawn-konetta. Harjoituksen tavoite oli selvittää tietoja FTP-kohdekoneelta muodostamalla siihen yhteys ja varastaa palvelimelta lippu. Osa tehtävistä vaati oikean komennon tietämisen ja osa sisälsi "käytännön harjoituksia", joissa tuli olla yhteydessä kohdekoneeseen komentorivillä.
+
+Heti alkuun tuskailin huomattavan pitkään yhteyden muodostuksen kanssa. Sain yhdistettyä VPN yhteyden **sudo openvpn** -komennolla mutta tästä huolimatta pingaus ei onnistunut. Kokeilin kahta eri konetta (Meow & Fawn) mutta sama ongelma toistui. Lopulta pitkän troubleshootingin jälkeen tajusin kuitenkin, että HTB:ssa aloittelijoiden Starting Point ja tavalliset koneet toimivat eri .opvn konffitiedostojen avulla. Ladattuani oikean konffitiedoston, homma alkoi rullaamaan.
 
 Kun vihdoin sain yhteyden toimimaan, kokeilin tässä vaiheessa jo tuttua ```nmap -T4 -A <IP-OSOITE>``` komentoa, jolla sain skannattua tietoa esiin: 
 
@@ -129,6 +142,17 @@ Skannaus osoitti, että portissa 21 oli avoinna FTP palvelu. Lisäksi selvisi, e
 
 
 <img width="531" height="456" alt="image" src="https://github.com/user-attachments/assets/df78595b-69d0-4ffb-8280-e2cd7841f27c" />
+
+
+________________________________________________________________________________________________________________________________________________________________________________________
+
+
+### Mitä opin? 
+
+- Ensiaskeleet Nmapin käyttöön. Tutustuin porttiskannaukseen ja opettelin analysoimaan sen tuloksia.
+- Opin pelaamaan(?) HackTheBoxia ja sain ensimmäisen harjoituksen maaliin. Pääsin/jouduin myös harjoittamaan ongelmanratkaisua konffitiedostojen tiimoilta.
+- Tunkeutumistestauksen vaiheittainen eteneminen ja sen askeleet tuli tutuksi ja käyvät järkeen. 
+- Löysin Herrasmieshakkerit podcastin, menee kuuntelulistalle!
 
 ________________________________________________________________________________________________________________________________________________________________________________________
 
@@ -150,4 +174,5 @@ Kali Linux. https://www.kali.org/get-kali/#kali-installer-images. Luettu 22.8.20
 
 House, N. Nmap Cheat Sheet 2026: All the Commands & Flags. 2026. Luettavissa: https://www.stationx.net/nmap-cheat-sheet/. Luettu 25.8.2026.
 
+HackTheBox Labs. Fawn harjoituskone. Saatavilla: https://app.hackthebox.com/machines/Fawn?sort_by=created_at&sort_type=desc. 
 
