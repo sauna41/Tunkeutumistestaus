@@ -170,7 +170,7 @@ Santos O, Taylor R, Sternstein J, McCoy C. The Art of Hacking (Video Collection)
 
 KKO:2003:36. 2023. Luettavissa: https://www.finlex.fi/fi/oikeuskaytanto/korkein-oikeus/ennakkopaatokset/2003/36. Luettu 22.8.2026.
 
-Kali Linux. https://www.kali.org/get-kali/#kali-installer-images. Luettu 22.8.2026.
+Kali Linux. Saatavilla: https://www.kali.org/get-kali/#kali-installer-images.
 
 House, N. Nmap Cheat Sheet 2026: All the Commands & Flags. 2026. Luettavissa: https://www.stationx.net/nmap-cheat-sheet/. Luettu 25.8.2026.
 
