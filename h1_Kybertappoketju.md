@@ -140,6 +140,8 @@ Skannaus osoitti, että portissa 21 oli avoinna FTP palvelu. Lisäksi selvisi, e
 
 ```get``` -komennolla sain ladattua flag.txt tiedoston itselleni ja syöttämällä sen sisällön läpäisin harjoituksen. 
 
+_Valitettavasti screenshot FPT-palvelimella tiedustelusta jäi välistä, enkä päässyt enää ratkaisun jälkeen palaamaan takaisin._
+
 
 <img width="531" height="456" alt="image" src="https://github.com/user-attachments/assets/df78595b-69d0-4ffb-8280-e2cd7841f27c" />
 
