@@ -68,13 +68,13 @@ ________________________________________________________________________________
 
 ### b) Irrota Kali-virtuaalikone verkosta.
 
-Ennen kuin irrotin Kalia verkosta, varmistin, että verkko kuitenkin toimii. Pingasin Googlen DNSää 8.8.8.8. ja sain sieltä vastauksen. 
+Ennen kuin irrotin Kalia verkosta, varmistin, että verkko kuitenkin toimii. Pingasin Googlen DNSää 8.8.8.8 ja sain sieltä vastauksen, eli verkkoyhteys toimi.
 
 
 <img width="675" height="112" alt="image" src="https://github.com/user-attachments/assets/1913d625-a0b7-43ec-b251-3153bea28b23" />
 
 
-Tämän jälkeen navigoin VirtualBoxin verkkoasetuksiin, josta kytkin verkon pois päältä. Boottasin Kalin uudestaan ja varmistin komennoilla, että kone ei saanut yhteyttä verkkoon. Komentorivin lisäksi yritin myös avata Firefox selaimen, mutta sekään ei ollut yhteydessä verkkoon.
+Tämän jälkeen navigoin VirtualBoxin verkkoasetuksiin, josta kytkin verkon pois päältä irroittamalla "fyysisen" verkkokaapelin. Boottasin Kalin uudelleen ja varmistin komennoilla, että kone ei saanut yhteyttä verkkoon. Komentorivin lisäksi yritin myös avata Firefox selaimen, mutta sekään ei ollut yhteydessä verkkoon.
 
 
 <img width="1163" height="491" alt="image" src="https://github.com/user-attachments/assets/df3de18d-35f6-444a-947d-4542b7685a52" />
@@ -88,9 +88,9 @@ Porttiskannaus tapahtui komennolla
 
     nmap -T4 -A localhost
 
-- nmap on tiedustelu- ja porttiskannaustyökalu, joka lähettää paketteja ja analysoi vastauksia niihin.
+- Nmap on tiedustelu- ja porttiskannaustyökalu, joka lähettää paketteja ja analysoi vastauksia niihin. Sen avulla on mahdollista tutkia, mitä palveluita missäkin porteissa on kuuntelemassa.
 - T4 on vipu skannauksen nopeudelle ja "agressiivisuudelle". Asteikko skannausvauhdille on T1-T5. 
-- -A ottaa käyttöön edistyneitä ominaisuuksia. Esimerkiksi palvelu- ja verkkotunnistuksen ja käyttöjärjestelmän tunnistamisen. 
+- -A ottaa käyttöön edistyneitä ominaisuuksia, kuten esimerkiksi palvelu- ja verkkotunnistuksen sekä käyttöjärjestelmän tunnistamisen. 
 
 Skannaus tuotti kuvanmukaisen tulosteen: 
 
@@ -152,8 +152,9 @@ ________________________________________________________________________________
 ### Mitä opin? 
 
 - Ensiaskeleet Nmapin käyttöön. Tutustuin porttiskannaukseen ja opettelin analysoimaan sen tuloksia.
-- Opin pelaamaan(?) HackTheBoxia ja sain ensimmäisen harjoituksen maaliin. Pääsin/jouduin myös harjoittamaan ongelmanratkaisua konffitiedostojen tiimoilta.
-- Tunkeutumistestauksen vaiheittainen eteneminen ja sen askeleet tuli tutuksi ja käyvät järkeen. 
+   - Nmapilla tuntui olevan lähes loputon lista erilaisia vipuja, joten niiden opettelussa tulee varmasti menemään aikaa vaikka yleisimmät varmasti oppii nopeasti.
+- Opin pelaamaan(?) HackTheBoxia ja sain ensimmäisen harjoituksen maaliin. Pääsin/jouduin myös harjoittamaan ongelmanratkaisua konffitiedostojen tiimoilta. HTB oli mielenkiintoinen ja kokeilen ehdottomasti lisää.
+- Hyökkäysketjun vaiheittainen eteneminen
 - Löysin Herrasmieshakkerit podcastin, menee kuuntelulistalle!
 
 ________________________________________________________________________________________________________________________________________________________________________________________
