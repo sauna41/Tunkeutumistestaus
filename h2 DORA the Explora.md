@@ -12,7 +12,7 @@ ________________________________________________________________________________
 
 ### x) Lue/katso/kuuntele ja tiivistä.
 
-**Buuri 2026: DORA and TLPT testing - Lecture for Haaga-Helia on 31 March 2026 (pdf, 2 MB)**
+**[Buuri 2026: DORA and TLPT testing - Lecture for Haaga-Helia on 31 March 2026]( https://terokarvinen.com/buuri-2026-dora-and-threat-lead-penetration-testing/buuri-2026-dora-and-threat-lead-penetration-testing--teros-pentest-course.pdf)**
 - DORA (Digital Operational Resilience Act) on EU-asetus, joka velvoittaa rahoitusalan toimijoita hallitsemaan digitaalisia riskejä. Tähän lukeutuvat myös tunkeutumistestaukset.
 - Suomen Pankin omistama TIBER-FI on Euroopan Unionin laajainen, Suomen oma Red Teaming -testaus kehys. 
 - TIBER projekti kestää noin 12-18 kk. Se koostuu suunnitteluvaiheesta, testausvaiheesta & lopetusvaiheesta.
@@ -20,7 +20,7 @@ ________________________________________________________________________________
      -Leg-upit ovat apuja, joita hyökkääjille voidaan antaa esimerkiksi aikarajoitteiden vuoksi, jotta projekti etenee. Leg-upit voivat olla esimerkiksi tunnuksia, tietoja tai vinkkejä teknisestä toteutuksesta.
 
 
-**DORA (Regulation ... on digital operational resilience for the financial sector)**
+**[DORA (Regulation ... on digital operational resilience for the financial sector)](https://eur-lex.europa.eu/eli/reg/2022/2554/oj/eng)**
 - Article 26 "Advanced testing of ICT tools, systems and processes based on TLPT"
      - Finanssialan toimijoille tehdään Threat-Led Penetration Testingiä tarkoituksena selvittää, kuinka hyvin ne kestävät hyökkäyksiä.
      - Tehdään vähintään kolmen vuoden välein
@@ -32,7 +32,7 @@ ________________________________________________________________________________
      - Tulokset on dokumentoitava riittävän kattavasti
 
        
-**TIBER-FI procedures and guidelines: 5.4 Testing phase: Red team testing**
+**[TIBER-FI procedures and guidelines: 5.4 Testing phase: Red team testing](https://www.suomenpankki.fi/globalassets/bof/en/money-and-payments/the-bank-of-finland-as-catalyst-payments-council/tiber-fi/tiber-fi-2.0-procedures-and-guidelines.pdf)**
 - Red Team testing suunnittelee ja toteuttaa todellista hyökkäävän simuloivan hyökkäyksen
 - Testi sisältää testisuunnitelman sekä aktiivisen hyökkäyksen
 - Eteneminen tapahtuu tiedustelu -> valmistelu -> hyökkäys -> exploit -> liikkuminen -> tavoitteen saavuttaminen 
