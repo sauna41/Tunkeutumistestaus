@@ -42,8 +42,7 @@ ________________________________________________________________________________
 
 ### a) Asenna Metasploitable 2 virtuaalikoneeseen.
 
-Latasin [Metasploitable 2](https://sourceforge.net/projects/metasploitable/) ja asensin sen uuteen virtuaalikoneeseen. Ennen koneen käynnistystä muutin vielä verkkoasetuksista verkkoadapterin _Host-only_. Konetta käynnistäessä jäin jumiin "Starting up..." ruutuun, jonka sain korjattua vaihtamalla ytimet takaisin vain yhteen.
-
+Latasin [Metasploitable 2](https://sourceforge.net/projects/metasploitable/) ja asensin sen uuteen virtuaalikoneeseen. Ennen koneen käynnistystä muutin vielä verkkoasetuksista verkkoadapterin _Host-only_. Käynnistin koneen ja kirjauduin sisään oletustunnuksilla msdadmin / msfadmin. 
 
 
 <img width="718" height="305" alt="image" src="https://github.com/user-attachments/assets/7e891d74-4e4d-426d-ad08-d6dffb2846f5" />
