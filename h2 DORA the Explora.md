@@ -139,7 +139,7 @@ Skannauksesta löytyi 25 avointa porttia. Analysoin tuloksia [Exploitability Gui
 <img width="769" height="22" alt="image" src="https://github.com/user-attachments/assets/0c4a6acd-b296-4a49-a571-0bae527b16c6" />
 
 
-Yleisellä tasolla se, että Nmap tunnisti kaikki aktiiviset palvelut ja niiden tarkat versionumerot antaa hyökkääjälle jo paljon pinta-alaa. Tarkkojen versionumeroiden avulla on helppo tarkastaa kaikki tunnetut haavoittuvuudet ja toimia niiden pohjalta. Metasploitablen tapauksessa palvelut olivat vanhempia versioita, joka tekee tästä todella helppoa hyökkääjälle. Metasploitableen pääsi myös kirjautumaan merkittävin heikolla tunnus/salasana yhdistelmällä (msdfadmin)
+Yleisellä tasolla se, että Nmap tunnisti kaikki aktiiviset palvelut ja niiden tarkat versionumerot antaa hyökkääjälle jo paljon pinta-alaa. Tarkkojen versionumeroiden avulla on helppo tarkastaa kaikki tunnetut haavoittuvuudet ja toimia niiden pohjalta. Metasploitablen tapauksessa palvelut olivat vanhempia versioita, joka tekee tästä todella helppoa hyökkääjälle. Metasploitableen pääsi myös kirjautumaan merkittävin heikolla tunnus/salasana yhdistelmällä (msfadmin)
 
 
 ________________________________________________________________________________________________________________________________________________________________________________________
