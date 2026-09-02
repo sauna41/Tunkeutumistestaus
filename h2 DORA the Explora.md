@@ -51,7 +51,7 @@ ________________________________________________________________________________
 
 ### b) Tee Kalin ja Metasploitablen välille virtuaaliverkko
 
-Lähdin rakentamaan Kalin ja Metasploitableb välille eristettyä verkkoa. Tämä oli mahdollista Host-Only-verkossa, jossa kyseiset koneet ovat yhteydessä toisiinsa mutta niillä ei ole pääsyä laajempaan internettiin. VirtualBoxissa kummankin koneen verkkoadapterin vaihdettiin _Host-only_, jolloin ne toimivat samassa Host-verkossa. 
+Lähdin rakentamaan Kalin ja Metasploitablen välille eristettyä verkkoa. Tämä oli mahdollista Host-Only-verkossa, jossa kyseiset koneet ovat yhteydessä toisiinsa mutta niillä ei ole pääsyä laajempaan internettiin. VirtualBoxissa kummankin koneen verkkoadapterin vaihdettiin _Host-only_, jolloin ne toimivat samassa Host-verkossa. 
 
 
 <img width="373" height="53" alt="VERKON RAKENNEKUVA" src="https://github.com/user-attachments/assets/a37548b7-0c56-4044-86d6-0b8114915903" />
