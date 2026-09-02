@@ -12,12 +12,14 @@ ________________________________________________________________________________
 
 x) Lue/katso/kuuntele ja tiivistä. (Tässä x-alakohdassa ei tarvitse tehdä testejä tietokoneella, vain lukeminen tai kuunteleminen ja tiivistelmä riittää. Tiivistämiseen riittää muutama ranskalainen viiva. Lisää mukaan jokin oma havainto, idea tai kysymys)
 
-Buuri 2026: DORA and TLPT testing - Lecture for Haaga-Helia on 31 March 2026 (pdf, 2 MB)
-DORA (Regulation ... on digital operational resilience for the financial sector) (vain nämä kaksi artiklaa):
-Article 26 "Advanced testing of ICT tools, systems and processes based on TLPT"
-Article 27 "Requirements for testers for the carrying out of TLPT"
-TIBER-FI procedures and guidelines (pdf, 1 MB) (vain tämä kohta):
+- Buuri 2026: DORA and TLPT testing - Lecture for Haaga-Helia on 31 March 2026 (pdf, 2 MB)
+- DORA (Regulation ... on digital operational resilience for the financial sector) (vain nämä kaksi artiklaa):
+   - Article 26 "Advanced testing of ICT tools, systems and processes based on TLPT"
+   - Article 27 "Requirements for testers for the carrying out of TLPT"
+- TIBER-FI procedures and guidelines (pdf, 1 MB) (vain tämä kohta):
 5.4 Testing phase: Red team testing (johdantokappale suoraan 5.4 alta, "5.4.1 Red team test plan creation" alkuun asti)
+
+
 Vapaaehtoinen bonus: Buuri 2026: D26 - Releasing Your Inner TIBER in Regulated Adversary Simulations. Video, 45 min. Disobey 2026.
 
 ________________________________________________________________________________________________________________________________________________________________________________________
@@ -101,19 +103,27 @@ Suoritin Metasploitablelle perusteellisen skannauksen ```nmap -A -T4 -p-```  -ko
 
   - -A ottaa skannaukseen mukaan käyttöjärjestelmän, palveluiden ja skriptien tunnistamisen.
   - T4 määrittää skannauksen nopeuden
-  - -p- määrittää skannauksen TCP-portteihin välillä 1-655535
+  - -p- määrittää skannauksen TCP-portteihin välillä 1–65535
 
-Skannauksesta löytyi 25 avointa porttia. 
+Skannauksesta löytyi 25 avointa porttia. Analysoin tuloksia [Exploitability Guiden](https://docs.rapid7.com/metasploit/metasploitable-2-exploitability-guide/) avulla ja päädyin valitsemaan portit 21, 1524 & 3632.
 
 
-1. Portissa 21 FTP-palvelu, jossa anonymous kirjautuminen on sallittu. Lisäksi Nmap tunnisti tietyn version palvelusta, joka mahdollistaa hyökkääjän tarkastavan onko kyseiseeen versioon tiedettyjä haavoittuvuuksia.
+1. Portissa 21 FTP-palvelu, jossa anonymous kirjautuminen on sallittu, joten hyökkääjän on mahdollista päästä sisään ilman tunnusta tai salasanaa. Lisäksi Nmap tunnisti tietyn version palvelusta, joka mahdollistaa hyökkääjän tarkastavan onko kyseiseeen versioon tiedettyjä haavoittuvuuksia. Kyseisessä 
 
 <img width="543" height="60" alt="image" src="https://github.com/user-attachments/assets/e6a5c269-20d1-4e61-9a95-a9351677a362" />
 
 
-2. toinen portti
+2. Portissa 1524 oli _open bindshell Metasploitable root shell_. Rootilla on laajat oikeudet koko järjestelmään, joten hyökkääjän päästessä sisään root shelliin olisi mahdolista saada root oikeudet ja täten tehdä lähes mitä vain.
 
-3. kolmas portti
+ <img width="758" height="465" alt="image" src="https://github.com/user-attachments/assets/f30ae7d3-c1ab-41bf-a219-8d259efa9e4b" />
+
+
+3. Portti 3632 oli distcdd -palvelu. Distributed C Compiler ohjelmien kääntämistä nopeutetaan jakamalla kääntäminen usealle eri koneelle, jolloin se hyödyntää etäyhteyden muihin koneisiin. Hyökkääjän on siis mahdollista saada kohdekone suorittamaan komentoja verkon yli etänä. 
+
+<img width="769" height="22" alt="image" src="https://github.com/user-attachments/assets/0c4a6acd-b296-4a49-a571-0bae527b16c6" />
+
+
+Yleisellä tasolla se, että Nmap tunnisti kaikki aktiiviset palvelut ja niiden tarkat versionumerot antaa hyökkääjälle jo paljon pinta-alaa. Tarkkojen versionumeroiden avulla on helppo tarkastaa kaikki tunnetut haavoittuvuudet ja toimia niiden pohjalta. Metasploitablen tapauksessa palvelut olivat vanhempia versioita, joka tekee tästä todella helppoa hyökkääjälle.
 
 ________________________________________________________________________________________________________________________________________________________________________________________
 
@@ -125,3 +135,9 @@ ________________________________________________________________________________
 Karvinen, T. Tunkeutumistestaus. Opintojakson kurssimateriaali. 2026. Luettavissa: https://terokarvinen.com/tunkeutumistestaus/. Luettu 1.9.2026.
 
 Metasploitable 2. Ladattavissa: https://sourceforge.net/projects/metasploitable/files/latest/download. Luettu 1.9.2026.
+
+Metasploitable 2 Exploitability Guide. Rapid7 Docs.  https://docs.rapid7.com/metasploit/metasploitable-2-exploitability-guide/. Luettu 1.9.2026.
+
+
+House, N. Nmap Cheat Sheet 2026: All the Commands & Flags. 2026. Luettavissa: https://www.stationx.net/nmap-cheat-sheet/. Luettu 25.8.2026.
+
