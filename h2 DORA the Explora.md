@@ -10,7 +10,7 @@ _Tämä raportti on osa Haaga-Helian Tunkeutumistestaus -kurssia syksyllä 2026.
 
 ________________________________________________________________________________________________________________________________________________________________________________________
 
-x) Lue/katso/kuuntele ja tiivistä.
+### x) Lue/katso/kuuntele ja tiivistä.
 
 **Buuri 2026: DORA and TLPT testing - Lecture for Haaga-Helia on 31 March 2026 (pdf, 2 MB)**
 - DORA (Digital Operational Resilience Act) on EU-asetus, joka velvoittaa rahoitusalan toimijoita hallitsemaan digitaalisia riskejä. Tähän lukeutuvat myös tunkeutumistestaukset.
