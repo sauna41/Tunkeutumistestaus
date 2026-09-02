@@ -128,6 +128,8 @@ Skannauksesta löytyi 25 avointa porttia. Analysoin tuloksia [Exploitability Gui
 
 <img width="543" height="60" alt="image" src="https://github.com/user-attachments/assets/e6a5c269-20d1-4e61-9a95-a9351677a362" />
 
+<br>
+<br>
 
 2. Portissa 1524 oli _open bindshell Metasploitable root shell_. Rootilla on laajat oikeudet koko järjestelmään, joten hyökkääjän päästessä sisään root shelliin olisi mahdolista saada root oikeudet ja täten tehdä lähes mitä vain.
 
@@ -138,6 +140,8 @@ Skannauksesta löytyi 25 avointa porttia. Analysoin tuloksia [Exploitability Gui
 
 <img width="769" height="22" alt="image" src="https://github.com/user-attachments/assets/0c4a6acd-b296-4a49-a571-0bae527b16c6" />
 
+<br>
+<br>
 
 Yleisellä tasolla se, että Nmap tunnisti kaikki aktiiviset palvelut ja niiden tarkat versionumerot antaa hyökkääjälle jo paljon pinta-alaa. Tarkkojen versionumeroiden avulla on helppo tarkastaa kaikki tunnetut haavoittuvuudet ja toimia niiden pohjalta. Metasploitablen tapauksessa palvelut olivat vanhempia versioita, joka tekee tästä todella helppoa hyökkääjälle. Metasploitableen pääsi myös kirjautumaan merkittävin heikolla tunnus/salasana yhdistelmällä (msfadmin)
 
