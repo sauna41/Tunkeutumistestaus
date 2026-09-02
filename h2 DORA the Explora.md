@@ -47,6 +47,7 @@ Latasin [Metasploitable 2](https://sourceforge.net/projects/metasploitable/) ja 
 
 
 <img width="718" height="305" alt="image" src="https://github.com/user-attachments/assets/7e891d74-4e4d-426d-ad08-d6dffb2846f5" />
+
 ________________________________________________________________________________________________________________________________________________________________________________________
 
 ### b) Tee Kalin ja Metasploitablen välille virtuaaliverkko
