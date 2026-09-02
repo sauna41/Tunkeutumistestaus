@@ -124,19 +124,23 @@ Suoritin Metasploitablelle perusteellisen skannauksen ```nmap -A -T4 -p-```  -ko
 Skannauksesta löytyi 25 avointa porttia. Analysoin tuloksia [Exploitability Guiden](https://docs.rapid7.com/metasploit/metasploitable-2-exploitability-guide/) avulla ja päädyin valitsemaan portit 21, 1524 & 3632.
 
 
-1. Portissa 21 FTP-palvelu, jossa anonymous kirjautuminen on sallittu, joten hyökkääjän on mahdollista päästä sisään ilman tunnusta tai salasanaa. Lisäksi Nmap tunnisti tietyn version palvelusta, joka mahdollistaa hyökkääjän tarkastavan onko kyseiseeen versioon tiedettyjä haavoittuvuuksia. Kyseisessä 
+**1. Portissa 21 **FTP-palvelu, jossa anonymous kirjautuminen on sallittu, joten hyökkääjän on mahdollista päästä sisään ilman tunnusta tai salasanaa. Lisäksi Nmap tunnisti tietyn version palvelusta, joka mahdollistaa hyökkääjän tarkastavan onko kyseiseeen versioon tiedettyjä haavoittuvuuksia. Kyseisessä 
 
 <img width="543" height="60" alt="image" src="https://github.com/user-attachments/assets/e6a5c269-20d1-4e61-9a95-a9351677a362" />
 
+
+
 <br>
 <br>
 
-2. Portissa 1524 oli _open bindshell Metasploitable root shell_. Rootilla on laajat oikeudet koko järjestelmään, joten hyökkääjän päästessä sisään root shelliin olisi mahdolista saada root oikeudet ja täten tehdä lähes mitä vain.
+**2. Portissa 1524** oli _open bindshell Metasploitable root shell_. Rootilla on laajat oikeudet koko järjestelmään, joten hyökkääjän päästessä sisään root shelliin olisi mahdolista saada root oikeudet ja täten tehdä lähes mitä vain.
 
  <img width="758" height="465" alt="image" src="https://github.com/user-attachments/assets/f30ae7d3-c1ab-41bf-a219-8d259efa9e4b" />
 
 
-3. Portti 3632 oli distcdd -palvelu. Distributed C Compiler ohjelmien kääntämistä nopeutetaan jakamalla kääntäminen usealle eri koneelle, jolloin se hyödyntää etäyhteyden muihin koneisiin. Hyökkääjän on siis mahdollista saada kohdekone suorittamaan komentoja verkon yli etänä. 
+
+
+**3. Portti 3632** oli distcdd -palvelu. Distributed C Compiler ohjelmien kääntämistä nopeutetaan jakamalla kääntäminen usealle eri koneelle, jolloin se hyödyntää etäyhteyden muihin koneisiin. Hyökkääjän on siis mahdollista saada kohdekone suorittamaan komentoja verkon yli etänä. 
 
 <img width="769" height="22" alt="image" src="https://github.com/user-attachments/assets/0c4a6acd-b296-4a49-a571-0bae527b16c6" />
 
