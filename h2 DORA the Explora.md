@@ -10,17 +10,30 @@ _Tämä raportti on osa Haaga-Helian Tunkeutumistestaus -kurssia syksyllä 2026.
 
 ________________________________________________________________________________________________________________________________________________________________________________________
 
-x) Lue/katso/kuuntele ja tiivistä. (Tässä x-alakohdassa ei tarvitse tehdä testejä tietokoneella, vain lukeminen tai kuunteleminen ja tiivistelmä riittää. Tiivistämiseen riittää muutama ranskalainen viiva. Lisää mukaan jokin oma havainto, idea tai kysymys)
+x) Lue/katso/kuuntele ja tiivistä.
 
-- Buuri 2026: DORA and TLPT testing - Lecture for Haaga-Helia on 31 March 2026 (pdf, 2 MB)
-- DORA (Regulation ... on digital operational resilience for the financial sector) (vain nämä kaksi artiklaa):
-   - Article 26 "Advanced testing of ICT tools, systems and processes based on TLPT"
-   - Article 27 "Requirements for testers for the carrying out of TLPT"
-- TIBER-FI procedures and guidelines (pdf, 1 MB) (vain tämä kohta):
+**Buuri 2026: DORA and TLPT testing - Lecture for Haaga-Helia on 31 March 2026 (pdf, 2 MB)**
+- DORA (Digital Operational Resilience Act) on EU-asetus, joka velvoittaa rahoitusalan toimijoita hallitsemaan digitaalisia riskejä. Tähän lukeutuvat myös tunkeutumistestaukset.
+- Suomen Pankin omistama TIBER-FI on Euroopan Unionin laajainen, Suomen oma Red Teaming -testaus kehys. 
+- TIBER projekti kestää noin 12-18 kk. Se koostuu suunnitteluvaiheesta, testausvaiheesta & lopetusvaiheesta.
+     - Projektiin osallistuu Control Team, joka toimii ohjaajana, tunkeutujan roolissa oleva Red Team & puolustava osapuolena Blue Team.
+     -Leg-upit ovat apuja, joita hyökkääjille voidaan antaa esimerkiksi aikarajoitteiden vuoksi, jotta projekti etenee. Leg-upit voivat olla esimerkiksi tunnuksia, tietoja tai vinkkejä teknisestä toteutuksesta.
+
+
+**DORA (Regulation ... on digital operational resilience for the financial sector)**
+- Article 26 "Advanced testing of ICT tools, systems and processes based on TLPT"
+     - Finanssialan toimijoille tehdään Threat-Led Penetration Testingiä tarkoituksena selvittää, kuinka hyvin ne kestävät hyökkäyksiä.
+      - Tehdään vähintään kolmen vuoden välein
+      - Testaus kohdistuu ICT-järjestelmiin, työkaluihin ja prosesseihin käyttäen todellisia uhkia jäljitteleviä hyökkäyksiä.
+- Article 27 "Requirements for testers for the carrying out of TLPT"
+     - Testaajilla täytyy olla kokemusta tietoturvatestauksesta: pätevyys, riippumattomuus & sopiva
+     - Myös ulkopuolisen testaajan tulee täyttää DORA:n vaatimukset
+     - Tavoite on onnistua toteuttamaan luotettava, puolueeton ja riittävän vaativa testaus
+     - Tulokset on dokumentoitava riittävän kattavasti
+
+       
+**TIBER-FI procedures and guidelines**
 5.4 Testing phase: Red team testing (johdantokappale suoraan 5.4 alta, "5.4.1 Red team test plan creation" alkuun asti)
-
-
-Vapaaehtoinen bonus: Buuri 2026: D26 - Releasing Your Inner TIBER in Regulated Adversary Simulations. Video, 45 min. Disobey 2026.
 
 ________________________________________________________________________________________________________________________________________________________________________________________
 
@@ -123,16 +136,17 @@ Skannauksesta löytyi 25 avointa porttia. Analysoin tuloksia [Exploitability Gui
 <img width="769" height="22" alt="image" src="https://github.com/user-attachments/assets/0c4a6acd-b296-4a49-a571-0bae527b16c6" />
 
 
-Yleisellä tasolla se, että Nmap tunnisti kaikki aktiiviset palvelut ja niiden tarkat versionumerot antaa hyökkääjälle jo paljon pinta-alaa. Tarkkojen versionumeroiden avulla on helppo tarkastaa kaikki tunnetut haavoittuvuudet ja toimia niiden pohjalta. Metasploitablen tapauksessa palvelut olivat vanhempia versioita, joka tekee tästä todella helppoa hyökkääjälle.
+Yleisellä tasolla se, että Nmap tunnisti kaikki aktiiviset palvelut ja niiden tarkat versionumerot antaa hyökkääjälle jo paljon pinta-alaa. Tarkkojen versionumeroiden avulla on helppo tarkastaa kaikki tunnetut haavoittuvuudet ja toimia niiden pohjalta. Metasploitablen tapauksessa palvelut olivat vanhempia versioita, joka tekee tästä todella helppoa hyökkääjälle. Metasploitableen pääsi myös kirjautumaan merkittävin heikolla tunnus/salasana yhdistelmällä (msdfadmin)
 
-________________________________________________________________________________________________________________________________________________________________________________________
-
-f) Vapaaehtoinen bonus: Sisään vaan. Pääsetkö murtautumaan Metasploitableen?
-g) Vapaaehtoinen bonus: jos haluat, voit jo kokeilla metasploit-hyökkäysohjelmaa omaan harjoitusmaaliisi. Tätä katsotaan myöhemmin yhdessäkin. (Muista irrottaa kone Internetistä kokeilujen ajaksi. 'sudo msfdb init', 'sudo msfconsole').
 
 ________________________________________________________________________________________________________________________________________________________________________________________
 
 Karvinen, T. Tunkeutumistestaus. Opintojakson kurssimateriaali. 2026. Luettavissa: https://terokarvinen.com/tunkeutumistestaus/. Luettu 1.9.2026.
+
+Buuri, M. DORA and TLPT testing - Lecture for Haaga-Helia on 31 March 2026. 2026. PDF-tiedosto.
+
+
+REGULATION (EU) 2022/2554 OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL of 14 December 2022 on digital operational resilience for the financial sector and amending Regulations (EC) No 1060/2009, (EU) No 648/2012, (EU) No 600/2014, (EU) No 909/2014 and (EU) 2016/1011. EUR-Lex. Luettavissa: https://eur-lex.europa.eu/eli/reg/2022/2554/oj/eng. Luettu 1.9.2026.
 
 Metasploitable 2. Ladattavissa: https://sourceforge.net/projects/metasploitable/files/latest/download. Luettu 1.9.2026.
 
