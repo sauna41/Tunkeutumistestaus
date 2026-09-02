@@ -23,8 +23,8 @@ x) Lue/katso/kuuntele ja tiivistä.
 **DORA (Regulation ... on digital operational resilience for the financial sector)**
 - Article 26 "Advanced testing of ICT tools, systems and processes based on TLPT"
      - Finanssialan toimijoille tehdään Threat-Led Penetration Testingiä tarkoituksena selvittää, kuinka hyvin ne kestävät hyökkäyksiä.
-      - Tehdään vähintään kolmen vuoden välein
-      - Testaus kohdistuu ICT-järjestelmiin, työkaluihin ja prosesseihin käyttäen todellisia uhkia jäljitteleviä hyökkäyksiä.
+     - Tehdään vähintään kolmen vuoden välein
+     - Testaus kohdistuu ICT-järjestelmiin, työkaluihin ja prosesseihin käyttäen todellisia uhkia jäljitteleviä hyökkäyksiä.
 - Article 27 "Requirements for testers for the carrying out of TLPT"
      - Testaajilla täytyy olla kokemusta tietoturvatestauksesta: pätevyys, riippumattomuus & sopiva
      - Myös ulkopuolisen testaajan tulee täyttää DORA:n vaatimukset
@@ -32,9 +32,12 @@ x) Lue/katso/kuuntele ja tiivistä.
      - Tulokset on dokumentoitava riittävän kattavasti
 
        
-**TIBER-FI procedures and guidelines**
-5.4 Testing phase: Red team testing (johdantokappale suoraan 5.4 alta, "5.4.1 Red team test plan creation" alkuun asti)
-
+**TIBER-FI procedures and guidelines: 5.4 Testing phase: Red team testing**
+- Red Team testing suunnittelee ja toteuttaa todellista hyökkäävän simuloivan hyökkäyksen
+- Testi sisältää testisuunnitelman sekä aktiivisen hyökkäyksen
+- Eteneminen tapahtuu tiedustelu -> valmistelu -> hyökkäys -> exploit -> liikkuminen -> tavoitteen saavuttaminen 
+- Jos testaajille annetaan lisätietoja kohteesta, puhutaan Grey box testistä kun taas Black boxissa testaajille ei ole annettu etukäteen hyödyllistä tietoa
+- Jos testaus ei muuten etene, voidaan testaajille antaa avustusta leg-upeilla.
 ________________________________________________________________________________________________________________________________________________________________________________________
 
 ### a) Asenna Metasploitable 2 virtuaalikoneeseen.
@@ -143,8 +146,7 @@ ________________________________________________________________________________
 
 Karvinen, T. Tunkeutumistestaus. Opintojakson kurssimateriaali. 2026. Luettavissa: https://terokarvinen.com/tunkeutumistestaus/. Luettu 1.9.2026.
 
-Buuri, M. DORA and TLPT testing - Lecture for Haaga-Helia on 31 March 2026. 2026. PDF-tiedosto.
-
+Buuri, M. DORA and TLPT testing - Lecture for Haaga-Helia on 31 March 2026. 2026. Luettavissa: https://terokarvinen.com/buuri-2026-dora-and-threat-lead-penetration-testing/buuri-2026-dora-and-threat-lead-penetration-testing--teros-pentest-course.pdf. Luettu 1.9.2026.
 
 REGULATION (EU) 2022/2554 OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL of 14 December 2022 on digital operational resilience for the financial sector and amending Regulations (EC) No 1060/2009, (EU) No 648/2012, (EU) No 600/2014, (EU) No 909/2014 and (EU) 2016/1011. EUR-Lex. Luettavissa: https://eur-lex.europa.eu/eli/reg/2022/2554/oj/eng. Luettu 1.9.2026.
 
@@ -152,6 +154,6 @@ Metasploitable 2. Ladattavissa: https://sourceforge.net/projects/metasploitable/
 
 Metasploitable 2 Exploitability Guide. Rapid7 Docs.  https://docs.rapid7.com/metasploit/metasploitable-2-exploitability-guide/. Luettu 1.9.2026.
 
-
 House, N. Nmap Cheat Sheet 2026: All the Commands & Flags. 2026. Luettavissa: https://www.stationx.net/nmap-cheat-sheet/. Luettu 25.8.2026.
 
+TIBER-FI procedures and guidelines. 5.4 Testing phase. 2025. Luettavissa: https://www.suomenpankki.fi/globalassets/bof/en/money-and-payments/the-bank-of-finland-as-catalyst-payments-council/tiber-fi/tiber-fi-2.0-procedures-and-guidelines.pdf. Luettu 1.9.2026.
