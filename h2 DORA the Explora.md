@@ -1,4 +1,12 @@
+_Kurssi: Tunkeutumistestaus ICI005AS3A-3007_
 
+_Tekijä: Henri Äikäs_
+
+_Alusta: Windows 11 / Kali Linux (VirtualBox)_ / Metasploitable 2 (VirtualBox)
+
+_Päivämäärä: 1.9.2026_
+
+_Tämä raportti on osa Haaga-Helian Tunkeutumistestaus -kurssia syksyllä 2026. Tehtävänanto on h2 DORA the Explora. Opettajana toimi Tero Karvinen._
 ________________________________________________________________________________________________________________________________________________________________________________________
 
 ### x) Lue/katso/kuuntele ja tiivistä.
