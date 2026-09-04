@@ -60,7 +60,7 @@ ________________________________________________________________________________
 ### c) Tarkastele Metasploitin tietokantoihin tallennettuja tietoja komennoilla "hosts" ja "services". Kokeile suodattaa näitä listoja tai hakea niistä.
 
 
-Komennolla ```hosts``` pystyttiin tarkastelemaan skannauksessa löydettyjä laitteita, eli tässä tapauksessa Metasploitable konetta. Tietoon tallentuivat IP- ja MAC-osoite sekä veikkaus käyttöjärjestelmästä ja käyttötarkoituksesta (Linux & server). Jos hosteja olisi useampi, voitaisiin etsiä tietty haluttu host komennolla
+Komennolla ```hosts``` pystyttiin tarkastelemaan skannauksessa löydettyjä laitteita, eli tässä tapauksessa Metasploitable konetta. Tietoon tallentuivat IP- ja MAC-osoite sekä veikkaus käyttöjärjestelmästä ja käyttötarkoituksesta (_Linux & server_). Jos hosteja olisi useampi, voitaisiin etsiä tietty haluttu host komennolla
 
     hosts -S <IP-OSOITE>
 
@@ -71,13 +71,39 @@ Komennolla ```services``` saatiin esiin kyseisen hostin käyttämät palvelut ja
 <img width="852" height="407" alt="SERVICES" src="https://github.com/user-attachments/assets/ec0fd0b9-6d7e-4543-87e8-5a22dbe28310" />
 
 Palveluita pystyi helposti suodattamaan joko palvelun tai portin perusteella. 
+
+    sevices -S <palvelu>
+    services -p 80
+
+<img width="850" height="168" alt="SSH" src="https://github.com/user-attachments/assets/eac3c183-4651-4337-acee-78684866f967" />
+
+<img width="841" height="95" alt="PORT 80" src="https://github.com/user-attachments/assets/7a984247-e1c1-412c-b521-58e29fd96a1a" />
+
+
 ________________________________________________________________________________________________________________________________________________________________________________________
 
 ### d) Internet famous. Etsi Metasploitablen mukana tulevista hyökkäyksistä (en: exploits; search) sellainen, joka on ollut julkisuudessa.
 
+Valitsin **vsftpd 2.3.4 portissa 21**. Kyseinen exploit voitiin etsiä ```search vsftpd```, jolloin Metasploit palautti kaikki vsftpd -exploitit. Haluttua backdoor exploittia pystyi tutkimaan vielä tarkemin komennolla ```info exploit/unix/ftp/vsftpd_234_backdoor```.
+
+<img width="760" height="431" alt="VSFTPD exploit" src="https://github.com/user-attachments/assets/9f5b1499-9ed5-4587-83dd-d6eafa421b5f" />
+
+
 ________________________________________________________________________________________________________________________________________________________________________________________
 
 ### e) Vertaile nmap:n omaa tiedostoon tallennusta (-oA foo) ja db_nmap:n tallennusta tietokantoihin. Mitkä ovat eri tiedostomuotojen ja Metasploitin tietokannan hyvät puolet?
+
+**Nmapin -oA** tallentaa skannauksen kolmeen eri tiedostomuotoon: .nmap, .xml ja .gnmap. ([Ping Labz.](https://www.pinglabz.com/nmap-output-formats/)
+- .nmap on helposti ihmisen luettava
+- .xml soveltuu ohjelmalliseen käsittelyyn
+- .gnmap komentorivipohjaiseen tietojen poimintaan.
+
+Eri tiedostomuotojen tallentamisen hyötynä on se, että kaikki tulokset ovat helposti arkistoitavissa ja käytettävissä myös ilman Metasploitia.
+
+**db_nmap** puolestaan tallentaa skannauksen tulokset Metasploitin tietokantaan. Tietoja voidaan käsitellä ja suodattaa esimerkiksi erilaisilla hosts- ja services-komennoilla kuten ylemmässä tehtävässä tehtiin. Tietokannan etuna on, että skannaustulokset ovat suoraan Metasploitin muun työskentelyn käytettävissä ja niihin voidaan yhdistää esimerkiksi haavoittuvuuksia ja muita penetration testing -prosessissa kerättyjä tietoja.
+
+Yhteenvetona: Nmapin tiedostot ovat parempia tulosten tallentamiseen, jakamiseen ja muiden työkalujen kanssa käytettäväksi, kun taas Metasploitin tietokanta on parempi silloin, kun tuloksia halutaan hyödyntää osana laajempaa Metasploit-pohjaista testausta.
+
 
 ________________________________________________________________________________________________________________________________________________________________________________________
 
@@ -121,4 +147,8 @@ Karvinen, T. Tunkeutumistestaus kurssimateriaali. 2026. Luettavissa: https://ter
 Metasploit-framework. Kali.org. Luettavissa: https://www.kali.org/tools/metasploit-framework/. Luettu 4.9.2026.
 
 Metasploit Framework docs. Kali.org. 2025. ttps://www.kali.org/docs/tools/starting-metasploit-framework-in-kali/. Luettu 4.9.2026.
+
+Nmap Cheat Sheet. GeeksForGeeks. 2025. Luettavissa: https://www.geeksforgeeks.org/ethical-hacking/nmap-cheat-sheet/. Luettu 4.9.2026.
+
+Nmap Output Formats: -oN, -oX, -oG, -oA and Parsing Results. Ping Labz. 2026. Luettavissa: https://www.pinglabz.com/nmap-output-formats/. Luettu 4.9.2026.
 
