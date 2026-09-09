@@ -224,10 +224,13 @@ ________________________________________________________________________________
 
 | Taktiikka| Tekniikka | Harjoitus |
 |---|---|---|
-| Reconnaissance| T1595 Active Scanning | Nmap-skannaus |
-| **ISP** | Palvelusopimuksen ja käyttöehtojen noudattaminen. Liittymää ei käytetä väärin esim. luvattomien julkisten palvelinten pystyttäminen | Toiminta | Ote ISP:n käyttöehdoista tai viittaus niihin; reitittimen konfiguraatio, joka osoittaa ettei porttiohjauksia/julkisia palveluita ole avattu sopimuksen vastaisesti | 
-| **Google** | Palveluiden turvallinen käyttö: henkilökohtaisten tietojen suojaaminen. Monivaiheisen tunnistautumisen käyttö. Käyttöehtojen noudattaminen | Tuki / Toiminta | Vahva salasana, MFA, turvallisuusasetuksien säädöt |
-| **Oppilaitos** | Tietoturvatehtävien vastuullisuus. Harjoitukset luvallisissa palveluissa / alustoissa. Akateeminen vastuu. | Suunnittelu / Toiminta | Harjoitteluympäristön rajaus ja sääntöjen dokumentointi. Kurssitehtävien ja käytännönharjoitusten dokumentointi. |
+| Reconnaissance | T1595 Active Scanning | Nmap-skannaus |
+| Discovery | T1046 Network Service Scanning | Avoimien porttien ja palveluiden selvittäminen |
+| Initial Access | T1190 Exploit Public Facing Application | vsftpd 2.3.4 -backdoor hyödyntäminen |
+| Initial Access | T1190 Exploit Public Facing Application | UnrealIRCd -backdoor hyödyntäminen |
+| Discovery | T1016 System Network Configuration Discovery | ipconfig -komennolla verkkoyhteyksien selvittäminen |
+| Discovery | T1082 – System Information Discovery | sysinfo-komennolla käyttöjärjestelmän ja järjestelmän tietojen selvittäminen |
+| Command and Control | T1059 – Command and Scripting Interpreter | Meterpreteristä shell-komennolla Linux-shellin avaaminen | 
 ________________________________________________________________________________________________________________________________________________________________________________________
 
 ### Lähteet
