@@ -169,7 +169,7 @@ ________________________________________________________________________________
 
 ### i) Demonstroi Meterpretrin ominaisuuksia.
 
-Meterpreter on Metasploit Frameworkin tarjoama hyökkäyksen jälkeiseen toimintaan tarkoitettu payload, jonka avulla kohdejärjestelmää voidaan hallita ja siitä voidaan kerätä tietoa. [(StationX)](https://www.stationx.net/meterpreter-commands/).
+Meterpreter on Metasploit Frameworkin tarjoama hyökkäyksen jälkeiseen toimintaan tarkoitettu payload, jonka avulla kohdejärjestelmää voidaan hallita ja siitä voidaan kerätä tietoa. [(StationX.)](https://www.stationx.net/meterpreter-commands/)
 
 
 sysinfo
