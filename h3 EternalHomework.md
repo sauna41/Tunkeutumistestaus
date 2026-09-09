@@ -232,7 +232,7 @@ ________________________________________________________________________________
 | Initial Access | T1190 Exploit Public Facing Application | UnrealIRCd -backdoor hyödyntäminen |
 | Discovery | T1016 System Network Configuration Discovery | ipconfig -komennolla verkkoyhteyksien selvittäminen |
 | Discovery | T1082 – System Information Discovery | sysinfo-komennolla käyttöjärjestelmän ja järjestelmän tietojen selvittäminen |
-Discovery | T1046 – Network Service Scanning | Muiden verkossa havaittujen koneiden tutkiminen Nmapilla |
+Discovery | T1046 – Network Service Discovery | Muiden verkossa havaittujen koneiden tutkiminen Nmapilla |
 | Command and Control | T1059 – Command and Scripting Interpreter | Meterpreteristä shell-komennolla Linux-shellin avaaminen | 
 ________________________________________________________________________________________________________________________________________________________________________________________
 
