@@ -28,7 +28,7 @@ Tutustuin aluksi [Kalin Metasploit dokumenttiin](https://www.kali.org/tools/meta
 Tämä käynnisti Metasploitin. 
 
 
-<img width="691" height="453" alt="METASPLOIT BANNER" src="https://github.com/user-attachments/assets/72e08789-56e2-4be4-aa0c-04fc0a4fb322" />
+<img width="691" height="453" alt="METASPLOIT BANNER" src="https://github.com/user-attachments/assets/72e08789-56e2-4be4-aa0c-04fc0a4fb322" /> <br><br>
 
 Tehtävät tarvitsivat myös tietokannan, jotta löydetyt hostit ja palvelut voitaisiin tallentaa. [Kalin dokumentoinnista]([Metasploit Framework](https://www.kali.org/docs/tools/starting-metasploit-framework-in-kali/)) löysin yksinkertaisen komennon PostgreSQL-tietokannan alustamiseen ja sen yhdistämiseen Metasploittiin.
 
