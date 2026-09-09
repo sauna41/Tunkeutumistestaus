@@ -2,7 +2,7 @@ _Kurssi: Tunkeutumistestaus ICI005AS3A-3007_
 
 _Tekijä: Henri Äikäs_
 
-_Alusta: Windows 11 / Kali Linux (VirtualBox) / Metasploitable (VirtualBox)_
+_Alusta: Windows 11 / Kali Linux (VirtualBox) / Metasploitable 2 (VirtualBox)_
 
 _Päivämäärä: 3.9.2026_
 
