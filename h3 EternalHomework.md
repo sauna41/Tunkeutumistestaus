@@ -128,6 +128,12 @@ Tämän korjauksen jälkeen exploit komennot uudestaan onnistuneesti.
 
 <img width="844" height="149" alt="BACKDOOR HAS SPAWNNED" src="https://github.com/user-attachments/assets/6080dcc4-d739-41cb-a469-10d924955c89" />
 
+
+________________________________________________________________________________________________________________________________________________________________________________________
+
+
+### g) Kerää levittäytymisessä (lateral movement) tarvittavaa tietoa metasploitablesta. Analysoi tiedot. Selitä, miten niitä voisi hyödyntää.
+
 Yritin seuraavaksi lähteä hakemaan tietoa kohdekoneesta komennoilla ```whoami``` ja ```hostname```. Nämä eivät kuitenkaan toimineet vaan palauttivat _"Unknown command"_ virheilmoitukset. LÄHDE löytyi, että meterpreter tottelee eri käskyjä:
 
     getuid
@@ -135,28 +141,75 @@ Yritin seuraavaksi lähteä hakemaan tietoa kohdekoneesta komennoilla ```whoami`
 
 <img width="466" height="132" alt="image" src="https://github.com/user-attachments/assets/f188c0ec-380c-46de-ac51-b04f493d340f" />
 
-________________________________________________________________________________________________________________________________________________________________________________________
+Ylemmät komennot kertoivat, että kohdekoneen hostname oli metasploitable.localadmin ja sen käyttöjärjestelmä oli Ubuntu 8.04, jossa pyöri Linux 2.6.24-16.server. Lisäksi Meterpreter toimi root-oikeuksin. Root-oikeudet mahdollistavat hyökkääjälle laajat valtuudet etsiä tietoa käyttäjistä, palveluista ja tiedoista. Se myös helpottaa muiden kohteiden tai tietojen löytämistä.
+
+Hain verkkotiedot ```ipconfig``` komennolla. Se kertoi missä aliverkossa kone on. ```arp``` -komennolla saatiin välimuistissa olevat IP-osoitteet. 
+
+<img width="546" height="410" alt="image" src="https://github.com/user-attachments/assets/fe03da71-481b-4e89-8fcb-89e241d4cd19" />
 
 
-### g) Kerää levittäytymisessä (lateral movement) tarvittavaa tietoa metasploitablesta. Analysoi tiedot. Selitä, miten niitä voisi hyödyntää.
-
+Kerätyillä tiedoilla hyökkääjän olisi täten mahdollistaa alkaa muodostamaan kuvaa millaisessa ympäristö toimitaan. Käyttöjärjestelmä, oikeudet, verkko ja mitä laitteita se on havainnut ovat kaikki hyödyllistä tietoa hyökkääjän kannalta, joita voidaan hyödyntää lateral movement -polun suunnitteluun.
 ________________________________________________________________________________________________________________________________________________________________________________________
 
 
 ### h) Murtaudu Metasploitableen jollain toisella tavalla. (Jos tämä kohta on vaikea, voit tarvittaessa turvautua verkosta löytyviin läpikävelyohjeisiin. Merkitse silloin raporttiin, missä määrin tarvitsit niitä).
 
-Käyttäjärjestelmä ja käyttäjä oli jo saatu tietoon, joten oli aika lähteä tutkimaan muita hyödyllisiä perustietoja. Ensimmäisenä lähdin selvittämään verkkoyhteyksiä
-
-    ipconfig
-    ________________________________________________________________________________________________________________________________________________________________________________________
+Tutustuin tunnettuihin Metasploitablen haavoittuvuuksiin ja löysin IRC-palvelun, joka löytyi portista 6667. Kyseessä oli UnrealIRCd, johon Metasploitissa oli valmis hyökkäys. Exploitissa hyödynnettiin backdooria, jonka avulla saatiin pääsy kohdekoneelle. Askeleet olivat hyvin samankaltaiset kuin aiemmassa vsftpd-hyökkäyksessä.
 
 
+    search unreal ircd
+    use exploit/unix/irc/unreal_ircd_3281_backdoor
+    set <METASPLOITABLEN IP-OSOITE>
+    run
+
+<img width="1002" height="679" alt="image" src="https://github.com/user-attachments/assets/a944aed2-3ee1-4f26-8ecb-9b83dfea0b82" />
+
+
+________________________________________________________________________________________________________________________________________________________________________________________
 
 ### i) Demonstroi Meterpretrin ominaisuuksia.
+
+Meterpreter on Metasploit Frameworkin tarjoama hyökkäyksen jälkeiseen toimintaan tarkoitettu payload, jonka avulla kohdejärjestelmää voidaan hallita ja siitä voidaan kerätä tietoa. [StationX](https://www.stationx.net/meterpreter-commands/).
+
+
+sysinfo
+ -Hakee tietoa kohdejärjestelmästä. Esimerkiksi käyttöjärjestelmän.
+
+getuid
+- Kertoo, millaisella käyttäjällä ja oikeuksilla ollaan sisällä.
+
+ipconfig, route ja arp
+- Kohdekoneen verkkoympäristön tutkimiseen. Voidaan selvittää esimerkiksi koneen IP-osoitteita, reitityksiä ja muita verkossa havaittuja laitteita.
+
+ps 
+- Voidaan tarkastella kohdekoneella käynnissä olevia prosesseja. Tämä voi auttaa selvittämään, mitä ohjelmia ja palveluita järjestelmässä on käytössä.
+
+background & sessions
+- Istunto voidaan siirtää taustalle ja aktiivisia istuntoja voidaan selata ```sessions``` -komennolla ja palata haluttuun sessioon.
+
+<img width="985" height="291" alt="image" src="https://github.com/user-attachments/assets/08e7d883-05a6-4dce-b328-ee37f9f5054e" />
+
+
+```shell``` -komennolla voidaan avata tavallinen komentotulkki Meterpreterin sisällä. Komentotulkilla voidaan käyttää Linuxin normaaleja komentoja, kuten whoami, hostname ja uname -a. ```exit``` -komennolla voidaan palata takaisin Meterpretreriin.
+
+<img width="681" height="97" alt="image" src="https://github.com/user-attachments/assets/99093a26-255a-488d-ae78-3bf7c5f8f758" />
+
 
 ________________________________________________________________________________________________________________________________________________________________________________________
 
 ### j) Tallenna shell-sessio tekstitiedostoon script-työkalulla (script -fa log001.txt) tai tmux:lla.
+
+Avasin Meterpreterissä normaalin komentotulkin ```shell``` -komennolla ja käynnistin scriptaus työkalun ```script -fa log001.txt```. 
+- Scripti tallentaa istunnon tulosteet komennossa määritettyyn tekstitiedostoon.
+- -f kirjoittaa tiedostoon välittömästi
+- -a lisää uudet tiedot tiedoston loppuun sen sijaan, että korvaisi tiedoston joka kerta
+
+Käytin tallennuksen aikana jo ylempää tuttuja komentoja, _whoami, hostname, uname -a & ip a_. Tallennuksen sai lopetettua ```exit``` -komennolla. 
+
+<img width="982" height="325" alt="CAT LOG001.TXT" src="https://github.com/user-attachments/assets/be71e941-7623-41ba-9dd2-92c4cd3c698e" />
+
+
+Hyötynä tässä on se, että hyökkäyksen aikana tehdyt komennot ja niiden tulosteet voidaan helposti tallentaa myöhempää analyysiä varten.
 
 ________________________________________________________________________________________________________________________________________________________________________________________
 
@@ -180,4 +233,6 @@ Metasploit Framework docs. Kali.org. 2025. ttps://www.kali.org/docs/tools/starti
 Nmap Cheat Sheet. GeeksForGeeks. 2025. Luettavissa: https://www.geeksforgeeks.org/ethical-hacking/nmap-cheat-sheet/. Luettu 4.9.2026.
 
 Nmap Output Formats: -oN, -oX, -oG, -oA and Parsing Results. Ping Labz. 2026. Luettavissa: https://www.pinglabz.com/nmap-output-formats/. Luettu 4.9.2026.
+
+Lee, C. Meterpreter Commands List. Station X. Luettavissa: https://www.stationx.net/meterpreter-commands/. Luettu 4.9.2026.
 
