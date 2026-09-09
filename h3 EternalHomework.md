@@ -72,7 +72,7 @@ Komennolla ```services``` saatiin esiin kyseisen hostin käyttämät palvelut ja
 
 Palveluita pystyi helposti suodattamaan joko palvelun tai portin perusteella. 
 
-    sevices -S <palvelu>
+    services -S <palvelu>
     services -p 80
 
 <br> <img width="850" height="168" alt="SSH" src="https://github.com/user-attachments/assets/eac3c183-4651-4337-acee-78684866f967" /> <br>
@@ -141,7 +141,7 @@ Yritin seuraavaksi lähteä hakemaan tietoa kohdekoneesta komennoilla ```whoami`
 
 <br> <img width="466" height="132" alt="image" src="https://github.com/user-attachments/assets/f188c0ec-380c-46de-ac51-b04f493d340f" /> <br>
 
-Ylemmät komennot kertoivat, että kohdekoneen hostname oli metasploitable.localadmin ja sen käyttöjärjestelmä oli Ubuntu 8.04, jossa pyöri Linux 2.6.24-16.server. Lisäksi Meterpreter toimi root-oikeuksin. Root-oikeudet mahdollistavat hyökkääjälle laajat valtuudet etsiä tietoa käyttäjistä, palveluista ja tiedoista. Se myös helpottaa muiden kohteiden tai tietojen löytämistä.
+Ylemmät komennot kertoivat, että kohdekoneen hostname oli metasploitable.localdomain ja sen käyttöjärjestelmä oli Ubuntu 8.04, jossa pyöri Linux 2.6.24-16.server. Lisäksi Meterpreter toimi root-oikeuksin. Root-oikeudet mahdollistavat hyökkääjälle laajat valtuudet etsiä tietoa käyttäjistä, palveluista ja tiedoista. Se myös helpottaa muiden kohteiden tai tietojen löytämistä.
 
 Hain verkkotiedot ```ipconfig``` komennolla. Se kertoi missä aliverkossa kone on. ```arp``` -komennolla saatiin välimuistissa olevat IP-osoitteet. 
 
@@ -152,14 +152,14 @@ Kerätyillä tiedoilla hyökkääjän olisi täten mahdollistaa alkaa muodostama
 ________________________________________________________________________________________________________________________________________________________________________________________
 
 
-### h) Murtaudu Metasploitableen jollain toisella tavalla. (Jos tämä kohta on vaikea, voit tarvittaessa turvautua verkosta löytyviin läpikävelyohjeisiin. Merkitse silloin raporttiin, missä määrin tarvitsit niitä).
+### h) Murtaudu Metasploitableen jollain toisella tavalla.
 
 Tutustuin tunnettuihin Metasploitablen haavoittuvuuksiin ja löysin IRC-palvelun, joka löytyi portista 6667. Kyseessä oli UnrealIRCd, johon Metasploitissa oli valmis hyökkäys. Exploitissa hyödynnettiin backdooria, jonka avulla saatiin pääsy kohdekoneelle. Askeleet olivat hyvin samankaltaiset kuin aiemmassa vsftpd-hyökkäyksessä.
 
 
     search unreal ircd
     use exploit/unix/irc/unreal_ircd_3281_backdoor
-    set <METASPLOITABLEN IP-OSOITE>
+    set RHOST <METASPLOITABLEN IP-OSOITE>
     run
 
 <br> <img width="1002" height="679" alt="image" src="https://github.com/user-attachments/assets/a944aed2-3ee1-4f26-8ecb-9b83dfea0b82" /> <br>
@@ -169,7 +169,7 @@ ________________________________________________________________________________
 
 ### i) Demonstroi Meterpretrin ominaisuuksia.
 
-Meterpreter on Metasploit Frameworkin tarjoama hyökkäyksen jälkeiseen toimintaan tarkoitettu payload, jonka avulla kohdejärjestelmää voidaan hallita ja siitä voidaan kerätä tietoa. [(StationX.)](https://www.stationx.net/meterpreter-commands/)
+Meterpreter on Metasploit Frameworkin tarjoama hyökkäyksen jälkeiseen toimintaan tarkoitettu payload, jonka avulla kohdejärjestelmää voidaan hallita ja siitä voidaan kerätä tietoa. [(StationX)](https://www.stationx.net/meterpreter-commands/)
 
 
 sysinfo
@@ -215,7 +215,16 @@ ________________________________________________________________________________
 
 ### k) Pivot point. Laita kaikki harjoituksen tiedostot (script -fa, nmap -oA...) samaan kansioon. Hae sopiva pivot point (sovellus, versio, osoite, MAC-numero) 'grep -r' -komennolla. Keksi uskottava esimerkkikysymys, johon haet vastausta.
 
-3
+Minulla oli hankaluuksia löytää kunnollista lähdettä selittämään Pivot point, joten hyödynsin ChatGPT tekoälyä määrittelemään tehtävänantoa. Promptasin _"Selitä Pivot point tunkeutumistestauksessa"_ ja vastaus oli "Pivot point on tunkeutumistestauksessa jo saavutettu järjestelmä tai muu pääsypiste, jota voidaan käyttää väylänä seuraaviin kohteisiin tai verkkoihin." (ChatGPT)
+
+Loin uuden _h3_-kansion mihin keräsin kaikki edellisissä harjoituksissa saadut tiedostot. Sinne tallennettiin Metasploitablen Nmap-skannauksen tulokset sekä shell-istunnon scripti lokitiedosto _log001.txt_.
+
+Nmap tulokset saatiin komennolla ```nmap -sV -T4 -oA metasploitable-101 192.168.56.101```. -oA (output all) parametri tallentaa kolmessa eri muodossa (nmap, gnmap, xml). log001.txt saatiin yksinkertaisesti lataamalla se ```download /tmp/log001.txt ~/h3/log001.txt```. 
+
+Esimerkkikysymys voisi olla: _"Mikä palvelu kannattaa seuraavaksi tarkempaan syyniin ja millä tiedoilla sitä voidaan yksilöidä?"_. Tätä varten FTP-palvelu vsftpd 2.3.4. on hyvä pivot point. Se toimii seuraavien askeleiden lähtökohtana koska sen avulla voidaan yksilöidä kohdekone sekä palvelu. 
+
+
+<br> <img width="917" height="77" alt="image" src="https://github.com/user-attachments/assets/2c194268-43f1-4083-924c-e22c3f791fa5" /> <br>
 
 
 ________________________________________________________________________________________________________________________________________________________________________________________
@@ -251,4 +260,6 @@ Nmap Output Formats: -oN, -oX, -oG, -oA and Parsing Results. Ping Labz. 2026. Lu
 Lee, C. Meterpreter Commands List. Station X. Luettavissa: https://www.stationx.net/meterpreter-commands/. Luettu 4.9.2026.
 
 ATT&CK Matrix for Enterprise. Mitre. Luettavissa: https://attack.mitre.org/. Luettu 4.9.2026.
+
+ChatGPT. Käytettävissä: chatgpt.com.
 
