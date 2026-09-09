@@ -222,7 +222,12 @@ ________________________________________________________________________________
 
 ### l) Attaaack! Mitä Mitre Attack taktiikoita ja tekniikoita käytit tässä harjoituksessa?
 
-
+| Taktiikka| Tekniikka | Harjoitus |
+|---|---|---|
+| Reconnaissance| T1595 Active Scanning | Nmap-skannaus |
+| **ISP** | Palvelusopimuksen ja käyttöehtojen noudattaminen. Liittymää ei käytetä väärin esim. luvattomien julkisten palvelinten pystyttäminen | Toiminta | Ote ISP:n käyttöehdoista tai viittaus niihin; reitittimen konfiguraatio, joka osoittaa ettei porttiohjauksia/julkisia palveluita ole avattu sopimuksen vastaisesti | 
+| **Google** | Palveluiden turvallinen käyttö: henkilökohtaisten tietojen suojaaminen. Monivaiheisen tunnistautumisen käyttö. Käyttöehtojen noudattaminen | Tuki / Toiminta | Vahva salasana, MFA, turvallisuusasetuksien säädöt |
+| **Oppilaitos** | Tietoturvatehtävien vastuullisuus. Harjoitukset luvallisissa palveluissa / alustoissa. Akateeminen vastuu. | Suunnittelu / Toiminta | Harjoitteluympäristön rajaus ja sääntöjen dokumentointi. Kurssitehtävien ja käytännönharjoitusten dokumentointi. |
 ________________________________________________________________________________________________________________________________________________________________________________________
 
 ### Lähteet
