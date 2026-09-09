@@ -215,12 +215,14 @@ ________________________________________________________________________________
 
 ### k) Pivot point. Laita kaikki harjoituksen tiedostot (script -fa, nmap -oA...) samaan kansioon. Hae sopiva pivot point (sovellus, versio, osoite, MAC-numero) 'grep -r' -komennolla. Keksi uskottava esimerkkikysymys, johon haet vastausta.
 
-
+3
 
 
 ________________________________________________________________________________________________________________________________________________________________________________________
 
 ### l) Attaaack! Mitä Mitre Attack taktiikoita ja tekniikoita käytit tässä harjoituksessa?
+
+[(Mitre)](https://attack.mitre.org/)
 
 | Taktiikka| Tekniikka | Harjoitus |
 |---|---|---|
@@ -230,6 +232,7 @@ ________________________________________________________________________________
 | Initial Access | T1190 Exploit Public Facing Application | UnrealIRCd -backdoor hyödyntäminen |
 | Discovery | T1016 System Network Configuration Discovery | ipconfig -komennolla verkkoyhteyksien selvittäminen |
 | Discovery | T1082 – System Information Discovery | sysinfo-komennolla käyttöjärjestelmän ja järjestelmän tietojen selvittäminen |
+Discovery | T1046 – Network Service Scanning | Muiden verkossa havaittujen koneiden tutkiminen Nmapilla |
 | Command and Control | T1059 – Command and Scripting Interpreter | Meterpreteristä shell-komennolla Linux-shellin avaaminen | 
 ________________________________________________________________________________________________________________________________________________________________________________________
 
@@ -246,4 +249,6 @@ Nmap Cheat Sheet. GeeksForGeeks. 2025. Luettavissa: https://www.geeksforgeeks.or
 Nmap Output Formats: -oN, -oX, -oG, -oA and Parsing Results. Ping Labz. 2026. Luettavissa: https://www.pinglabz.com/nmap-output-formats/. Luettu 4.9.2026.
 
 Lee, C. Meterpreter Commands List. Station X. Luettavissa: https://www.stationx.net/meterpreter-commands/. Luettu 4.9.2026.
+
+ATT&CK Matrix for Enterprise. Mitre. Luettavissa: https://attack.mitre.org/. Luettu 4.9.2026.
 
