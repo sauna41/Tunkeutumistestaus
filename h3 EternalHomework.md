@@ -173,7 +173,7 @@ Meterpreter on Metasploit Frameworkin tarjoama hyökkäyksen jälkeiseen toimint
 
 
 sysinfo
- -Hakee tietoa kohdejärjestelmästä. Esimerkiksi käyttöjärjestelmän.
+ - Hakee tietoa kohdejärjestelmästä. Esimerkiksi käyttöjärjestelmän.
 
 getuid
 - Kertoo, millaisella käyttäjällä ja oikeuksilla ollaan sisällä.
