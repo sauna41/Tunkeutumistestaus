@@ -13,8 +13,10 @@ ________________________________________________________________________________
 
 ### x) Lue/katso/kuuntele ja tiivistä
 € Jaswal 2020: Mastering Metasploit - 4ed: Chapter 1: Approaching a Penetration Test Using Metasploit (Conducting a penetration test with Metasploit)
+- En päässyt lukemaan artikkelia ilman maksullista tilausta, joten jätin tämän kohdan tekemättä.
 
 Mitä 'nmap -sn' tekee? Älä arvaa, vaan perustele lähteillä. Mistä tiedät, että käyttämäsi lähde on luotettava?
+- ```nmap -sn``` suorittaa host discovery -skannauksen ilman varsinaista porttiskannausta. Voidaan hyödyntää selvittämään mitä IP-osoitteita on fiksua tutkia tarkemmin ennen kuin aletaan suorittamaan tarkempaa portti- tai versioskannausta.  [(Nmap.org)](https://nmap.org/book/man-host-discovery.html).
 
 ________________________________________________________________________________________________________________________________________________________________________________________
 
@@ -134,7 +136,7 @@ ________________________________________________________________________________
 
 ### g) Kerää levittäytymisessä (lateral movement) tarvittavaa tietoa metasploitablesta. Analysoi tiedot. Selitä, miten niitä voisi hyödyntää.
 
-Yritin seuraavaksi lähteä hakemaan tietoa kohdekoneesta komennoilla ```whoami``` ja ```hostname```. Nämä eivät kuitenkaan toimineet vaan palauttivat _"Unknown command"_ virheilmoitukset. LÄHDE löytyi, että meterpreter tottelee eri käskyjä:
+Yritin seuraavaksi lähteä hakemaan tietoa kohdekoneesta komennoilla ```whoami``` ja ```hostname```. Nämä eivät kuitenkaan toimineet vaan palauttivat _"Unknown command"_ virheilmoitukset. [Rapid7:n Metasploit-dokumentaatiosta](https://docs.rapid7.com/metasploit/manage-meterpreter-and-shell-sessions/) löytyi, että meterpreter tottelee eri käskyjä:
 
     getuid
     sysinfo
@@ -249,6 +251,8 @@ ________________________________________________________________________________
 
 Karvinen, T. Tunkeutumistestaus kurssimateriaali. 2026. Luettavissa: https://terokarvinen.com/tunkeutumistestaus/#h3-eternalhomework. Luettu 4.9.2026.
 
+Jaswal, N. Chapter 1: Approaching a Penetration Test Using Metasploit. Mastering Metasploit. Luettavissa: https://www.oreilly.com/library/view/mastering-metasploit/9781838980078/B15076_01_Final_ASB_ePub.xhtml#_idParaDest-31. Luettu 4.9.2026.
+
 Metasploit-framework. Kali.org. Luettavissa: https://www.kali.org/tools/metasploit-framework/. Luettu 4.9.2026.
 
 Metasploit Framework docs. Kali.org. 2025. ttps://www.kali.org/docs/tools/starting-metasploit-framework-in-kali/. Luettu 4.9.2026.
@@ -256,6 +260,8 @@ Metasploit Framework docs. Kali.org. 2025. ttps://www.kali.org/docs/tools/starti
 Nmap Cheat Sheet. GeeksForGeeks. 2025. Luettavissa: https://www.geeksforgeeks.org/ethical-hacking/nmap-cheat-sheet/. Luettu 4.9.2026.
 
 Nmap Output Formats: -oN, -oX, -oG, -oA and Parsing Results. Ping Labz. 2026. Luettavissa: https://www.pinglabz.com/nmap-output-formats/. Luettu 4.9.2026.
+
+Host Discovery. Nmap.org. https://nmap.org/book/man-host-discovery.html. Luettu 4.9.2026.
 
 Lee, C. Meterpreter Commands List. Station X. Luettavissa: https://www.stationx.net/meterpreter-commands/. Luettu 4.9.2026.
 
