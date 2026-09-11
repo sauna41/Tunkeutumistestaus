@@ -11,24 +11,35 @@ _Tämä raportti on osa Haaga-Helian Tunkeutumistestaus -kurssia syksyllä 2026.
 ________________________________________________________________________________________________________________________________________________________________________________________
 
 
-x) Lue/katso ja tiivistä. (Tässä x-alakohdassa ei tarvitse tehdä testejä tietokoneella, vain lukeminen tai kuunteleminen ja tiivistelmä riittää. Tiivistämiseen riittää muutama ranskalainen viiva kustakin artikkelista - ei pitkiä esseitä. Kannattaa lisätä myös jokin oma ajatus, idea, huomio tai kysymys.)
+### x) Lue/katso ja tiivistä
 
-OWASP 2021: OWASP Top 10:2021
-  A01:2021 – Broken Access Control (IDOR ja path traversal ovat osa tätä)
-PortSwigget Academy:
-  Insecure direct object references (IDOR)
-  Path traversal
-  Cross-site scripting
+[OWASP 2021: OWASP Top 10:2021](https://owasp.org/Top10/A01_2021-Broken_Access_Control/[)
+  - teksti
+  
+  <br>
+  <br>
+
+
+PortSwigger Academy:
+
+  [Insecure direct object references (IDOR)](https://owasp.org/Top10/A01_2021-Broken_Access_Control/)
+  - moi
+  - 
+  [Path traversal](https://portswigger.net/web-security/file-path-traversal)
+  - moi
+      
+  [Cross-site scripting](https://portswigger.net/web-security/cross-site-scripting)
+  - moi
 
 ________________________________________________________________________________________________________________________________________________________________________________________
 
 
-### a) Totally Legit Sertificate. Asenna OWASP ZAP, generoi CA-sertifikaatti ja asenna se selaimeesi. Laita ZAP proxyksi selaimeesi. Laita ZAP sieppaamaan myös kuvat, niitä tarvitaan tämän kerran kotitehtävissä. Osoita, että hakupyynnöt ilmestyvät ZAP:n käyttöliittymään. (Voi vaatia Firefox about:config network.proxy.allow_hijacking_localhost. Foxyproxy laittoi tämän aiemmin päälle itse. Kalin Firefox ESR oli viimeksi ongelmia Foxyproxyn kanssa - vaihtoehtona on asettaa Proxy käsin Settings, hakusana "proxy")
+### a) Totally Legit Sertificate. Asenna OWASP ZAP, generoi CA-sertifikaatti ja asenna se selaimeesi. Laita ZAP proxyksi selaimeesi. Laita ZAP sieppaamaan myös kuvat, niitä tarvitaan tämän kerran kotitehtävissä. Osoita, että hakupyynnöt ilmestyvät ZAP:n käyttöliittymään
 
 ________________________________________________________________________________________________________________________________________________________________________________________
 
 
-### b) Kettumaista. Asenna "FoxyProxy Standard" Firefox Addon, ja lisää ZAP proxyksi siihen. Käytä FoxyProxyn "Patterns" -toimintoa, niin että vain valitsemasi weppisivut ohjataan Proxyyn. (Läksyssä ohjataan varmaankin PortSwigger Labs ja localhost.)
+### b) Kettumaista. Asenna "FoxyProxy Standard" Firefox Addon, ja lisää ZAP proxyksi siihen. Käytä FoxyProxyn "Patterns" -toimintoa, niin että vain valitsemasi weppisivut ohjataan Proxyyn
 
 ________________________________________________________________________________________________________________________________________________________________________________________
 
