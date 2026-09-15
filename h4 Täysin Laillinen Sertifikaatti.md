@@ -101,7 +101,10 @@ Asensin FoxyProxyn Firefoxiin. Lisäkkeen _Proxies_ välilehdeltä luotiin uusi 
 
 Kaikki liikenne päätyi edelleen ZAPiin, joten kokeilin säätää Firefoxiin aiemmin asetetun proxyn "Manual proxy configuconfiguration" tilasta "Use System proxy settings" ajatuksena, että Foxyproxy tulisi käyttöön. Lopulta ratkaisu olikin hyvin yksinkertainen: Foxyproxysta pitikin vain valita "Proxy by PAtterns". 
 
-<img width="1160" height="465" alt="image" src="https://github.com/user-attachments/assets/0fa20c5a-ecaa-4475-8b53-8fa9288fe6aa" />
+<img width="1170" height="421" alt="image" src="https://github.com/user-attachments/assets/018910ed-a89b-499a-91f5-c71a7d2ed291" />
+
+<br>
+<br>
 
 Tämän jälkeen muut HTTP-pyynnöt kuin säännönmukaiset eivät päätyneet enää ZAPiin. PortSwiggerin labrat päätyivät perille. 
 
@@ -110,12 +113,29 @@ Tämän jälkeen muut HTTP-pyynnöt kuin säännönmukaiset eivät päätyneet e
 ________________________________________________________________________________________________________________________________________________________________________________________
 
 
-#### PortSwigger Labs: ratkaise tehtävät
+### PortSwigger Labs: ratkaise tehtävät
 
-Cross Site Scripting (XSS)
-  c) Reflected XSS into HTML context with nothing encoded
-  d) Stored XSS into HTML context with nothing encoded
-  e) Selitä esimerkin avulla, mitä hyökkääjä hyötyy XSS-hyökkäyksestä. Alert("Hei Tero!") ei vielä tarjoa kummoista pääsyä. (Tässä alakohdassa ei tarvitse tehdä testejä tietokoneella, pelkkä lyhyt ja selkeä selitys riittää.)
+#### Cross Site Scripting (XSS)
+  ##### c) Reflected XSS into HTML context with nothing encoded
+
+  Olin suorittanut kyseisen labran jo aiemmin, joten suorittaminen kävi melko yksinkertaisisti. Hakukenttään tuli syöttää ```<script>alert("SYÖTE")</script>```.
+
+
+<img width="631" height="175" alt="image" src="https://github.com/user-attachments/assets/da7f5f32-114d-41fc-970f-da0f81c744db" />
+
+  ##### d) Stored XSS into HTML context with nothing encoded
+
+  Blogipostauksista löytyi kommenttilaatikko, johon voitiin syöttää jälleen ```<script>alert("SYÖTE")</script>```. Jättämällä kommentti syötettiin scripti ja kun käyttäjä yrittää palata takaisin pääsivustolle, se aktivoituu ja alert ponnahtaa esiin, 
+
+
+  <img width="573" height="690" alt="image" src="https://github.com/user-attachments/assets/8955063c-3135-4ad2-a2c3-8b3fc367bd86" />
+
+
+  <img width="643" height="181" alt="image" src="https://github.com/user-attachments/assets/7b3362b8-8143-4e6b-ac88-e1fdf64a4d8a" />
+
+  
+  
+  ##### e) Selitä esimerkin avulla, mitä hyökkääjä hyötyy XSS-hyökkäyksestä. Alert("Hei Tero!") ei vielä tarjoa kummoista pääsyä. (Tässä alakohdassa ei tarvitse tehdä testejä tietokoneella, pelkkä lyhyt ja selkeä selitys riittää.)
 
   
 Path traversal
