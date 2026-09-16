@@ -13,10 +13,10 @@ ________________________________________________________________________________
 
 ### x) Lue/katso ja tiivistä
 
-[OWASP 2021: OWASP Top 10:2021](https://top10.owasp.org/2021/A01_2021-Broken_Access_Control/)
+[OWASP 2021: OWASP Top 10:2021](https://top10.owasp.org/2021/A01_2021-Broken_Access_Control/) (hyödynnetty eri lähdettä kuin tehtävänannossa, sillä linkki oli rikki)
   - Broken Access Control eli puutteellinen pääsynhallinta on tilanne, jossa käyttäjä pystyy tekemään asioita tai näkemään tietoja, joihin ei pitäisi olla oikeuksia.
-  - Ongelma voi esimerkiksi mahdollistaa toisen käyttäjän tietojen katselun ja muokkaamisen, käyttöoikeuksien ohittamisen tai köyttöoikeuksien manipuloitumisen
-  - Haavoittuvuus voi syntyä esimerkiksi muuttamalla URL-osoitetta tai lähettämällä muokatun HTTP-pyynnön. Tästä johtuen pPääsynhallinnan tarkistuksia ei tulisi ikinä tehdä ainoastaan selaimen puolella vaan konepellin alla palvelimen päässä.
+  - Ongelma voi esimerkiksi mahdollistaa toisen käyttäjän tietojen katselun ja muokkaamisen, käyttöoikeuksien ohittamisen tai köyttöoikeuksien manipuloinnin
+  - Haavoittuvuus voi syntyä esimerkiksi muuttamalla URL-osoitetta tai lähettämällä muokatun HTTP-pyynnön. Tästä johtuen pääsynhallinnan tarkistuksia ei tulisi ikinä tehdä ainoastaan selaimen puolella vaan konepellin alla palvelimen päässä.
   - OWASP:n suosittelema periaate on deny by default, eli pääsy evätään oletuksena ja sallitaan vain silloin, kun käyttäjällä on siihen oikeus. Käyttöoikeuksien pitäisi perustua käyttäjän rooliin ja omistajuuteen.
   
   <br>
@@ -61,11 +61,11 @@ ZAPin valikoista _Tools_ --> _Network_ --> _Server Certificate_ saatiin generoit
 
 <img width="673" height="679" alt="SERVER CERTIFICATE" src="https://github.com/user-attachments/assets/507260ec-01dd-44b4-a1f7-ac97ef51bc22" />
 
-Seuraavaksi oli aika lisätä sertifikaatti selaimeen. Navigoimalla Firefoxissa **about:prerefences#privacy**_ ja avaamalla sertifikaattiasetukset päästiin importtaamaan ZAP-sertifikaatti. Sertifikaatin avulla annettiin luottamus verkkosivujen tunnistamiseen.
+Seuraavaksi oli aika lisätä sertifikaatti selaimeen. Navigoimalla Firefoxissa **about:prefences#privacy**_ ja avaamalla sertifikaattiasetukset päästiin importtaamaan ZAP-sertifikaatti. Sertifikaatin avulla Firefox pystyi luottamaan ZAPin HTTPS-liikenteen varmenteisiin.
 
 <img width="1387" height="379" alt="image" src="https://github.com/user-attachments/assets/ba0ebc86-01f5-412e-a535-37685b4307ab" />
 
-Kun sertifikaatti oli määritetty, vaihdoin Firefoxin käyttämään proxyna ZAPia. Paikallinen proxy toimi localhost -osoitteessa, eli 127.0.0.1 ja portissa 8080. Tämän jälkeen ZAPin pitäisi kaapata HTTP- ja HTTPS-liikenne ZAPiin.
+Kun sertifikaatti oli määritetty, vaihdoin Firefoxin käyttämään proxyna ZAPia. Paikallinen proxy toimi localhost -osoitteessa, eli 127.0.0.1 ja portissa 8080. Tämän jälkeen Firefoxin HTTP- ja HTTPS-liikenne voitiin ohjata ZAPiin.
 
 <img width="763" height="415" alt="MANUAL PROXY" src="https://github.com/user-attachments/assets/1d189031-1c58-4837-9aa0-dc10647ad588" />
 
@@ -113,14 +113,14 @@ Asensin FoxyProxy -lisäosan Firefoxiin. FoxyProxyn _Proxies_ välilehdeltä luo
       - 
 
 
-Kaikki liikenne päätyi tässä kohtaa edelleen ZAPiin. Kokeilin säätää Firefoxiin aiemmin asetetun proxyn "_Manual proxy configuconfiguration_" tilasta "_Use System proxy settings_"  tilaan ajatuksena, että tällöin käytössä olisi vain äsken luotu säännön mukainen proxy eikä manuaalisesti asetettu ZAP, joka sieppaa kaiken liikenteen. Tämä ei kuitenkaan toiminut, sillä kaikki liikenne päätyi edelleen ZAPiin. Lopulta ratkaisu olikin hyvin yksinkertainen: Foxyproxysta piti vain valita "Proxy by Patterns". 
+Kaikki liikenne päätyi tässä kohtaa edelleen ZAPiin. Kokeilin säätää Firefoxiin aiemmin asetetun proxyn "_Manual proxy configuration_" tilasta "_Use System proxy settings_"  tilaan ajatuksena, että tällöin käytössä olisi vain äsken luotu säännön mukainen proxy eikä manuaalisesti asetettu ZAP, joka sieppaa kaiken liikenteen. Tämä ei kuitenkaan toiminut, sillä kaikki liikenne päätyi edelleen ZAPiin. Lopulta ratkaisu olikin hyvin yksinkertainen: Foxyproxysta piti vain valita "Proxy by Patterns". 
 
 <img width="1170" height="421" alt="image" src="https://github.com/user-attachments/assets/018910ed-a89b-499a-91f5-c71a7d2ed291" />
 
 <br>
 <br>
 
-Tämän jälkeen muu kuin proxyn säännönmukainen liikenne ei päätyneet enää ZAPiin. PortSwiggerin labrat (_*.web-security-academy.net/*_) päätyivät perille. 
+Tämän jälkeen vain säännönmukaisten verkkosivujen liikenne päätyi ZAPiin. PortSwiggerin labrat, joita myöhemmin hyödynnettiin (_*.web-security-academy.net/*_) päätyivät perille. 
 
 <img width="1492" height="32" alt="PROXY PATTERN CAPTURE" src="https://github.com/user-attachments/assets/3ef0abcf-1f9d-45ac-83e0-553bb3451e64" />
 
@@ -134,14 +134,14 @@ Olin suorittanut kyseiset jo aiemmin, joten näiden suorittaminen oli suht mutka
 #### Cross Site Scripting (XSS)
   ##### c) Reflected XSS into HTML context with nothing encoded
 
-Labrassa sovelluksen hakutoiminto sisälsi XSS-haavoittuvuuden: sisältö palautettiin sivun HMTL-kontekstiin ilman oikeaoppista koodausta. Hakukenttään tuli syöttää ```<script>alert("SYÖTE")</script>```. Haun jälkeen syötetty JavaScript suoritettiin, jolloin selain aktivoi alert-ikkunan. Tämä toimii, koska syötetty syöte palautetaan HTML-sivulle ilman suojausta, jolloin skripti ladataan ja ajetaan muun HTML-sisällön kanssa.
+Labrassa sovelluksen hakutoiminto sisälsi XSS-haavoittuvuuden: sisältö palautettiin sivun HMTL-kontekstiin ilman oikeaoppista koodausta. Hakukenttään tuli syöttää ```<script>alert("SYÖTE")</script>```. Haun jälkeen syötetty JavaScript suoritettiin, jolloin selain aktivoi alert-ikkunan. Tämä toimii, koska selain tulkitsi syötteen HTML:ään kuuluvaksi <script>-elementiksi ja suoritti sen JavaScriptinä.
 
 
 <img width="631" height="175" alt="image" src="https://github.com/user-attachments/assets/da7f5f32-114d-41fc-970f-da0f81c744db" />
 
   ##### d) Stored XSS into HTML context with nothing encoded
 
-Labraharjoituksessa skripti voitiin tallentaa sovellukseen. Blogipostauksista löytyi kommenttilaatikko, johon voitiin syöttää jälleen ```<script>alert("SYÖTE")</script>```. Jättämällä kommentti syötettiin siis skripti ja kun kommentin sisältävä sivu avattiin uudelleen, skripti ladattiin muun HTML-sisällön kanssa. 
+Labraharjoituksessa skripti voitiin tallentaa sovellukseen. Blogipostauksista löytyi kommenttilaatikko, johon voitiin syöttää jälleen ```<script>alert("SYÖTE")</script>```. Jättämällä kommentti syötettiin siis skripti ja kun kommentin sisältävä sivu avattiin uudelleen, skripti ajettiin muun HTML-sisällön kanssa. 
 
 
   <img width="573" height="690" alt="image" src="https://github.com/user-attachments/assets/8955063c-3135-4ad2-a2c3-8b3fc367bd86" />
@@ -160,7 +160,7 @@ On totta, että pelkkä _alert()_ ei aiheuta suurta haittaa. Se kuitenkin osoitt
 
   ###### f) File path traversal, simple case.
 
-Tarkastelin ZAPissa tuotekuvan lataamisen HTTP-pyyntöä. Etsimällä ZAPin historiasta kuvatiedoston GET-pyyntö ja muokkaamalla sitä "_Open/Resend with Request Editor_" editorilla pystyttiin muokkaamaan HTTP-pyyntöä. Vaihtamalla kuvatiedoston _filename=54.jpg_ --> _filename=../../,../etc/passwd_ pitäisi palautua salasanatiedosto.
+Tarkastelin ZAPissa tuotekuvan lataamisen HTTP-pyyntöä. Etsimällä ZAPin historiasta kuvatiedoston GET-pyyntö ja muokkaamalla sitä "_Open/Resend with Request Editor_" editorilla pystyttiin muokkaamaan HTTP-pyyntöä. Vaihtamalla kuvatiedoston _filename=54.jpg_ --> _filename=../../../etc/passwd_ pitäisi palautua salasanatiedosto.
 
   <img width="1330" height="294" alt="image" src="https://github.com/user-attachments/assets/6e2ecc40-a123-4f9e-a0fa-83aff7b778a9" />
 
@@ -168,15 +168,16 @@ En kuitenkaan löytänyt tällaista vastinetta ZAPista, vaikka PortSwigger ilmoi
     
   ##### g) File path traversal, traversal sequences blocked with absolute path bypass
 
-Labran idea oli, että sovellus suodattaa aiemmasta tehtävästä tutut ../ -merkkijonot pois mutta ongelma on, että se tekee sen vain kerran. Yritin ensin 
+Labran idea oli, että sovellus suodattaa aiemmasta tehtävästä tutut ../ -merkkijonot pois. Kokeilin huvikseni, voisiko ```....//....//....//etc/passwd``` toimia. Ajatuksena oli se, että sivusto suodattaisi ../ parametrit pois vain kerran, jolloin jäljelle jäisi _filename=../../,../etc/passwd_ kuten aiemmassa tehtävässä. Tämä ei kuitenkaan toiminut ja sain HTTP-responseksi vain _Bad Request_.
+
+Sen sijaan suora "_/etc/passwd_" toimi parametrina. Päädyin jälleen tilanteeseen, jossa labra merkkaantui suoritetuksi mutta en löytänyt salasanatiedostoa ZAPista?
 
 
-  
   ##### h) File path traversal, traversal sequences stripped non-recursively
-  - 
-  
-Insecure Direct Object Reference (IDOR)
-  i) Insecure direct object references
+
+Labrassa sovellus pyrki estämään hyökkäyksen poistamalla käyttäjän syötteestä traversal -osioita. Kokeilin uudestaan aiemmassa tehtävässä yrittäämäni ```....//....//....//etc/passwd``` jölleen ajatuksena, että suodatus tapahtuisi vain kerran eikä olisi valmistautunut useampaan ../ -syötteeseen. Tämä toimi ja tällä kertaa sain myös /etc/passwd-tiedoston sisällön esiin. Se tapahtui editorin Response sivulta vaihtamalla Body: Image --> Body: Text:
+
+<img width="612" height="587" alt="image" src="https://github.com/user-attachments/assets/d61bd727-4f7a-4a2f-af04-ebe25f1735b1" />
 
   ________________________________________________________________________________________________________________________________________________________________________________________
 
