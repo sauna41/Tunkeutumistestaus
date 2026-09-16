@@ -48,21 +48,25 @@ ________________________________________________________________________________
 
 ### a) Totally Legit Sertificate. Asenna OWASP ZAP, generoi CA-sertifikaatti ja asenna se selaimeesi. Laita ZAP proxyksi selaimeesi. Laita ZAP sieppaamaan myös kuvat, niitä tarvitaan tämän kerran kotitehtävissä. Osoita, että hakupyynnöt ilmestyvät ZAP:n käyttöliittymään
 
-Latasin OWASP ZAPin ```apt install zaproxy```. Tämä avasi ZAPin. Ohjelma kysyi haluanko pysyvän session, "No, I do not want to persist this session at this moment in time", sillä tässä tehtävssä ei tarvittu pysyvää projektia. 
+Asensin OWASP ZAPin Kalissa komennolla ```apt install zaproxy``` ja avasin ohjelman komennolla ```zaproxy```. 
 
-Tools --> Network --> Server Certificate kohdasta saatiin sertifikaatti. Tallensin sen työpöydälle.
+Tämä avasi ZAPin. Ohjelma kysyi haluanko pysyvän session,
+  "_No, I do not want to persist this session at this moment in time_", 
+sillä tässä tehtävssä ei tarvittu pysyvää projektia. 
+
+ZAPin valikoista _Tools_ --> _Network_ --> _Server Certificate_ saatiin generoitua sertifikaatti, jonka tallensin.
 
 <img width="673" height="679" alt="SERVER CERTIFICATE" src="https://github.com/user-attachments/assets/507260ec-01dd-44b4-a1f7-ac97ef51bc22" />
 
-Seuraavaksi oli aika asentaa se selaimeen. Navigoimalla Firefoxissa **about:prerefences#privacy**_ ja avaamalla sertifikaatit päästiin importtaamaan ZAP-sertifikaatti.
+Seuraavaksi oli aika lisätä sertifikaatti selaimeen. Navigoimalla Firefoxissa **about:prerefences#privacy**_ ja avaamalla sertifikaattiasetukset päästiin importtaamaan ZAP-sertifikaatti. Sertifikaatin avulla annettiin luottamus verkkosivujen tunnistamiseen.
 
 <img width="1387" height="379" alt="image" src="https://github.com/user-attachments/assets/ba0ebc86-01f5-412e-a535-37685b4307ab" />
 
-Firefoxin verkkoasetuksissa vaihdettiin manuaaliseen proxyyn:
+Kun sertifikaatti oli määritetty, vaihdoin Firefoxin käyttämään proxyna ZAPia. Paikallinen proxy toimi localhost -osoitteessa, eli 127.0.0.1 ja portissa 8080. Tämän jälkeen ZAPin pitäisi kaapata HTTP- ja HTTPS-liikenne ZAPiin.
 
 <img width="763" height="415" alt="MANUAL PROXY" src="https://github.com/user-attachments/assets/1d189031-1c58-4837-9aa0-dc10647ad588" />
 
-Liikennettä testattiin vierailemalla webbisivulla ja tarkastamalla, tapahtuuko ZAPissa mitään. Sinne oli tallentunut https pyyntöjä, joten ZAP-proxy toimi. 
+Liikennettä testattiin vierailemalla webbisivulla ja tarkastamalla, tapahtuuko ZAPissa mitään. Huomattiin, että HTTPS-liikenne kulki ZAPin kautta, joten se toimi niin kuin kuuluikin. 
 
 <img width="529" height="553" alt="ZAP SITES HISTORY" src="https://github.com/user-attachments/assets/7684ea83-870a-4251-a3d9-5c99c7b14f8c" />
 
@@ -80,16 +84,17 @@ Sertifikaatti näkyi selaimessa sekä GET -pyyntö päätyi ZAPiin.
 
 <img width="955" height="311" alt="GET PYYNTÖ" src="https://github.com/user-attachments/assets/14b882a8-0ac9-4ebb-8512-4d515020d5a7" />
 
-Myös kuvat saatiin kaapattua klikkaamalla ZAPin View --> Enable Image History.
+Tehtävässä vaadittiin myös kuvien sieppaaminen, jonka sai kytkettyä päälle klikkaamalla ZAPin _View_ --> _Enable Image History._ Tämän jälkeen myös kuvatiedostojen pyynnöt löytyivät ZAPista.
 
 <img width="517" height="197" alt="IMAGE CAPTURED" src="https://github.com/user-attachments/assets/bcdfa6e8-186d-41a6-9254-438ed1ab4a8e" />
 
 <br>
 <br>
 
-Asensin OWASP ZAPin ja määritin Firefoxin käyttämään sitä proxyna osoitteessa 127.0.0.1:8080. Generoin ZAPissa CA-sertifikaatin ja asensin sen Firefoxiin luotettuna varmentajana. Testasin toimintaa HTTP- ja HTTPS-sivuilla, jolloin selaimen pyynnöt näkyivät ZAPin History-näkymässä.
 
-Lisäksi otin ZAPissa käyttöön kuvien näyttämisen History-näkymässä. Wikipediaa ladattaessa ZAPiin ilmestyi esimerkiksi wikipedia.png-kuvatiedoston GET-pyyntö. Näin varmistin, että myös kuvien pyynnöt näkyvät ZAPissa.
+#### Lopputulema
+
+OWASP ZAP saatiin toimimaan Firefoxin proxyna osoitteessa 127.0.0.1:8080. ZAPin CA-sertifikaatti asennettiin Firefoxiin, minkä jälkeen myös HTTPS-liikenne näkyi ZAPissa. Lisäksi ZAP määritettiin näyttämään kuvat History-näkymässä.
 
 
 ________________________________________________________________________________________________________________________________________________________________________________________
@@ -97,16 +102,22 @@ ________________________________________________________________________________
 
 ### b) Kettumaista. Asenna "FoxyProxy Standard" Firefox Addon, ja lisää ZAP proxyksi siihen. Käytä FoxyProxyn "Patterns" -toimintoa, niin että vain valitsemasi weppisivut ohjataan Proxyyn
 
-Asensin FoxyProxyn Firefoxiin. Lisäkkeen _Proxies_ välilehdeltä luotiin uusi proxy, johon jälleen localhost 127.0.0.1 ja portti 8080.
+Asensin FoxyProxy -lisäosan Firefoxiin. FoxyProxyn _Proxies_ välilehdeltä luotiin uusi proxy ZAPia varten. Proxyn määritykset olivat:
+  - Type: HTTP
+  - Host: 127.0.0.1
+  - Port: 8080
+  - Proxy by Patterns: Wildcard *.web-security-academy.net/*
+      - 
 
-Kaikki liikenne päätyi edelleen ZAPiin, joten kokeilin säätää Firefoxiin aiemmin asetetun proxyn "Manual proxy configuconfiguration" tilasta "Use System proxy settings" ajatuksena, että Foxyproxy tulisi käyttöön. Lopulta ratkaisu olikin hyvin yksinkertainen: Foxyproxysta pitikin vain valita "Proxy by PAtterns". 
+
+Kaikki liikenne päätyi tässä kohtaa edelleen ZAPiin. Kokeilin säätää Firefoxiin aiemmin asetetun proxyn "_Manual proxy configuconfiguration_" tilasta "_Use System proxy settings_"  tilaan ajatuksena, että tällöin käytössä olisi vain äsken luotu säännön mukainen proxy eikä manuaalisesti asetettu ZAP, joka sieppaa kaiken liikenteen. Tämä ei kuitenkaan toiminut, sillä kaikki liikenne päätyi edelleen ZAPiin. Lopulta ratkaisu olikin hyvin yksinkertainen: Foxyproxysta piti vain valita "Proxy by Patterns". 
 
 <img width="1170" height="421" alt="image" src="https://github.com/user-attachments/assets/018910ed-a89b-499a-91f5-c71a7d2ed291" />
 
 <br>
 <br>
 
-Tämän jälkeen muut HTTP-pyynnöt kuin säännönmukaiset eivät päätyneet enää ZAPiin. PortSwiggerin labrat päätyivät perille. 
+Tämän jälkeen muu kuin proxyn säännönmukainen liikenne ei päätyneet enää ZAPiin. PortSwiggerin labrat (_*.web-security-academy.net/*_) päätyivät perille. 
 
 <img width="1492" height="32" alt="PROXY PATTERN CAPTURE" src="https://github.com/user-attachments/assets/3ef0abcf-1f9d-45ac-83e0-553bb3451e64" />
 
@@ -118,14 +129,14 @@ ________________________________________________________________________________
 #### Cross Site Scripting (XSS)
   ##### c) Reflected XSS into HTML context with nothing encoded
 
-  Olin suorittanut kyseisen labran jo aiemmin, joten suorittaminen kävi melko yksinkertaisisti. Hakukenttään tuli syöttää ```<script>alert("SYÖTE")</script>```.
+Labrassa sovelluksen hakutoiminto sisälsi XSS-haavoittuvuuden: sisältö palautettiin sivun HMTL-kontekstiin ilman oikeaoppista koodausta. Hakukenttään tuli syöttää ```<script>alert("SYÖTE")</script>```. Haun jälkeen syötetty JavaScript suoritettiin, jolloin selain aktivoi alert-ikkunan. Tämä toimii, koska syötetty syöte palautetaan HTML-sivulle ilman suojausta, jolloin skripti ladataan ja ajetaan muun HTML-sisällön kanssa.
 
 
 <img width="631" height="175" alt="image" src="https://github.com/user-attachments/assets/da7f5f32-114d-41fc-970f-da0f81c744db" />
 
   ##### d) Stored XSS into HTML context with nothing encoded
 
-  Blogipostauksista löytyi kommenttilaatikko, johon voitiin syöttää jälleen ```<script>alert("SYÖTE")</script>```. Jättämällä kommentti syötettiin scripti ja kun käyttäjä yrittää palata takaisin pääsivustolle, se aktivoituu ja alert ponnahtaa esiin, 
+Labraharjoituksessa skripti voitiin tallentaa sovellukseen. Blogipostauksista löytyi kommenttilaatikko, johon voitiin syöttää jälleen ```<script>alert("SYÖTE")</script>```. Jättämällä kommentti syötettiin siis skripti ja kun kommentin sisältävä sivu avattiin uudelleen, skripti ladattiin muun HTML-sisällön kanssa. 
 
 
   <img width="573" height="690" alt="image" src="https://github.com/user-attachments/assets/8955063c-3135-4ad2-a2c3-8b3fc367bd86" />
@@ -135,10 +146,12 @@ ________________________________________________________________________________
 
   
   
-  ##### e) Selitä esimerkin avulla, mitä hyökkääjä hyötyy XSS-hyökkäyksestä. Alert("Hei Tero!") ei vielä tarjoa kummoista pääsyä. (Tässä alakohdassa ei tarvitse tehdä testejä tietokoneella, pelkkä lyhyt ja selkeä selitys riittää.)
+#### e) Selitä esimerkin avulla, mitä hyökkääjä hyötyy XSS-hyökkäyksestä. Alert("Hei Tero!") ei vielä tarjoa kummoista pääsyä.
+
+On totta, että pelkkä _alert()_ ei aiheuta suurta haittaa. Se kuitenkin osoittaa, että hyökkääjän on mahdollista ajaa omaa JavaScript -koodiaan selaimessa. Tällöin hyökkääjällä voi yrittää muuttaa sivuston sisältöä tai käyttää sovelluksen omia toimintoja uhrin istunnon yhteydessä. Jos esimerkiksi ylläpitäjän oikeuksilla liikkeellä oleva käyttäjä avaa XSS-hyökkäyksen sisältävän sivun, on mahdollista, että hyökkääjän JavaScriptiä ajettaisiin ylläpitäjäoikeuksin.
 
   
-Path traversal
+#### Path traversal
   f) File path traversal, simple case. Laita tarvittaessa Zapissa kuvien sieppaus päälle.
   g) File path traversal, traversal sequences blocked with absolute path bypass
   h) File path traversal, traversal sequences stripped non-recursively
