@@ -13,12 +13,11 @@ ________________________________________________________________________________
 
 ### x) Lue/katso ja tiivistä
 
-[OWASP 2021: OWASP Top 10:2021](https://owasp.org/Top10/A01_2021-Broken_Access_Control/[)
-  - Broken Access Control eli puutteellinen pääsynhallinta tarkoittaa tilannetta, jossa käyttäjä pystyy tekemään asioita tai näkemään tietoja, joihin hänellä ei pitäisi olla oikeuksia. OWASP:n mukaan ongelma voi esimerkiksi mahdollistaa toisen käyttäjän tietojen katselun, ylläpitäjän toimintojen käyttämisen tavallisena käyttäjänä tai suojattujen sivujen käyttämisen ilman kirjautumista.
-
-  - Haavoittuvuus voi syntyä esimerkiksi muuttamalla URL-osoitteen parametria tai lähettämällä palvelimelle itse muokatun HTTP-pyynnön. Pääsynhallinnan tarkistuksia ei siis pitäisi tehdä ainoastaan selaimen puolella, koska hyökkääjä voi muuttaa selaimen lähettämää dataa. Tarkistukset pitää tehdä palvelimella.
-
-  - OWASP:n suosittelema periaate on deny by default, eli pääsy evätään oletuksena ja sallitaan vain silloin, kun käyttäjällä on siihen oikeus. Lisäksi käyttöoikeuksien pitäisi perustua esimerkiksi käyttäjän rooliin ja resurssin omistajuuteen
+[OWASP 2021: OWASP Top 10:2021](https://top10.owasp.org/2021/A01_2021-Broken_Access_Control/)
+  - Broken Access Control eli puutteellinen pääsynhallinta on tilanne, jossa käyttäjä pystyy tekemään asioita tai näkemään tietoja, joihin ei pitäisi olla oikeuksia.
+  - Ongelma voi esimerkiksi mahdollistaa toisen käyttäjän tietojen katselun ja muokkaamisen, käyttöoikeuksien ohittamisen tai köyttöoikeuksien manipuloitumisen
+  - Haavoittuvuus voi syntyä esimerkiksi muuttamalla URL-osoitetta tai lähettämällä muokatun HTTP-pyynnön. Tästä johtuen pPääsynhallinnan tarkistuksia ei tulisi ikinä tehdä ainoastaan selaimen puolella vaan konepellin alla palvelimen päässä.
+  - OWASP:n suosittelema periaate on deny by default, eli pääsy evätään oletuksena ja sallitaan vain silloin, kun käyttäjällä on siihen oikeus. Käyttöoikeuksien pitäisi perustua käyttäjän rooliin ja omistajuuteen.
   
   <br>
   <br>
@@ -27,21 +26,25 @@ ________________________________________________________________________________
 PortSwigger Academy:
 
   [Insecure direct object references (IDOR)](https://owasp.org/Top10/A01_2021-Broken_Access_Control/)
-  - DOR on pääsynhallinnan haavoittuvuus, jossa sovellus käyttää käyttäjän antamaa tunnistetta suoraan jonkin resurssin hakemiseen ilman riittävää käyttöoikeuden tarkistamista.
-  - IDOR liittyy yleensä horizontal privilege escalation -tilanteeseen: käyttäjä ei saa korkeampia käyttöoikeuksia, mutta pystyy käyttämään toisen saman tasoisen käyttäjän tietoja.
-  - IDOR voi koskea myös suoraan palvelimella olevia tiedostoja. Jos esimerkiksi käyttäjän tiedosto löytyy muuttamalla URL-osoitteessa tiedoston numeroa, hyökkääjä voi yrittää vaihtaa numeron toisen käyttäjän tiedostoon.
+  - IDOR on pääsynhallinnan haavoittuvuus, jossa sovellus käyttää käyttäjän antamaa tunnistetta resurssien hakemiseen ilman riittävää käyttöoikeuden tarkistamista.
+  - Tämä johtaa usein Horizontal privilege escalation -tilanteeseen: käyttäjä ei saa korkeampia käyttöoikeuksia, mutta pääsee käsiksi toisen saman tasoisen käyttäjän tietoihin.
+      - Voi johtaa myös vertical priviledge escalationiin, jolloin käyttäjä saa korkeammat oikeudet kuin hänelle kuuluisi.
+  - IDOR voi koskea myös suoraan palvelimella olevia tiedostoja. Hyökkääjä voi esimerkiksi vaihtaa käyttäjäkohtaisen tiedoston tiedostonumeron toiseen saaden pääsyn toisen käyttäjän tiedoston.
     
   [Path traversal](https://portswigger.net/web-security/file-path-traversal)
-  - Path traversal eli directory traversal on haavoittuvuus, jossa hyökkääjä pystyy vaikuttamaan palvelimella käsiteltävään tiedostopolkuun ja tämän avulla lukemaan tiedostoja sovelluksen tarkoitetun hakemiston ulkopuolelta.
-  - Path traversal -suojauksia voidaan yrittää kiertää esimerkiksi käyttämällä absoluuttista polkua, vaihtoehtoisia traversal-muotoja tai URL-koodausta. PortSwigger antaa esimerkkeinä muun muassa ....//-muodon sekä URL-koodatun ../-sekvenssin.
-  - 
+  - Path traversal eli directory traversal on haavoittuvuus, jossa hyökkääjä lukee palvelimelta tiedostoja tarkoitetun hakemiston ulkopuolelta.
+  - Hyökkääjä voi päästä esimerkiksi käsiksi lähdekoodiin tai käyttäjien tunnuksiin.
+  - Tyypillinen hyökkäys käyttää ../-sekvenssiä, jolla siirrytään hakemistossa ylöspäin.
+      - Esimerkiksi filename=../../../etc/passwd voi johtaa /etc/passwd-tiedoston lukemiseen.
+  - Joissain tapauksissa haavoittuvuus voi mahdollistaa myös tiedostojen muokkaamisen. Pahimmillaan tämä voi johtaa palvelimen hallinnan menettämiseen hyökkääjälle.
+    
   [Cross-site scripting](https://portswigger.net/web-security/cross-site-scripting)
-  - Cross-Site Scripting (XSS) on haavoittuvuus, jossa hyökkääjä pystyy saamaan oman JavaScript-koodinsa suoritettavaksi uhrin selaimessa. XSS voi syntyä esimerkiksi silloin, kun käyttäjän syöttämä teksti sijoitetaan verkkosivun HTML-koodiin ilman asianmukaista käsittelyä tai HTML-koodausta.
-  - XSS voidaan jakaa esimerkiksi seuraaviin tyyppeihin:
-      - Reflected XSS – haitallinen syöte tulee esimerkiksi HTTP-pyynnön parametrina ja palautetaan heti vastauksessa.
-      - Stored XSS – haitallinen syöte tallennetaan palvelimelle ja näytetään myöhemmin muille käyttäjille.
+  - Cross-Site Scripting (XSS) on haavoittuvuus, jossa hyökkääjä pystyy ajamaan omaa JavaScript-koodiaan uhrin selaimessa. XSS voi syntyä esimerkiksi silloin, kun käyttäjän syöttämä teksti sijoitetaan verkkosivun HTML-koodiin.
+  - XSS voidaan jakaa:
+      - Reflected XSS – haitallinen syöte tulee esimerkiksi HTTP-pyynnöstä ja palautetaan heti vastauksessa.
+      - Stored XSS – haitallinen syöte tallennetaan palvelimelle ja näytetään myöhemmin kun esimerkiksi HTML-koodi ladataan.
       - DOM-based XSS – haavoittuvuus syntyy selaimessa JavaScriptin käsitellessä käyttäjän hallitsemaa dataa.
-  - XSS:n vaikutus riippuu siitä, mitä hyökkääjä pystyy selaimessa tekemään. Pelkkä alert() osoittaa JavaScriptin suorittamisen, mutta todellisessa hyökkäyksessä samaa mahdollisuutta voidaan käyttää esimerkiksi käyttäjän tietojen varastamiseen, luvattomien toimintojen suorittamiseen tai käyttäjän selainistunnon väärinkäyttöön.
+  - XSS:n vaikutus riippuu siitä, mitä hyökkääjä pystyy selaimessa tekemään. Pelkkä alert() osoittaa JavaScriptin suorittamisen, mutta todellisessa hyökkäyksessä samaa taktiikkaa voidaan käyttää esimerkiksi käyttäjän tietojen varastamiseen, luvattomien toimintojen suorittamiseen tai käyttäjän selainistunnon väärinkäyttöön.
 
 ________________________________________________________________________________________________________________________________________________________________________________________
 
@@ -126,6 +129,8 @@ ________________________________________________________________________________
 
 ### PortSwigger Labs: ratkaise tehtävät
 
+Olin suorittanut kyseiset jo aiemmin, joten näiden suorittaminen oli suht mutkatonta.
+
 #### Cross Site Scripting (XSS)
   ##### c) Reflected XSS into HTML context with nothing encoded
 
@@ -152,9 +157,24 @@ On totta, että pelkkä _alert()_ ei aiheuta suurta haittaa. Se kuitenkin osoitt
 
   
 #### Path traversal
-  f) File path traversal, simple case. Laita tarvittaessa Zapissa kuvien sieppaus päälle.
-  g) File path traversal, traversal sequences blocked with absolute path bypass
-  h) File path traversal, traversal sequences stripped non-recursively
+
+  ###### f) File path traversal, simple case.
+
+Tarkastelin ZAPissa tuotekuvan lataamisen HTTP-pyyntöä. Etsimällä ZAPin historiasta kuvatiedoston GET-pyyntö ja muokkaamalla sitä "_Open/Resend with Request Editor_" editorilla pystyttiin muokkaamaan HTTP-pyyntöä. Vaihtamalla kuvatiedoston _filename=54.jpg_ --> _filename=../../,../etc/passwd_ pitäisi palautua salasanatiedosto.
+
+  <img width="1330" height="294" alt="image" src="https://github.com/user-attachments/assets/6e2ecc40-a123-4f9e-a0fa-83aff7b778a9" />
+
+En kuitenkaan löytänyt tällaista vastinetta ZAPista, vaikka PortSwigger ilmoittikin, että labra oli suoritettu onnistuneesti. Tehtävässä kuitenkin tarkoituksena oli, että käyttäjän valitsemaa tiedostonimeä voidaan hyödyntää pääsyyn tarkoitetun hakemiston ulkopuolisen tiedoston lukemiseen.
+    
+  ##### g) File path traversal, traversal sequences blocked with absolute path bypass
+
+Labran idea oli, että sovellus suodattaa aiemmasta tehtävästä tutut ../ -merkkijonot pois mutta ongelma on, että se tekee sen vain kerran. Yritin ensin 
+
+
+  
+  ##### h) File path traversal, traversal sequences stripped non-recursively
+  - 
+  
 Insecure Direct Object Reference (IDOR)
   i) Insecure direct object references
 
@@ -164,7 +184,7 @@ Insecure Direct Object Reference (IDOR)
 
 Karvinen, T. Tunkeutumistestaus kurssimateriaali. 2026. Luettavissa: https://terokarvinen.com/tunkeutumistestaus/#h3-eternalhomework. Luettu 11.9.2026.
 
-OWASP 2021: OWASP Top 10:2021. Luettavissa: https://owasp.org/Top10/A01_2021-Broken_Access_Control/. Luettu 11.9.2026.
+OWASP 2021: OWASP Top 10:2021. Luettavissa: https://top10.owasp.org/2021/A01_2021-Broken_Access_Control/. Luettu 11.9.2026.
 
 Insecure direct object references (IDOR). Portswigger Academy. https://portswigger.net/web-security/access-control/idor. Luettu 11.9.2026.
 
