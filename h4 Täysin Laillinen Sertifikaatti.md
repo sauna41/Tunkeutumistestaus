@@ -110,7 +110,6 @@ Asensin FoxyProxy -lisäosan Firefoxiin. FoxyProxyn _Proxies_ välilehdeltä luo
   - Host: 127.0.0.1
   - Port: 8080
   - Proxy by Patterns: Wildcard *.web-security-academy.net/*
-      - 
 
 
 Kaikki liikenne päätyi tässä kohtaa edelleen ZAPiin. Kokeilin säätää Firefoxiin aiemmin asetetun proxyn "_Manual proxy configuration_" tilasta "_Use System proxy settings_"  tilaan ajatuksena, että tällöin käytössä olisi vain äsken luotu säännön mukainen proxy eikä manuaalisesti asetettu ZAP, joka sieppaa kaiken liikenteen. Tämä ei kuitenkaan toiminut, sillä kaikki liikenne päätyi edelleen ZAPiin. Lopulta ratkaisu olikin hyvin yksinkertainen: Foxyproxysta piti vain valita "Proxy by Patterns". 
@@ -156,9 +155,9 @@ Labraharjoituksessa skripti voitiin tallentaa sovellukseen. Blogipostauksista l�
 On totta, että pelkkä _alert()_ ei aiheuta suurta haittaa. Se kuitenkin osoittaa, että hyökkääjän on mahdollista ajaa omaa JavaScript -koodiaan selaimessa. Tällöin hyökkääjällä voi yrittää muuttaa sivuston sisältöä tai käyttää sovelluksen omia toimintoja uhrin istunnon yhteydessä. Jos esimerkiksi ylläpitäjän oikeuksilla liikkeellä oleva käyttäjä avaa XSS-hyökkäyksen sisältävän sivun, on mahdollista, että hyökkääjän JavaScriptiä ajettaisiin ylläpitäjäoikeuksin.
 
   
-#### Path traversal
+### Path traversal
 
-  ###### f) File path traversal, simple case.
+  #### f) File path traversal, simple case.
 
 Tarkastelin ZAPissa tuotekuvan lataamisen HTTP-pyyntöä. Etsimällä ZAPin historiasta kuvatiedoston GET-pyyntö ja muokkaamalla sitä "_Open/Resend with Request Editor_" editorilla pystyttiin muokkaamaan HTTP-pyyntöä. Vaihtamalla kuvatiedoston _filename=54.jpg_ --> _filename=../../../etc/passwd_ pitäisi palautua salasanatiedosto.
 
@@ -166,14 +165,14 @@ Tarkastelin ZAPissa tuotekuvan lataamisen HTTP-pyyntöä. Etsimällä ZAPin hist
 
 En kuitenkaan löytänyt tällaista vastinetta ZAPista, vaikka PortSwigger ilmoittikin, että labra oli suoritettu onnistuneesti. Tehtävässä kuitenkin tarkoituksena oli, että käyttäjän valitsemaa tiedostonimeä voidaan hyödyntää pääsyyn tarkoitetun hakemiston ulkopuolisen tiedoston lukemiseen.
     
-  ##### g) File path traversal, traversal sequences blocked with absolute path bypass
+  #### g) File path traversal, traversal sequences blocked with absolute path bypass
 
 Labran idea oli, että sovellus suodattaa aiemmasta tehtävästä tutut ../ -merkkijonot pois. Kokeilin huvikseni, voisiko ```....//....//....//etc/passwd``` toimia. Ajatuksena oli se, että sivusto suodattaisi ../ parametrit pois vain kerran, jolloin jäljelle jäisi _filename=../../,../etc/passwd_ kuten aiemmassa tehtävässä. Tämä ei kuitenkaan toiminut ja sain HTTP-responseksi vain _Bad Request_.
 
 Sen sijaan suora "_/etc/passwd_" toimi parametrina. Päädyin jälleen tilanteeseen, jossa labra merkkaantui suoritetuksi mutta en löytänyt salasanatiedostoa ZAPista?
 
 
-  ##### h) File path traversal, traversal sequences stripped non-recursively
+  #### h) File path traversal, traversal sequences stripped non-recursively
 
 Labrassa sovellus pyrki estämään hyökkäyksen poistamalla käyttäjän syötteestä traversal -osioita. Kokeilin uudestaan aiemmassa tehtävässä yrittäämäni ```....//....//....//etc/passwd``` jölleen ajatuksena, että suodatus tapahtuisi vain kerran eikä olisi valmistautunut useampaan ../ -syötteeseen. Tämä toimi ja tällä kertaa sain myös /etc/passwd-tiedoston sisällön esiin. Se tapahtui editorin Response sivulta vaihtamalla Body: Image --> Body: Text:
 
