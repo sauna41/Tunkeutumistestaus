@@ -11,7 +11,9 @@ _Tämä raportti on osa Haaga-Helian Tunkeutumistestaus -kurssia syksyllä 2026.
 ________________________________________________________________________________________________________________________________________________________________________________________
 
 ## h5 Elokuu2026!
-####_Nyt levitään! Opit murtamaan salasanoja._
+#### _Nyt levitään! Opit murtamaan salasanoja._
+<br>
+<br>
 
 ### x) Lue/katso ja tiivistä
   [Karvinen 2022: Cracking Passwords with Hashcat](https://terokarvinen.com/2022/cracking-passwords-with-hashcat/)
