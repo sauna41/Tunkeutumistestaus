@@ -22,14 +22,32 @@ ________________________________________________________________________________
   - Hasheja voidaan kuitenkin verrata sanakirjassa oleviin sanoihin työkalujen avulla. Yksi niistä on HashCat.
   - HashCat rajaamaan käytetyn hashaus-tyypin todennäköisiin vaihtoehtoihin ```hashid -m``` -komennolla
   - Itse kräkkääminen tapahtuu ``hashcat -m <int n> '<hash>' <sanakirja> -o solved`` -komennolla. Tämä vertaa syötettyä hashia valitun sanakirjan sisältöön ja tallentaa salasanan uuteen tiedostoon jos sellainen löytyy.
-  - HashCattia voi vauhdittaa ajamalla sitä host-koneella hyödyntäen näytönohjaimen tarjoamaa vauhtia.    
+  - HashCatin vahvuus on sen nopeus. Kräkkäystä voi vauhdittaa ajamalla sitä host-koneella hyödyntäen näytönohjaimen tarjoamaa vauhtia 
   
   [Karvinen 2023: Crack File Password With John](https://terokarvinen.com/2023/crack-file-password-with-john/)
 
-  - asd
+  - Toinen murtamistyökalu on John the Ripper. Sen Jumbo-version voi ladata GitHubista ja kääntää lähdekoodista komennoin ``configure`` ja ``make``.
+  - Artikkelissa murretaan ZIP-tiedosto, joka on suojattu salasanalla.
+    - Salasanatiedot muutetaan ensin hash-muotoon _zip2john_ -työkalulla.
+    - Verrataan eri salasanojen hash-arvoja kohde hashiin.
+  - John tukee ZIPin lisäksi myös esimerkiksi 7z, PDF, Office, Bitlocker -formaatteja.
+
+<br>
+<br>
+
+| HashCat | John the Ripper |
+|---|--|
+| hashien murtaminen | hashien sekä tiedostojen salasanojen murtaminen |
+| todella nopea GPU:lla | hitaampi kuin HashCat |
+| vahvuus: nopea hash-cracking | vahvuus: monipuolisempi password auting |
+| hashcat -m 1400 hash.txt wordlist.txt | john --wordlist=wordlist.txt hash.txt |
+
+<br>
+<br>
+
+_Vapaaehtoinen: € Santos et al 2017: Security Penetration Testing - The Art of Hacking Series LiveLessons: Lesson 6: Hacking User Credentials (8 videos, about 30 min)_
 
 
-  Vapaaehtoinen: € Santos et al 2017: Security Penetration Testing - The Art of Hacking Series LiveLessons: Lesson 6: Hacking User Credentials (8 videos, about 30 min)
 
 ________________________________________________________________________________________________________________________________________________________________________________________
 
