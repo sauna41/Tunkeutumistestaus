@@ -213,8 +213,7 @@ HashCatin ajaminen toimi tavalla kuin aiemmin mutta nyt valittu sääntö lisät
 
 HashCat luki siis sanakirjan sanat, lisäsi jokaisen päätteeksi numerot 123, otti näistä hash-arvot ja vertasi niitä syötettyyn hashiin. Tällöin sanakirjasta löytyvään _salasana_ -sanaan lisättiin perään 123, jolloin sen hash-arvo täsmäsi.
 
-
-<img width="867" height="414" alt="CRACKED WITH RULES" src="https://github.com/user-attachments/assets/0fdc69eb-2423-490a-8732-0b7e090952db" />
+<img width="826" height="450" alt="CRACKED WITH RULES" src="https://github.com/user-attachments/assets/3a608eaf-b1df-4ee5-98f4-ff8630d1570f" />
 <br>
 ________________________________________________________________________________________________________________________________________________________________________________________
 
