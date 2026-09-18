@@ -164,9 +164,12 @@ Ajoin ``~/john/run/john salainen.hash`` -komennon, jolloin John lähti vertaamaa
 <img width="1054" height="385" alt="JOHN CRACKED IT" src="https://github.com/user-attachments/assets/7a783928-405b-4024-b00f-eee1c69bed3a" />
 
 John onnistui murtamaan salasanan: **_"topsecret"_**
+<br>
+<br>
 
 Salasana voitiin vielä todenta toimivaksi avaamalla PDF-tiedosto ja syöttämällä Johnin löytämä salasana:
 
+<img width="993" height="331" alt="image" src="https://github.com/user-attachments/assets/49839fe1-7f49-4c6b-9ccf-e89c4110a2e8" />
 <img width="744" height="381" alt="AVATTU PDF" src="https://github.com/user-attachments/assets/a6787f16-fb01-4a97-aa19-d3b505bfc51d" />
 
 ________________________________________________________________________________________________________________________________________________________________________________________
@@ -181,6 +184,38 @@ ________________________________________________________________________________
 
 ### h) Hash rules. Näytä esimerkki HashCatin sääntöjen käytöstä (rules).
 
+
+Sääntöjen avulla voidaan helposti muokata perussanoista eri versioita. Sanalista voi sisältää esimerkiksi _salasana_ ja _password_ sanat ja sääntöjä käyttämällä kaikkien sanojen perään lisätään säännönmukainen lisä (123, !, jne). 
+
+
+Otin MD5 hashin _salasana123_ sanasta.
+
+<img width="689" height="77" alt="MD5 HASH salasana123" src="https://github.com/user-attachments/assets/a8fe650e-705c-412b-a7b8-abd706150dcc" />
+<br>
+
+Muokkasin aiemmin luomaani sanakirjaa _testikirjasto.txt_ niin, että _salasana123_ ei löytynyt suoraan sieltä. 
+
+<img width="167" height="295" alt="SANAKIRJASTO" src="https://github.com/user-attachments/assets/50881849-da70-44c5-967f-a3a158d9a8e3" />
+
+Loin uuden säännön, joka lisäsi jokaisen sanan perään _123_.
+ - Tiedoston luonti komennolla: ```micro 123.rule```
+    - $1 -> lisää 1 loppuun
+    - $2 -> lisää 2 loppuun
+    - $3 -> lisää 3 loppuun
+
+<img width="627" height="47" alt="MICRO RULE" src="https://github.com/user-attachments/assets/a3a9c8a0-5c2e-4cb7-86d8-2154c7caa4dd" />
+
+<br>
+
+#### Sääntöjen ajaminen
+
+HashCatin ajaminen toimi tavalla kuin aiemmin mutta nyt valittu sääntö lisätään mukaan ``-r`` -vivulla: ``hashcat -m 0 441a51e3169e51e31ebca3292b2c89d9 testikirjasto.txt -r 123.rule``
+
+HashCat luki siis sanakirjan sanat, lisäsi jokaisen päätteeksi numerot 123, otti näistä hash-arvot ja vertasi niitä syötettyyn hashiin. Tällöin sanakirjasta löytyvään _salasana_ -sanaan lisättiin perään 123, jolloin sen hash-arvo täsmäsi.
+
+
+<img width="867" height="414" alt="CRACKED WITH RULES" src="https://github.com/user-attachments/assets/0fdc69eb-2423-490a-8732-0b7e090952db" />
+<br>
 ________________________________________________________________________________________________________________________________________________________________________________________
 
 ### Lähteet
