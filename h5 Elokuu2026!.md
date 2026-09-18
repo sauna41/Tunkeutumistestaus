@@ -78,7 +78,6 @@ Jotta HashCat pystyy vertailemaan sille syötettyä hashia, se tarvitsee myös l
 
 
 <img width="170" height="266" alt="TESTIKIRJASTO" src="https://github.com/user-attachments/assets/9733622f-d15f-48da-b312-2c8ca68997f6" />
-
 <br>
 <br>
 
@@ -92,10 +91,12 @@ Ajoin siis ``hashcat -m 1400 '366c5c22e389a0e6a562d6ded5e21cdc166ffd571c58b7455f
 
 
 <img width="820" height="627" alt="HASHCAT_LOPPUTULOS" src="https://github.com/user-attachments/assets/7203d7d7-4aa3-4a00-b338-7918509229a5" />
-
+<br>
+<br>
 
 Jos ``-o solved`` -vipua ei käytetä, kräkätty salasana (_apina_) näkyy suoraan HashCatin tulosteessa eikä sitä tallenneta muualle.
 
+<br>
 <img width="810" height="205" alt="ILMAN TALLENNUSTA" src="https://github.com/user-attachments/assets/82b4f211-d340-4800-a329-86706d8e3318" />
 
 ________________________________________________________________________________________________________________________________________________________________________________________
@@ -113,6 +114,7 @@ Seurasin asennusohjeita [Karvisen artikkelista](https://terokarvinen.com/2023/cr
     $ make -s clean && make -sj4
 
 <img width="1161" height="197" alt="JOHN_installed" src="https://github.com/user-attachments/assets/f6fb490b-6f43-4091-a039-bf9809ee1806" />
+<br>
 <br>
 
 Lähdin kokeilemaan Johnin toimintaa lataamalla Karvisen [Download tero.zip](https://terokarvinen.com/2023/crack-file-password-with-john/tero.zip) kansion. ZIP-tiedosto oli salasanasuojattu, joten yksinkertainen ``unzip tero.zip`` ei toiminut. 
@@ -147,6 +149,8 @@ Asensin LibreOfficen komennolla ``sudo apt-get -y install libreoffice``. Loin uu
 #### 2. Hashin hankkiminen
 
 Aloitin komennolla ``~/john/run/pdf2john "Salainen dokumentti.pdf" > salainen.hash`` mutta sain virheilmoituksen: _zsh: no such file or directory: /home/henri/john/run/pdf2john_
+<br>
+
 PDF-työkalun pitäisi olla Johnin vakiokalustua, joten tarkastin ensin mikä PDF-extractor minulta Johnista löytyy. Komennolla ``ls ~/john/run/*pdf*`` löytyi _pdf2john.pl_ & _pdf2john.py_, joten aiemman komennon pääte oli vain puutteellinen. Oikealla päätteellä ajamalla saatiin luotua PDF:stä hash-tiedosto työhakemistoon.
 
 ``~/john/run/pdf2john.pl "Salainen dokumentti.pdf" > salainen.hash`` 
@@ -157,7 +161,7 @@ PDF-työkalun pitäisi olla Johnin vakiokalustua, joten tarkastin ensin mikä PD
 
 ``cat salainen.hash`` -komennolla saatiin varmistettua, että tiedoston sisällä on PDF-hash. 
 
-#### 3. Johnilla murtaminen
+#### 3. Salasanan murtaminen Johnilla
 
 Ajoin ``~/john/run/john salainen.hash`` -komennon, jolloin John lähti vertaamaan äsken hankittua hashia omaan sisäiseen sanakirjastoonsa:
 
@@ -166,6 +170,8 @@ Ajoin ``~/john/run/john salainen.hash`` -komennon, jolloin John lähti vertaamaa
 John onnistui murtamaan salasanan: **_"topsecret"_**
 <br>
 <br>
+
+#### 4. PDF-tiedostoon murtautuminen
 
 Salasana voitiin vielä todenta toimivaksi avaamalla PDF-tiedosto ja syöttämällä Johnin löytämä salasana:
 
