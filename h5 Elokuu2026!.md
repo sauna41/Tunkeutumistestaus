@@ -136,6 +136,39 @@ ________________________________________________________________________________
 
 ### e) Tiedosto. Tee itse tai etsi verkosta jokin salakirjoitettu tiedosto, jonka saat auki. Murra sen salaus. (Jokin muu formaatti kuin aiemmissa alakohdissa kokeilemasi).
 
+Latasin Kaliin LibreOfficen, jolla pystyi luomaan .PDF-tiedostoja. Loin salasanalla suojatun PDF:n ja lähdin murtamaan sitä Johnilla. 
+
+#### 1. PDF:n luominen
+
+Asensin LibreOfficen komennolla ``sudo apt-get -y install libreoffice``. Loin uuden dokumentin, jonne kirjoitin sisältöä ja suojasin tiedoston avaamisen salasanalla. 
+
+<img width="418" height="81" alt="SALAINEN DOKUMENTTI PDFINFO" src="https://github.com/user-attachments/assets/da86c827-142a-4c9e-b840-c1c19eef6174" />
+
+#### 2. Hashin hankkiminen
+
+Aloitin komennolla ``~/john/run/pdf2john "Salainen dokumentti.pdf" > salainen.hash`` mutta sain virheilmoituksen: _zsh: no such file or directory: /home/henri/john/run/pdf2john_
+PDF-työkalun pitäisi olla Johnin vakiokalustua, joten tarkastin ensin mikä PDF-extractor minulta Johnista löytyy. Komennolla ``ls ~/john/run/*pdf*`` löytyi _pdf2john.pl_ & _pdf2john.py_, joten aiemman komennon pääte oli vain puutteellinen. Oikealla päätteellä ajamalla saatiin luotua PDF:stä hash-tiedosto työhakemistoon.
+
+``~/john/run/pdf2john.pl "Salainen dokumentti.pdf" > salainen.hash`` 
+
+
+<img width="721" height="229" alt="OIKEAN PDF LÖYTÄMINEN" src="https://github.com/user-attachments/assets/0447c792-4c1b-4acb-aa62-2d2a4b9c9d2d" />
+<br>
+
+``cat salainen.hash`` -komennolla saatiin varmistettua, että tiedoston sisällä on PDF-hash. 
+
+#### 3. Johnilla murtaminen
+
+Ajoin ``~/john/run/john salainen.hash`` -komennon, jolloin John lähti vertaamaan äsken hankittua hashia omaan sisäiseen sanakirjastoonsa:
+
+<img width="1054" height="385" alt="JOHN CRACKED IT" src="https://github.com/user-attachments/assets/7a783928-405b-4024-b00f-eee1c69bed3a" />
+
+John onnistui murtamaan salasanan: **_"topsecret"_**
+
+Salasana voitiin vielä todenta toimivaksi avaamalla PDF-tiedosto ja syöttämällä Johnin löytämä salasana:
+
+<img width="744" height="381" alt="AVATTU PDF" src="https://github.com/user-attachments/assets/a6787f16-fb01-4a97-aa19-d3b505bfc51d" />
+
 ________________________________________________________________________________________________________________________________________________________________________________________
 
 ### f) Tiiviste. Tee itse tai etsi verkosta salasanan tiiviste, jonka saat auki. Murra sen salaus. (Jokin muu formaatti kuin aiemmissa alakohdissa kokeilemasi. Voit esim. tehdä käyttäjän Linuxiin ja murtaa sen salasanan.)
