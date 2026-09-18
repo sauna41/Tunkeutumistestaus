@@ -1,4 +1,4 @@
-<img width="170" height="266" alt="image" src="https://github.com/user-attachments/assets/328d15b2-5c5b-4a64-bb24-c45c623289f1" />_Kurssi: Tunkeutumistestaus ICI005AS3A-3007_
+_Kurssi: Tunkeutumistestaus ICI005AS3A-3007_
 
 _Tekijä: Henri Äikäs_
 
@@ -75,6 +75,7 @@ Nyt meillä oli hash, mutta koska hashia voi muuttaa takaisin salasanaksi sitä 
 Eri salakirjoitusmuotoja on pitkä lista mutta HashCat kykenee päättelemään todennäköisempiä tyyppejä. Se ei kuitenkaan valitse käyttäjälle automaattisesti yhtä oikeaa, joten on hyödyllistä tuntea yleisesti käyetyt salaustavat. 
 
 Jotta HashCat pystyy vertailemaan sille syötettyä hashia, se tarvitsee myös listan sanoista, joihin hashia verrataan. Loin tehtävää varten uuden "testikirjasto.txt" tiedoston. Sen sisältä löytyi merkkijonoja, joista vain yhden _"SALASANA123"_ tulisi olla oikea salasana.
+
 
 <img width="170" height="266" alt="TESTIKIRJASTO" src="https://github.com/user-attachments/assets/9733622f-d15f-48da-b312-2c8ca68997f6" />
 
