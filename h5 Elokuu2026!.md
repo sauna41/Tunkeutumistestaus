@@ -103,6 +103,35 @@ ________________________________________________________________________________
 
 ### c) Asenna John the Ripper ja testaa sen toiminta murtamalla jonkin esimerkkitiedoston salasana.
 
+Seurasin asennusohjeita [Karvisen artikkelista](https://terokarvinen.com/2023/crack-file-password-with-john/): latasin OpenWallin repositorion Githubista, conffasin ympäristön ja käänsin ohjelman. 
+
+    $ sudo apt-get update
+    $ sudo apt-get -y install micro bash-completion git build-essential libssl-dev zlib1g zlib1g-dev zlib-gst libbz2-1.0 libbz2-dev atool zip wget
+    $ git clone --depth=1 https://github.com/openwall/john.git
+    $ cd john/src/	
+    $ ./configure
+    $ make -s clean && make -sj4
+
+<img width="1161" height="197" alt="JOHN_installed" src="https://github.com/user-attachments/assets/f6fb490b-6f43-4091-a039-bf9809ee1806" />
+<br>
+
+Lähdin kokeilemaan Johnin toimintaa lataamalla Karvisen [Download tero.zip](https://terokarvinen.com/2023/crack-file-password-with-john/tero.zip) kansion. ZIP-tiedosto oli salasanasuojattu, joten yksinkertainen ``unzip tero.zip`` ei toiminut. 
+
+
+<img width="461" height="91" alt="PROTECTED_ZIP" src="https://github.com/user-attachments/assets/a07eb2a0-66c8-48fa-8568-a6ef685503bb" />
+<br>
+<br>
+
+Muunsin ZIPin Johnin hash-muotoon komennolla ``~/john/run/zip2john tero.zip > tero.zip.hash``. Tuloste kertoi, että SECRET.md oli PKZIP-suojattu mutta zip2john pystyi keräämään siitä tarvittavat tiedot. Seuravaksi vuorossa oli varsinainen cracking -vaihe: ajamalla ``~/john/run/john tero.zip hash`` John kräkkää salasanan. 
+ - ``~/john/run/john --show tero.zip.hash`` -komennolla saadaan vielä siivottu lopputulos.
+
+
+<img width="1051" height="215" alt="JOHN_CRACKED" src="https://github.com/user-attachments/assets/92aa7321-ee96-445e-9602-2887ddbd1437" />
+<br>
+
+<img width="844" height="123" alt="--SHOW" src="https://github.com/user-attachments/assets/060bcf0e-c215-4c14-8fa9-93580507da6d" />
+<br>
+
 ________________________________________________________________________________________________________________________________________________________________________________________
 
 ### e) Tiedosto. Tee itse tai etsi verkosta jokin salakirjoitettu tiedosto, jonka saat auki. Murra sen salaus. (Jokin muu formaatti kuin aiemmissa alakohdissa kokeilemasi).
