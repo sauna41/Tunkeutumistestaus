@@ -42,8 +42,12 @@ Oletetaan, että salasana on "SALASANA123". Merkkijonon hash256 saadaan luotua k
 
 
 <img width="683" height="77" alt="sha256_sum" src="https://github.com/user-attachments/assets/c5c59ed0-b493-408b-b34a-4837be9946c7" />
+<br>
+<br>
 
 Nyt meillä oli hash, mutta koska hashia voi muuttaa takaisin salasanaksi sitä täytyi alkaa vertaamaan muihin hasheihin. Manuaalilla tämä olisi työllistävää ja hidasta, joten avuksi otettiin HashCat -työkalu. 
+
+<br>
 
 **Asennus:** 
 
@@ -56,11 +60,13 @@ Jotta HashCat pystyy vertailemaan sille syötettyä hashia, se tarvitsee myös l
 
 <img width="170" height="266" alt="TESTIKIRJASTO" src="https://github.com/user-attachments/assets/9733622f-d15f-48da-b312-2c8ca68997f6" />
 
+<br>
+<br>
 
 **Käyttö:**
 
     hashid -m <HASH>   // HashCat pyrkii tunnistamaan käytetyn hash-salaustyyypin
-    hashcat -m <valittu tyyppi (SHA256 (1400), MD5 (0))> <hash> <sanakirjasto> -<o solved (kirjoittaa osuman erilliseen tiedostoon>
+    hashcat -m <valittu tyyppi (SHA256 (1400), MD5 (0))> <hash> <sanakirjasto> < -o solved (kirjoittaa osuman erilliseen tiedostoon>
 
 
 Ajoin siis ``hashcat -m 1400 '366c5c22e389a0e6a562d6ded5e21cdc166ffd571c58b7455f189145e95feae6' testikirjasto.txt -o solved`` -komennon, jolloin HashCat asettu komennon hashin vertailuun. Se alkoi hashaamaan sanakirjassa olevia sanoja ja jos osuma löytyisi, se tallentaisi sen uuteen _solved_ -tiedostoon työhakemistossa. Nyt sanakirja oli äärimmäisen lyhyt eikä vertailuja ei tarvinnut suorittaa montaa, joten suoritus oli todella verkkaisa. 
