@@ -45,10 +45,6 @@ ________________________________________________________________________________
 <br>
 <br>
 
-_Vapaaehtoinen: € Santos et al 2017: Security Penetration Testing - The Art of Hacking Series LiveLessons: Lesson 6: Hacking User Credentials (8 videos, about 30 min)_
-
-
-
 ________________________________________________________________________________________________________________________________________________________________________________________
 
 ### a) Asenna Hashcat ja testaa sen toiminta murtamalla esimerkkisalasana.
