@@ -180,7 +180,44 @@ Salasana voitiin vielä todenta toimivaksi avaamalla PDF-tiedosto ja syöttämä
 
 ________________________________________________________________________________________________________________________________________________________________________________________
 
-### f) Tiiviste. Tee itse tai etsi verkosta salasanan tiiviste, jonka saat auki. Murra sen salaus. (Jokin muu formaatti kuin aiemmissa alakohdissa kokeilemasi. Voit esim. tehdä käyttäjän Linuxiin ja murtaa sen salasanan.)
+### f) Linux-käyttäjän salasanan murtaminen
+
+Loin uuden käyttäjän "_hashtest_" ja asetin tälle _rockyou.txt_ -sanakirjasta löytyvän salasanan (_grimy_). Komennolla ``id hashtest`` sain varmistettua, että uuden käyttäjän luominen onnistui
+
+ - uid=1001
+   - 1001 on käyttäjän tunniste
+- gid=1001
+   - käyttäjän ensisijainen ryhmä
+- groups=1001
+   - mihin ryhmiin käyttäjä kuuluu
+ 
+
+
+<img width="610" height="192" alt="USER ADDED" src="https://github.com/user-attachments/assets/70c13e19-55ee-4810-9441-ccd9936c0795" />
+<br>
+
+Lähdin murtamaan salasanaa Johnilla mutta törmäsin seuraavaan virheilmoitukseen: 
+
+<img width="602" height="91" alt="NOT LOADED" src="https://github.com/user-attachments/assets/fea14fda-a46e-4026-8d56-e4eddbf58616" />
+<br>
+
+Nopealla Googletuksella selvisi, että kyseessä oli todennäköisesti _yescypt_ -formaatin puuttuminen Johnista. [Baeldung](https://www.baeldung.com/linux/shadow-passwords)
+
+Lähdin siis tutkimaan, miten yescrypt saisi muunnettua esimerkiksi SHA512-muotoon, joka toimi Johnilla toimi varmasti. 
+
+Komennolla ``mkpasswd --method=sha-256 'hakkeri123'`` sain luotua SHA512-muotoisen tiivisteen. Asetin tämän äsken luodun käyttäjän salasanaksi ja tarkastin /etc/shadow -tiedostosta, että salasanatiiviste alkoi $6$, sillä tämä oli SHA-512 formaatti.
+
+<img width="1055" height="91" alt="image" src="https://github.com/user-attachments/assets/c9bee650-40a4-4bba-828b-03998e3f90d7" />
+<br>
+
+Tämän jälkeen oli helppo poimia tiiviste omaan tiedostoonsa ja käyttää Johnia normaalisti:
+
+``~/john/run/john --wordlist=testikirjasto.txt hashtest.hash``
+
+John vertasi salasanatiivistettä lyhyen sanakirjaston sisältöön ja löysi sieltä oikean salasanan.
+
+<img width="951" height="250" alt="image" src="https://github.com/user-attachments/assets/96c97300-6440-4ea4-b30b-72f9101104b2" />
+<br>
 
 ________________________________________________________________________________________________________________________________________________________________________________________
 
@@ -245,3 +282,5 @@ Karvinen, T. Tunkeutumistestaus kurssimateriaali. 2026. Luettavissa: https://ter
 Karvinen, T. Cracking Passwords with HashCat. 2022. Luettavissa: https://terokarvinen.com/2022/cracking-passwords-with-hashcat/. Luettu 17.9.2026.
 
 Karvinen, T. Crack File Password with John. 2023. Luettavissa: https://terokarvinen.com/2023/crack-file-password-with-john/. Luettu 17.9.2026.
+
+/etc/shadow and Creating yescrypt, MD5, SHA-256, and SHA-512 Password Hashes. Gerganov, H. 2024. Luettavissa: https://www.baeldung.com/linux/shadow-passwords. Luettu 17.9.2026.
