@@ -280,3 +280,7 @@ Karvinen, T. Cracking Passwords with HashCat. 2022. Luettavissa: https://terokar
 Karvinen, T. Crack File Password with John. 2023. Luettavissa: https://terokarvinen.com/2023/crack-file-password-with-john/. Luettu 17.9.2026.
 
 /etc/shadow and Creating yescrypt, MD5, SHA-256, and SHA-512 Password Hashes. Gerganov, H. 2024. Luettavissa: https://www.baeldung.com/linux/shadow-passwords. Luettu 17.9.2026.
+
+HashCat manuaali.
+
+John The Ripper manuaali.
