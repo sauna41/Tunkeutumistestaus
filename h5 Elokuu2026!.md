@@ -186,6 +186,20 @@ ________________________________________________________________________________
 
 ### g) Sanakirja. Oman sanakirjan teko parantaa onnistumismahdollisuuksia. Demonstroi, kuinka teet oman sanakirjan hashcat:n tai john:iin.
 
+Oman sanakirjan käyttäminen vahvuus on hyökkääjän ympäristöön soveltuva osavuus. Sen sijaan, että yritettäisiin valtaavaa määrää satunnaisia salasanoja, voidaan yritykset rajata hyökkääjän jo aiemmin kerätyn tiedon perusteella kohdeympäristöön/-uhriin soveltuviksi. 
+
+#### Uuden sanakirjan luominen
+
+``micro sanakirja.txt`` tai ``echo <sana> <sanakirja.txt>``
+
+#### Käyttö HashCatissa:
+
+``hashcat -m 0 <hash> <sanakirja.txt>``
+
+#### Käyttö Johnissa:
+
+``~/john/run/john --wordlist=<sanakirjasto.txt> <hash>``
+
 ________________________________________________________________________________________________________________________________________________________________________________________
 
 ### h) Hash rules. Näytä esimerkki HashCatin sääntöjen käytöstä (rules).
