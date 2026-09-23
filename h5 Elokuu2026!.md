@@ -39,7 +39,7 @@ ________________________________________________________________________________
 |---|--|
 | hashien murtaminen | hashien sekä tiedostojen salasanojen murtaminen |
 | todella nopea GPU:lla | hitaampi kuin HashCat |
-| vahvuus: nopea hash-cracking | vahvuus: monipuolisempi password auting |
+| vahvuus: nopea hash-cracking | vahvuus: monipuolisempi formaattituki |
 | hashcat -m 1400 hash.txt wordlist.txt | john --wordlist=wordlist.txt hash.txt |
 
 <br>
@@ -49,17 +49,17 @@ ________________________________________________________________________________
 
 ### a) Asenna Hashcat ja testaa sen toiminta murtamalla esimerkkisalasana.
 
-Oletetaan, että salasana on "SALASANA123". Merkkijonon hash256 saadaan luotua komennolla ``echo -n 'salasana' | sha256sum``. 
+Oletetaan, että salasana on "SALASANA123". Merkkijonon hash256-tiiviste saadaan luotua komennolla ``echo -n 'SALASANA123' | sha256sum``. 
 
- - ``-n`` vipu poistaa uuden rivin merkkijonon lopusta.
- - **TÄNNE MIKSI NÄIN TEHDÄÄN**
+ - ``-n`` estää ``echo`` -komentoa luomasta rivinvaihtoa merkkijonon loppuun.
+ - Rivinvaihto vaikuttaisi hash-arvoon (echo -n 'salasana vs echo 'salasana' tuottavat eri tiivisteet)
 
 
 <img width="683" height="77" alt="sha256_sum" src="https://github.com/user-attachments/assets/c5c59ed0-b493-408b-b34a-4837be9946c7" />
 <br>
 <br>
 
-Nyt meillä oli hash, mutta koska hashia voi muuttaa takaisin salasanaksi sitä täytyi alkaa vertaamaan muihin hasheihin. Manuaalilla tämä olisi työllistävää ja hidasta, joten avuksi otettiin HashCat -työkalu. 
+Nyt meillä oli hash, mutta koska hashia ei voi muuttaa takaisin salasanaksi sitä täytyi alkaa vertaamaan muihin hasheihin. Manuaalilla tämä olisi työllistävää ja hidasta, joten avuksi otettiin HashCat -työkalu. 
 
 <br>
 
@@ -83,7 +83,7 @@ Jotta HashCat pystyy vertailemaan sille syötettyä hashia, se tarvitsee myös l
     hashcat -m <valittu tyyppi (SHA256 (1400), MD5 (0))> <hash> <sanakirjasto> < -o solved (kirjoittaa osuman erilliseen tiedostoon>
 
 
-Ajoin siis ``hashcat -m 1400 '366c5c22e389a0e6a562d6ded5e21cdc166ffd571c58b7455f189145e95feae6' testikirjasto.txt -o solved`` -komennon, jolloin HashCat asettu komennon hashin vertailuun. Se alkoi hashaamaan sanakirjassa olevia sanoja ja jos osuma löytyisi, se tallentaisi sen uuteen _solved_ -tiedostoon työhakemistossa. Nyt sanakirja oli äärimmäisen lyhyt eikä vertailuja ei tarvinnut suorittaa montaa, joten suoritus oli todella verkkaisa. 
+Ajoin siis ``hashcat -m 1400 '366c5c22e389a0e6a562d6ded5e21cdc166ffd571c58b7455f189145e95feae6' testikirjasto.txt -o solved`` -komennon, jolloin HashCat asettu komennon hashin vertailuun. Se muodosti jokaisesta sanakirjan sanasta hashin ja vertasi niitä syötteeseen. Jos osuma löytyisi, se tallentaisi sen uuteen _solved_ -tiedostoon työhakemistossa. Nyt sanakirja oli äärimmäisen lyhyt eikä vertailuja ei tarvinnut suorittaa montaa, joten suoritus oli todella verkkaisa. 
 
 
 <img width="820" height="627" alt="HASHCAT_LOPPUTULOS" src="https://github.com/user-attachments/assets/7203d7d7-4aa3-4a00-b338-7918509229a5" />
@@ -120,7 +120,7 @@ Lähdin kokeilemaan Johnin toimintaa lataamalla Karvisen [Download tero.zip](htt
 <br>
 <br>
 
-Muunsin ZIPin Johnin hash-muotoon komennolla ``~/john/run/zip2john tero.zip > tero.zip.hash``. Tuloste kertoi, että SECRET.md oli PKZIP-suojattu mutta zip2john pystyi keräämään siitä tarvittavat tiedot. Seuravaksi vuorossa oli varsinainen cracking -vaihe: ajamalla ``~/john/run/john tero.zip hash`` John kräkkää salasanan. 
+Muunsin ZIPin Johnin hash-muotoon komennolla ``~/john/run/zip2john tero.zip > tero.zip.hash``. Tuloste kertoi, että SECRET.md oli PKZIP-suojattu mutta zip2john pystyi keräämään siitä tarvittavat tiedot. Seuravaksi vuorossa oli varsinainen cracking -vaihe: ajamalla ``~/john/run/john tero.zip.hash`` John kräkkää salasanan. 
  - ``~/john/run/john --show tero.zip.hash`` -komennolla saadaan vielä siivottu lopputulos.
 
 
@@ -197,11 +197,11 @@ Lähdin murtamaan salasanaa Johnilla mutta törmäsin seuraavaan virheilmoitukse
 <img width="602" height="91" alt="NOT LOADED" src="https://github.com/user-attachments/assets/fea14fda-a46e-4026-8d56-e4eddbf58616" />
 <br>
 
-Nopealla Googletuksella selvisi, että kyseessä oli todennäköisesti _yescypt_ -formaatin puuttuminen Johnista. [Baeldung](https://www.baeldung.com/linux/shadow-passwords)
+Nopealla Googletuksella selvisi, että kyseessä oli todennäköisesti _yescypt_ -formaatin puuttuminen Johnista. Tarkastin Johnin formaatit komennolla ``~/john/run/john --list=formats`` eikä sieltä löytynyt yescryptiä. Samoin _/etc/shadow_ -tiedostosta löytyvä tiiviste alkoi $y$, joka oli yescryptin tunniste. [Baeldung](https://www.baeldung.com/linux/shadow-passwords)
 
 Lähdin siis tutkimaan, miten yescrypt saisi muunnettua esimerkiksi SHA512-muotoon, joka toimi Johnilla toimi varmasti. 
 
-Komennolla ``mkpasswd --method=sha-256 'hakkeri123'`` sain luotua SHA512-muotoisen tiivisteen. Asetin tämän äsken luodun käyttäjän salasanaksi ja tarkastin /etc/shadow -tiedostosta, että salasanatiiviste alkoi $6$, sillä tämä oli SHA-512 formaatti.
+Komennolla ``mkpasswd --method=sha-512 'hakkeri123'`` sain luotua SHA512-muotoisen tiivisteen. Asetin tämän äsken luodun käyttäjän salasanaksi ja tarkastin /etc/shadow -tiedostosta, että salasanatiiviste alkoi $6$, sillä tämä oli SHA-512 formaatti.
 
 <img width="1055" height="91" alt="image" src="https://github.com/user-attachments/assets/c9bee650-40a4-4bba-828b-03998e3f90d7" />
 <br>
