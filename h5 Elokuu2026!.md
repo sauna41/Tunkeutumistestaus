@@ -68,7 +68,7 @@ Nyt meillä oli hash, mutta koska hashia ei voi muuttaa takaisin salasanaksi sit
     sudo apt-get update
     sudo apt-get -y install hashcat wget
 
-Eri salakirjoitusmuotoja on pitkä lista mutta HashCat kykenee päättelemään todennäköisempiä tyyppejä. Se ei kuitenkaan valitse käyttäjälle automaattisesti yhtä oikeaa, joten on hyödyllistä tuntea yleisesti käyetyt salaustavat. 
+Eri salakirjoitusmuotoja on pitkä lista mutta HashID:n avulla voidaan tunnistaa mahdollisia hash-formaatteja ja tätä kautta saada niille HashCatin mode-numeroita. Se ei kuitenkaan valitse käyttäjälle automaattisesti yhtä oikeaa, joten on hyödyllistä tuntea yleisesti käyetyt salaustavat. 
 
 Jotta HashCat pystyy vertailemaan sille syötettyä hashia, se tarvitsee myös listan sanoista, joihin hashia verrataan. Loin tehtävää varten uuden "testikirjasto.txt" tiedoston. Sen sisältä löytyi merkkijonoja, joista vain yhden _"SALASANA123"_ tulisi olla oikea salasana.
 
@@ -100,7 +100,7 @@ ________________________________________________________________________________
 
 ### c) Asenna John the Ripper ja testaa sen toiminta murtamalla jonkin esimerkkitiedoston salasana.
 
-Seurasin asennusohjeita [Karvisen artikkelista](https://terokarvinen.com/2023/crack-file-password-with-john/): latasin OpenWallin repositorion Githubista, conffasin ympäristön ja käänsin ohjelman. 
+Seurasin asennusohjeita [Karvisen artikkelista](https://terokarvinen.com/2023/crack-file-password-with-john/): latasin OpenWallin repositorion Githubista, konfiguroin ympäristön ja käänsin ohjelman. 
 
     $ sudo apt-get update
     $ sudo apt-get -y install micro bash-completion git build-essential libssl-dev zlib1g zlib1g-dev zlib-gst libbz2-1.0 libbz2-dev atool zip wget
