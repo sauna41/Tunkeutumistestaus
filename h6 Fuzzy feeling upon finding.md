@@ -10,7 +10,7 @@ _Tämä raportti on osa Haaga-Helian Tunkeutumistestaus -kurssia syksyllä 2026.
 
 ________________________________________________________________________________________________________________________________________________________________________________________
 
-### x) Lue/katso/kuuntele. (Tässä x-alakohdassa ei tarvitse tehdä testejä tietokoneella, vain lukeminen tai kuunteleminen ja tiivistelmä riittää. Tiivistämiseen riittää muutama ranskalainen viiva kustakin artikkelista. Kannattaa lisätä myös jokin oma ajatus, idea, huomio tai kysymys. [Päivitys 2026-09-25 w39 Fri: laitoin Hoikkalan kalvot tähän mukaan, kun sain luvan.]
+### x) Tiivistä
 
 Hoikkala 2026: Fuzzing with Fuff, kalvot joohoin esityksestä kurssilta.
 
