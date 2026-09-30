@@ -168,14 +168,14 @@ ________________________________________________________________________________
 _Three hostnames under ffuf.io.fi serve different content from this same address. Find all three._
 <br>
 
-Tehtävänä oli löytää kolme resurssia. Lähdin tällä kertaa fuzzaamaan headereita. 
+Tehtävänä oli löytää kolme resurssia. Lähdin tällä kertaa fuzzaamaan headereita: ``
 
 Ensimmäinen löydös oli _admin_
 
 <img width="967" height="566" alt="image" src="https://github.com/user-attachments/assets/5d005333-cd38-4d93-9f0f-6d5a8fc9af94" />
 <br>
 
-Muuttamalla parametreja 
+
 
 ________________________________________________________________________________________________________________________________________________________________________________________
 
