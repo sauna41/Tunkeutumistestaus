@@ -25,6 +25,7 @@ ________________________________________________________________________________
 - ffuffiin voidaan määrittää erilaisia parametreja, joiden avulla tuloksia suodatetaan
 - uusin versio toimii CRTF-tokenien kanssa
   - preflight/postflight: ffuf tekee määritetyn esikyselyn ja käyttää joka pyynnöllä tuoretta tokenia
+<br>
 
 ffufista löytyy ominaisuuksia vaikka kuinka. Käyttö oli tuntui kuitenkin alusta asti suht suoraviivaiselta, sillä koko työkalu on rakennettu mahdollisimman yksinkertaiseksi: "_avoid magic - stay idiomatic and understandable_. Erilaisia flageja on paljon mutta cheat sheet auttaa tässä.
 
