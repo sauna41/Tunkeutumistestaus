@@ -46,6 +46,8 @@ ________________________________________________________________________________
 Ffuffin 2.3.0 version sai ladattua [ffuffin GitHub-repositoriosta](https://github.com/ffuf/ffuf). 
 
 <img width="509" height="78" alt="FFUF 2.3.0" src="https://github.com/user-attachments/assets/9e3bbab4-7b8f-4f23-bca9-d4321dd786ef" />
+<br>
+
 
 
 Asetin vielä tämän ffuf-version järjestelmänlaajuisesti käyttöön:
@@ -55,14 +57,16 @@ Asetin vielä tämän ffuf-version järjestelmänlaajuisesti käyttöön:
 ________________________________________________________________________________________________________________________________________________________________________________________
 
 
-#### c1) Content discovery (Vaultline https://ffuf.io.fi/play tehtävät on numeroitu näin, käytetään tässä samoja.).
+#### c1) Content discovery
+_Find the paths that exist but are not linked from anywhere._
 
 
-Tavoitteena oli tutkia ffuf-harjoitusympäristön HTTP-palvelinta ja löytää palvelimelta olemassa olevia resursseja joihin ei kuitenkaan ole linkitystä. 
+Tavoitteena oli tutkia ffuf-harjoitusympäristön HTTP-palvelinta ja löytää palvelimelta olemassa olevia resursseja joihin ei sivulla ole linkitystä. 
 
-Käytin content discovery -fuzzausta, jossa ffuf kokeilee sanalistan sanoja URL-osoitteen eri polkuina.
+Käytin content discovery -fuzzausta, jossa ffuf kokeilee valmiiksi annetun sanalistan sanoja URL-osoitteen eri polkuina. Harjoitusympäristöön oli annettu sanalista, jonka sai käyttöönsä suoraan sivustolta: ``curl -O https://ffuf.io.fi/wordlists/content.txt``. 
 
-Harjoitusympäristöltä saatiin ladattua valmis sanalista komennolla ``curl -O https://ffuf.io.fi/wordlists/content.txt``. 
+Lähdin ffufaamaan sivustoa ensin ilman rajaavia parametreja komennolla ``ffuf -w content.txt -u https://ffuf.io.fi/FUZZ``. 
+
 
 Ensimmäisellä ajolla ffuf löysi 2000 vastausta. Silmämääräisesti näytti siltä, että kaikki olivat mallia:
 
@@ -70,18 +74,17 @@ Ensimmäisellä ajolla ffuf löysi 2000 vastausta. Silmämääräisesti näytti 
 - words: 135
 - lines: 32
  
-Tuloksia oli liikaa, jotta niitä olisi ollut järkevää lähteä sorttaamaan manuaalisesti. Automaattinen kalibrointi saatiin käyttöön lisäämällä loppuun vipu ``-ac``. Tämä pyrkii tunnistamaan normaalin wildcard-vastauksen ja suodattamaan sen kaltaiset vastaukset pois.
+Samankaltaisia tuloksia oli liikaa, jotta niistä olisi ollut mitään järkeä lähteä analysoimaan mitään. Manuaalisesti 2000 tuloksen tutkiminen olisi vienyt myös tuhottomasti aikaa, joten lähdin suodattamaan tuloksia.
+
+Automaattinen kalibrointi saatiin käyttöön lisäämällä loppuun vipu ``-ac``. Tämä pyrkii tunnistamaan normaalin wildcard-vastauksen ja suodattamaan sen kaltaiset vastaukset pois.
 
     ffuf -w content.txt -u https://ffuf.io.fi/FUZZ -ac
 
 <img width="971" height="316" alt="image" src="https://github.com/user-attachments/assets/5282905c-a9ae-4792-8774-4d5f6c4c9ed2" />
 <br>
 
-Automaattisen kalibroinnin lisäksi tuloksia voisi rajata myös yksittäisten flagien avulla. Samaan tulokseen päästäisiin esimerkiksi käyttämällä
+Automaattisen kalibroinnin lisäksi tuloksia voi rajata myös yksittäisten flagien avulla. Samaan tulokseen päästäisiin esimerkiksi käyttämällä esimerkiksi
 
-``-w``
-
-- määrittää wordlistin (_content.txt_)
 
 ``-mc``
 
@@ -91,18 +94,24 @@ Automaattisen kalibroinnin lisäksi tuloksia voisi rajata myös yksittäisten fl
 
 - filter words: suodattaa pois vastaukset, joissa on tietty määrä sanoja (esim -fw 135)
 
+``fs``
+
+-filter size: suodattaa pois vastaukset, joilla on tietty koko (esim -fs 1119)
 
 <br>
 
-##### Analysointi
 
-``status 200`` tarkoittaa, että palvelin palautti onnistuneen vastauksen. _admin, login_ ja _docs_ löytyivät.
+##### Analysointia
+
+``status 200`` tarkoittaa, että palvelin palautti onnistuneen vastauksen. Esimerkiksi _admin, login_ ja _docs_ löytyivät.
 
 ``status 301`` tarkoittaa uudelleenohjausta. _backup, files, .git_ ja _api_ palauttivat tämän. Palvelin siis tunnisti pyynnön ja ohjasi pyynnön toiseen osoitteeseen. 
 
 ``.env`` ja ``.git`` mahdollisesti viittaavat sovelluksen konfiguraatioon tai Git-versionhallintaan. Navigoimalla sivustoa tavallisena käyttäjä ilman fuzzausta nämä ovat resursseja, joita tavallinen käyttäjä ei todennäköisesti löydä. Tutkimalla niitä tarkemmin olisi mahdollista, että esimerkiksi versiohistoriasta löytyisi tunnuksia tai muuta, joka auttaisi tunkeutumisessa. 
 
-Tuloksissa oli esimerkiksi _login, pricing__ ja _product_ vaikka ne olivat selkeästi näkyvillä ja navigoitavissa sivustolla. Tehtävän tarkoitus oli löytyy resurssit, joihin ei ole linkitystä, joten vielä oli suodatettavaa jäljellä. Selvitin, mitä resursseja /play-sivu linkittää ja vertasin niitä ffufin tuloksiin. 
+<br>
+
+Tuloksissa oli myös esimerkiksi _login, pricing__ ja _product_ vaikka ne olivat selkeästi näkyvillä ja navigoitavissa sivustolla. Tehtävän tarkoituksena oli löytyy resurssit, joihin ei ole linkitystä, joten vielä oli suodatettavaa jäljellä. Selvitin seuraavaksi, mitä resursseja /play-sivu linkittää ja vertasin niitä ffufin tuloksiin. 
 
 Komennolla ``curl -s https://ffuf.io.fi/play | grep -oE 'href="[^"]+"'`` haettiin /play-sivun linkitetyt resurssit.
 
@@ -113,14 +122,25 @@ Komennolla ``curl -s https://ffuf.io.fi/play | grep -oE 'href="[^"]+"'`` haettii
 
 <img width="923" height="179" alt="image" src="https://github.com/user-attachments/assets/b7f93eef-b2ba-413e-b425-7242c89d91ac" />
 <br>
+<br>
 
-Näitä tuloksia vertaamalla aiempaan ffuf -tulosteeseen, saatiin selville, että _product, pricing, docs_ ja _login_ resurssit löytyivät sivulta. Lopputuloksena tehtävänannon kysymykseen jäljellä jäävät siis kaikki muut ffufin löytämät tulokset.
+Näitä tuloksia vertaamalla aiempaan ffuf -tulosteeseen, saatiin selville, että _product, pricing, docs_ ja _login_ resurssit löytyivät sivulta. Lopputuloksena tehtävänannon kysymykseen jäljelle jäävät siis kaikki muut ffufin löytämät tulokset, sillä niihin ei löydy sivustolta linkitystä.
 
 
 
 ________________________________________________________________________________________________________________________________________________________________________________________
      
 #### c2) The interesting non-200
+_Two planted paths do not answer 200. One of them a default run will not even consider._
+
+Tehtävänä oli löytää kaksi polkua, jotka eivät vastaa 200-statuksella. Looginen ensimmäinen askel oli suodattaa pois 200-statukset komennolla ``ffuf -w content.txt -u https://ffuf.io.fi/FUZZ -fc 200``
+
+
+<img width="870" height="153" alt="image" src="https://github.com/user-attachments/assets/4ab70c00-ac46-4706-a257-6cdea2e7e2a9" />
+<br>
+
+Kaikki löydökset _server-statusta_ lukuunottamatta olivat 301-statuksella. Tämä tarkoitti, että ne olivat uudelleenohjaavia eli kaksi planted pathia, jotka eivät anna 200-vastausta olivat todennäköisesti näiden joukossa. Lähdin tutkimaan tarkemmin niiden sisältöjä. 
+
 
 
 
@@ -160,21 +180,31 @@ Muuttamalla parametreja
 ________________________________________________________________________________________________________________________________________________________________________________________
 
 #### c9) The login you cannot replay (Has preflight! Has CSRF token!)
+_Get into the admin account. A plain password fuzz returns 403 forever, however long you run it._
+<br>
 
-Todennäköinen toimintaketju tehtävässä on
-
-1. ffuf lähettää preflight-requestin
-2. palvelin palauttaa tokenin tai cookien
-3. preflight-var poimii kyseisen arvon
-4. ffuf suorittaa login-requestin
-5. ffuf korvaa salasanan poimitulla tokenilla
+##### _Kyseinen tehtävän toiminta oli avattu sivustolla. Myös komennot kyseiseen tehtävään olivat saatavilla. Suoritin tehtävänannon niiden pohjalta ja pyrin muotoilemaan omin sanoin tekemääni._
 
 
-HTML:ää tutkimalla varmistin, että CSFR-token on kirjautumislomakkeessa.
+Hieman erilainen tehtävä, jossa pelkkä fuzzaus URL-osoitteessa ei riittänyt. Tarkoituksena oli löytää oikea salasana _passwords.txt_ -tiedostosta ja kirjautua admin-käyttäjänä sisään. Salasana syötettiin POST-pyynnön bodyyn tokenina (``  -d "csrf_token=CSRFTOKEN&username=admin&password=FUZZ" \``). 
 
-<img width="966" height="168" alt="image" src="https://github.com/user-attachments/assets/d8808ebe-afdd-4885-85c4-69100d97f6a4" />
+Käytännössä ffuffi siis fuzzasi kaikki tiedoston salasanat läpi mutta ongelmana oli CSFR-token, joka oli voimassa vain yhden pyynnön ajan. Jos token vanhentui tai oli jo käytetty, palvelin palautti 403-vastauksen kirjautumisyritykseen. Tämä ratkaistiin määrittelemällä login.raw -tiedostoon esipyyntö:
+
+    GET /login HTTP/1.1
+    Host: ffuf.io.fi
+    Accept: text/html
+
+Sen avulla haettiin kirjautumissivu ennen oikeaa POST-pyyntöä ja esipyynnön vastauksesta ffuf poimi CSFR-tokenin -preflight ominaisuudellaan talteen (``-preflight-var 'CSRFTOKEN:name="csrf_token" value="([a-f0-9]+)"'``). Uusi token haettiin ennen jokaista salasana arvausta, sillä tokenit olivat kertakäyttöisiä. 
 
 
+<img width="897" height="674" alt="SALASANA" src="https://github.com/user-attachments/assets/de129af9-731c-4314-9af4-dc4d6dfd797f" />
+<br>
+<br>
+
+ffuf löysi salasanan _vaultline2026_. Syöttämällä tämän ja valmiin käyttäjätunnuksen _admin_ päästiin kirjautumaan sisään sivustolle.
+
+<img width="839" height="254" alt="image" src="https://github.com/user-attachments/assets/fed0da3a-3821-4414-a018-499eb45fafe5" />
+<br>
 
 ________________________________________________________________________________________________________________________________________________________________________________________
 
