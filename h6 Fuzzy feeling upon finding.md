@@ -12,8 +12,21 @@ ________________________________________________________________________________
 
 ### x) Tiivistä
 
-Hoikkala 2026: Fuzzing with Fuff, kalvot joohoin esityksestä kurssilta.
+[Hoikkala 2026: Fuzzing with Fuff](https://terokarvinen.com/tunkeutumistestaus/hoikkala-2026-fuzzing-with-ffuf.pdf)
 
+- ffuf on web-fuzzeri, jolla lähetetään HTTP-pyyntöjä ja havaitaan poikkeavuuksia
+  - status koodit
+  - vastauskoko
+  - request-response aika
+- ffuf pystytään kohdentamaan mihin tahansa osaan HTTP-pyyntöä
+  - URL, header, body, jne
+- Hyödyntää sanalistoja syöttämällä jokaisen sanalistan sanan kerrallaan haluttuun kohtaan
+  - voidaan käyttää valmiita listoja tai luoda oma
+- ffuffiin voidaan määrittää erilaisia parametreja, joiden avulla tuloksia suodatetaan
+- uusin versio toimii CRTF-tokenien kanssa
+  - preflight/postflight: ffuf tekee määritetyn esikyselyn ja käyttää joka pyynnöllä tuoretta tokenia
+
+ffufista löytyy ominaisuuksia vaikka kuinka. Käyttö oli tuntui kuitenkin alusta asti suht suoraviivaiselta, sillä koko työkalu on rakennettu mahdollisimman yksinkertaiseksi: "_avoid magic - stay idiomatic and understandable_. Erilaisia flageja on paljon mutta cheat sheet auttaa tässä.
 
 
 ________________________________________________________________________________________________________________________________________________________________________________________
