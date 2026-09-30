@@ -154,7 +154,7 @@ Rekursion avulla ffuf jatkaa syvemmälle löytyneiden hakemistojen sisälle. C1-
 
 ``ffuf -w content.txt -u https://ffuf.io.fi/FUZZ -mc 200 -fw 135 -recursion -recursion-depth 3`` 
 
-jonka avulla ffuf löysi samat tulokset kuin C1-tehtävssä mutta tällä kertaa fuzzaus jatkui myös löydettyjen hakemistojen sisälle (``-recursion``). Myös rekursiosyyvyden pystyi määrittämään omalla vivullaan (``-recursion-deth3``).
+jonka avulla ffuf löysi samat tulokset kuin C1-tehtävssä mutta tällä kertaa fuzzaus jatkui myös löydettyjen hakemistojen sisälle (``-recursion``). Myös rekursiosyyvyden pystyi määrittämään omalla vivullaan (``-recursion-depth3``).
 
 <br>
 <img width="832" height="577" alt="REKURSIO" src="https://github.com/user-attachments/assets/fc975346-36c4-4ac8-a454-0df568fe0213" />
@@ -168,7 +168,7 @@ ________________________________________________________________________________
 _Three hostnames under ffuf.io.fi serve different content from this same address. Find all three._
 <br>
 
-Tehtävänä oli löytää kolme resurssia. Lähdin tällä kertaa fuzzaamaan headereita: ``
+Tehtävänä oli löytää kolme resurssia. Lähdin tällä kertaa fuzzaamaan headereita: ``ffuf -w content.txt -u https://ffuf.io.fi/ -H "Host: FUZZ.ffuf.io.fi" -ac``
 
 Ensimmäinen löydös oli _admin_
 
