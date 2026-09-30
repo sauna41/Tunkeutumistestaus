@@ -40,15 +40,15 @@ ________________________________________________________________________________
 
   - Kohteena on ffuf.io/play sivuston harjoitusympäristö.
 
-**##### Rules of engagement. Mitä sille saa tehdä, eli mitä tai millaisia menetelmiä saa käyttää?**
+**Rules of engagement. Mitä sille saa tehdä, eli mitä tai millaisia menetelmiä saa käyttää?**
 
   - Testauksessa käytetään tehtäviin tarkoitettuja fuzzaus menetelmiä, kuten HTTP-pyyntöjen lähettämistä, hakemistojen ja resurssien enumerointia sekä palvelimen saatujen vastausten suorittamista. 
     
-  **##### Mihin oikeutesi tehdä tietoturvatestausta tähän kohteeseen perustuu?**
+  **Mihin oikeutesi tehdä tietoturvatestausta tähän kohteeseen perustuu?**
 
   - Kyseessä on tarkoituksellisesti tietoturvan ja fuzzauksen harjoitteluun tarkoitettu ympäristö. Testauksen rajaaminen tapahtuu vain harjoitustehtäviin eikä mihinkään ulkopuolisiin järjestelmiin suoriteta testausta ilman erillistä lupaa. 
     
-  **##### Riskit ja mitigointi. Tuo palvelin on Internetissä. Tunnista lyhyesti riskit ja niiden mitigointi ennen käytännön harjoittelua.**
+  **Riskit ja mitigointi. Tuo palvelin on Internetissä. Tunnista lyhyesti riskit ja niiden mitigointi ennen käytännön harjoittelua.**
   
   - Koska kyseessä on internet-palvelin, sen fuzzaaminen voi aiheuttaa ylimääräistä liikennettä ja kuormitusta, mikä voi johtaa palvelun suorituskyvyn heikentymiseen. Myös väärin määritetty kohde tai käyttö voi johtaa siihen, että fuzzauspyyntöjä lähetetään väärään ympäristöön.
   - Riskejä mitigoidaan kohdentamalla testaus tarkasti vain halutttuun ympäristöön ja käyttämällä vain sivuston ohjeiden mukaisia listoja ja komentoja.  
