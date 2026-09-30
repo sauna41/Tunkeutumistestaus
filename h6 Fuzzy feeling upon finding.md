@@ -6,7 +6,7 @@ _Alusta: Windows 11 / Kali Linux (VirtualBox)
 
 _Päivämäärä: 17.9.2026_
 
-_Tämä raportti on osa Haaga-Helian Tunkeutumistestaus -kurssia syksyllä 2026. Tehtävänanto on h5 Fuzzy. Opettajana toimi Tero Karvinen._
+_Tämä raportti on osa Haaga-Helian Tunkeutumistestaus -kurssia syksyllä 2026. Tehtävänanto on h6 Fuzzy feeling upon finding. Opettajana toimi Tero Karvinen._
 
 ________________________________________________________________________________________________________________________________________________________________________________________
 
