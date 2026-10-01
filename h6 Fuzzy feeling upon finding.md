@@ -200,7 +200,7 @@ _Get into the admin account. A plain password fuzz returns 403 forever, however 
 ##### _Kyseinen tehtävän toiminta oli avattu sivustolla. Myös komennot kyseiseen tehtävään olivat saatavilla. Suoritin tehtävänannon niiden pohjalta ja pyrin muotoilemaan omin sanoin tekemääni._
 
 
-Hieman erilainen tehtävä, jossa pelkkä fuzzaus URL-osoitteessa ei riittänyt. Tarkoituksena oli löytää oikea salasana _passwords.txt_ -tiedostosta ja kirjautua admin-käyttäjänä sisään. Salasana syötettiin POST-pyynnön bodyyn tokenina (``  -d "csrf_token=CSRFTOKEN&username=admin&password=FUZZ" \``). 
+Hieman erilainen tehtävä, jossa pelkkä fuzzaus URL-osoitteessa ei riittänyt. Tarkoituksena oli löytää oikea salasana _passwords.txt_ -tiedostosta ja kirjautua admin-käyttäjänä sisään. Salasana syötettiin POST-pyynnön bodyyn tokenina (``-d "csrf_token=CSRFTOKEN&username=admin&password=FUZZ" \``). 
 
 Käytännössä ffuffi siis fuzzasi kaikki tiedoston salasanat läpi mutta ongelmana oli CSFR-token, joka oli voimassa vain yhden pyynnön ajan. Jos token vanhentui tai oli jo käytetty, palvelin palautti 403-vastauksen kirjautumisyritykseen. Tämä ratkaistiin määrittelemällä login.raw -tiedostoon esipyyntö:
 
