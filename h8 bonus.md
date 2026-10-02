@@ -12,13 +12,18 @@ ________________________________________________________________________________
 ## H8 Bonus
 _Tähän raporttiin on kerätty kaikki suorittamani vapaaehtoiset tehtävät kotitehtävistä h1-7_
 
+________________________________________________________________________________________________________________________________________________________________________________________
 
 
-h2
-Vapaaehtoinen bonus: Buuri 2026: D26 - Releasing Your Inner TIBER in Regulated Adversary Simulations. Video, 45 min. Disobey 2026.
+### h2
 
-f) Vapaaehtoinen bonus: Sisään vaan. Pääsetkö murtautumaan Metasploitableen? 
-g) Vapaaehtoinen bonus: jos haluat, voit jo kokeilla metasploit-hyökkäysohjelmaa omaan harjoitusmaaliisi. Tätä katsotaan myöhemmin yhdessäkin. (Muista irrottaa kone Internetistä kokeilujen ajaksi. 'sudo msfdb init', 'sudo msfconsole').
+#### Buuri 2026: D26 - Releasing Your Inner TIBER in Regulated Adversary Simulations. Video, 45 min. Disobey 2026.
+
+#### Sisään vaan. Pääsetkö murtautumaan Metasploitableen?
+
+
+
+#### Vapaaehtoinen bonus: jos haluat, voit jo kokeilla metasploit-hyökkäysohjelmaa omaan harjoitusmaaliisi. Tätä katsotaan myöhemmin yhdessäkin. (Muista irrottaa kone Internetistä kokeilujen ajaksi. 'sudo msfdb init', 'sudo msfconsole').
 
 ________________________________________________________________________________________________________________________________________________________________________________________
 
@@ -61,10 +66,9 @@ ________________________________________________________________________________
 
 ### Vapaaehtoinen: Mitmproxy. Asenna MitmProxy. Esittele sitä terminaalissa (TUI). Ota TLS-purku käyttöön. Poimi historiasta hakupyyntö, muokkaa sitä ja lähetä uudelleen
 
+Mitmproxy on työkalu verkkoliikenteen sieppaukseen ja muokkaukseen sekä TLS-salauksen purkamiseen. Tarkastelu, muokkaus ja uudelleenlähetys tapahtuu sen omassa komentorivikäyttöliittymässä. 
 
 #### Käyttöönotto
-
-Mitmproxy on työkalu verkkoliikenteen sieppaukseen ja muokkaukseen sekä TLS-salauksen purkamiseen. Tarkastelu, muokkaus ja uudelleenlähetys tapahtuu sen omassa komentorivikäyttöliittymässä. 
 
 Asensin Mitmproxyn sen [omilta sivuilta](https://www.mitmproxy.org/) ja käynnistin proxyn komennolla ``mitmproxy``. Tämä avasi tyhjän näkymän eikä verkkoliikenne päätynyt proxyyn. Olin aiemmin määrittänyt selaimen proxy-asetuksia FoxyProxy -harjoituksia varten, joten suljin FoxyProxyn ja vaihdoin Firefoxin verkkoasetuksista proxy-palvelimeksi ``127.0.0.1`` ja portiksi ``8080``. 
 
@@ -88,19 +92,24 @@ Tämän jälkeen HTTPS-liikenne näkyi mitmproxyn käyttöliittymässä.
 <liikenne proxyssa>
 <br>
 
-HTTPS-liikenne tallentui nyt siis mitmproxyn käyttöliittymään. Pyyntöjä pystyi selamaan ja klikkaamalla/enterillä pääsi tarkastelemaan tiettyä pyyntöä tarkemmin.
+Mitmproxyyn tallentui selaimen HTTPS-pyyntöjä, joista voitiin tarkastella tarkemmin HTTP-metodia, URL-osoitetta, headereita ja POST-vastausta.
+
+Pyyntöjä pystyi selamaan ja klikkaamalla/enterillä pääsi tarkastelemaan tiettyä pyyntöä tarkemmin. 
+- Muokkauksia pystyi tekemään _edit_-modessa painamalla e-näppäintä.
 
 <img width="980" height="396" alt="image" src="https://github.com/user-attachments/assets/07670ba0-c681-4b44-b2ed-c792628ab3c8" />
 _mitm TUI_
 <br>
 
-``e``-näppäimellä pystyi muokkaamaan erinäisiä ominaisuuksia. Muutin 
+``e``-näppäimellä pystyi muokkaamaan erinäisiä ominaisuuksia:
+
+<img width="967" height="433" alt="EDIT MODE" src="https://github.com/user-attachments/assets/0fc2a9fb-71f1-4c53-8695-fdb4ef8ce6d5" />
+_muokattavat osat_ 
+<br>
 
 
 
 #### Hakupyynnön muokkaus ja lähetys
-
-
 
 
 
