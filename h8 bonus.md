@@ -47,17 +47,75 @@ Asennus tapahtui [GitHubin](https://github.com/ffuf/pencode) ohjeistuksella:
 Työkalun käyttö oli hyvin yksinkertaista: annoin parametrina stringin ja pencode muutti automaattisesti syötteen haluttuihin muotoihin.
 
 <img width="693" height="158" alt="image" src="https://github.com/user-attachments/assets/e25bba76-89b4-4896-a72d-8595c515ba38" />
-
+<br>
+<br>
 
 pencode tukee laajaa kirjastoa eri formaatteja:
 
 <img width="800" height="701" alt="image" src="https://github.com/user-attachments/assets/73674cde-3db1-4e03-8597-f9199e48d42e" />
+
 _pencoden manuaali & tuetut formaatit_
 
+________________________________________________________________________________________________________________________________________________________________________________________
 
-#### Vapaaehtoinen: Mitmproxy. Asenna MitmProxy. Esittele sitä terminaalissa (TUI). Ota TLS-purku käyttöön. Poimi historiasta hakupyyntö, muokkaa sitä ja lähetä uudelleen.
 
+### Vapaaehtoinen: Mitmproxy. Asenna MitmProxy. Esittele sitä terminaalissa (TUI). Ota TLS-purku käyttöön. Poimi historiasta hakupyyntö, muokkaa sitä ja lähetä uudelleen
+
+
+#### Käyttöönotto
+
+Mitmproxy on työkalu verkkoliikenteen sieppaukseen ja muokkaukseen sekä TLS-salauksen purkamiseen. Tarkastelu, muokkaus ja uudelleenlähetys tapahtuu sen omassa komentorivikäyttöliittymässä. 
+
+Asensin Mitmproxyn sen [omilta sivuilta](https://www.mitmproxy.org/) ja käynnistin proxyn komennolla ``mitmproxy``. Tämä avasi tyhjän näkymän eikä verkkoliikenne päätynyt proxyyn. Olin aiemmin määrittänyt selaimen proxy-asetuksia FoxyProxy -harjoituksia varten, joten suljin FoxyProxyn ja vaihdoin Firefoxin verkkoasetuksista proxy-palvelimeksi ``127.0.0.1`` ja portiksi ``8080``. 
+
+Tämän jälkeen navigoimalla sivulle "ttp://mitm.it" päästiin lataamaan mitmproxy sertifikaatti.
+
+<img width="880" height="1078" alt="image" src="https://github.com/user-attachments/assets/547470f2-1029-449b-9a16-509dab958723" />
+_mitmproxyn sertifikaatin lataaminen_
+
+Firefox käyttää itsenäistä sertifikaattivarastoa, joten uusi sertifikaatti oli lisättävä manuaalisesti. Tämä tapahtui Firefoxin asetuksista: _Settings --> Privacy & Security --> Certificates --> View certificates --> Import_
+
+<img width="820" height="974" alt="image" src="https://github.com/user-attachments/assets/9f0f2885-702d-4835-97ab-a075b5b5223c" />
+_sertifikaatin importtaus_
+<br>
+
+Tämän jälkeen HTTPS-liikenne näkyi mitmproxyn käyttöliittymässä. 
+
+
+#### Terminaalin esittely
+
+<img width="873" height="521" alt="image" src="https://github.com/user-attachments/assets/f5e87ef7-c2b5-497f-9c71-35a470393607" />
+<liikenne proxyssa>
+<br>
+
+HTTPS-liikenne tallentui nyt siis mitmproxyn käyttöliittymään. Pyyntöjä pystyi selamaan ja klikkaamalla/enterillä pääsi tarkastelemaan tiettyä pyyntöä tarkemmin.
+
+<img width="980" height="396" alt="image" src="https://github.com/user-attachments/assets/07670ba0-c681-4b44-b2ed-c792628ab3c8" />
+_mitm TUI_
+<br>
+
+``e``-näppäimellä pystyi muokkaamaan erinäisiä ominaisuuksia. Muutin 
+
+
+
+#### Hakupyynnön muokkaus ja lähetys
+
+
+
+
+
+
+
+________________________________________________________________________________________________________________________________________________________________________________________
 
 #### Vapaaehtoinen: Ratkaise lisää PortSwigger Labs -tehtäviä. Kannattaa tehdä helpoimmat "Apprentice" -tason tehtävät ensin.
 
+________________________________________________________________________________________________________________________________________________________________________________________
+
+
+### Lähteet: 
+
+https://github.com/ffuf/pencode. Luettu 1.10.2026.
+
+Mitmproxy. Ladattavissa: https://www.mitmproxy.org/. Luettu 1.10.2026.
 
