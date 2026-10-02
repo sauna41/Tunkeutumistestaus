@@ -80,6 +80,7 @@ _mitmproxyn sertifikaatin lataaminen_
 Firefox käyttää itsenäistä sertifikaattivarastoa, joten uusi sertifikaatti oli lisättävä manuaalisesti. Tämä tapahtui Firefoxin asetuksista: _Settings --> Privacy & Security --> Certificates --> View certificates --> Import_
 
 <img width="820" height="974" alt="image" src="https://github.com/user-attachments/assets/9f0f2885-702d-4835-97ab-a075b5b5223c" />
+
 _sertifikaatin importtaus_
 <br>
 
@@ -89,6 +90,7 @@ Tämän jälkeen HTTPS-liikenne näkyi mitmproxyn käyttöliittymässä.
 #### Terminaalin esittely
 
 <img width="873" height="521" alt="image" src="https://github.com/user-attachments/assets/f5e87ef7-c2b5-497f-9c71-35a470393607" />
+
 <liikenne proxyssa>
 <br>
 
@@ -98,6 +100,7 @@ Pyyntöjä pystyi selamaan ja klikkaamalla/enterillä pääsi tarkastelemaan tie
 - Muokkauksia pystyi tekemään _edit_-modessa painamalla e-näppäintä.
 
 <img width="980" height="396" alt="image" src="https://github.com/user-attachments/assets/07670ba0-c681-4b44-b2ed-c792628ab3c8" />
+
 _mitm TUI_
 <br>
 
