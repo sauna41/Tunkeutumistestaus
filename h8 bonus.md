@@ -15,30 +15,7 @@ _Tähän raporttiin on kerätty kaikki suorittamani vapaaehtoiset tehtävät kot
 ________________________________________________________________________________________________________________________________________________________________________________________
 
 
-### h2
-
-#### Sisään vaan. Pääsetkö murtautumaan Metasploitableen?
-
-
-#### Vapaaehtoinen bonus: jos haluat, voit jo kokeilla metasploit-hyökkäysohjelmaa omaan harjoitusmaaliisi. Tätä katsotaan myöhemmin yhdessäkin. (Muista irrottaa kone Internetistä kokeilujen ajaksi. 'sudo msfdb init', 'sudo msfconsole').
-
-________________________________________________________________________________________________________________________________________________________________________________________
-
-h3
-
-n) Vapaaehtoinen: Titityy. Saatko Metasploitableen tty-shellin, eli esimerkiksi avattua koko ruudulle piirtävän nano:n?
-o) Vapaaehtoinen, vaikea: Kokeile jotain kilpailevaa hyökkäystyökalua tai vihamielistä etäkäyttötyökalua, kuten Sliver tai Scarecrow.
-p) Vapaaehtoinen: Asenna ja korkkaa Metasploitable 3. Karvinen 2018: Install Metasploitable 3 – Vulnerable Target Computer
-q) Vapaaehtoinen: Peekaboo. Demonstroi, kuinka hyökkääjä vakoilee meterpreterillä. Kuuntele mikrofonilla, ota kuvia tai videota kameralla. (Huolehdi, ettei ulkopuolisia joudu kuunnelluksi tai katselluksi.)
-m) Vapaaehtoinen: Etsi esimerkki Mitre Attack proseduurista (procedure), jossa joku uhkatoimija on käyttänyt samoja tekniikoita.
-
-
-________________________________________________________________________________________________________________________________________________________________________________________
-
-
-h4
-
-#### Asenna pencode ja muunna sillä jokin merkkijono (encode a string)
+### Asenna pencode ja muunna sillä jokin merkkijono (encode a string)
 
 pencode on työkalu, jonka avulla voidaan rakentaan payloadien encoding-ketjuja. Se automatisoi datan muuttamisen usealla eritavalla. Penetraatiotestauksessa samaa payloadia voidaan joutua esittämään eri formaateissa riippuen siitä, mihin kohtaan sitä ollaan syöttämässä, jolloin pencode käytännössä suorittaa: payload --> JSON encoding --> URL encoding --> base64 encoding. 
 
