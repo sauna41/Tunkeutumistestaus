@@ -125,13 +125,22 @@ Admin-paneelin polku paljastui ja sinne pystyi navigoimaan jälleen vaihtamalla 
 _käyttäjienhallinta admin-paneelissa_
 <br>
 
-
 ________________________________________________________________________________________________________________________________________________________________________________________
 
 
-### Lähteet: 
+### HackTheBox
 
-https://github.com/ffuf/pencode. Luettu 1.10.2026.
+#### Korkatut koneet: 
 
-Mitmproxy. Ladattavissa: https://www.mitmproxy.org/. Luettu 1.10.2026.
+##### Cap 
+
+<img width="714" height="531" alt="HTB_CAP" src="https://github.com/user-attachments/assets/c2f35a06-0160-4728-8fde-fd04ff537eb1" />
+
+#### Flag Command
+
+<img width="610" height="433" alt="image" src="https://github.com/user-attachments/assets/e50502f2-20e1-47ff-8493-f4263d324646" />
+
+
+
+________________________________________________________________________________________________________________________________________________________________________________________
 
