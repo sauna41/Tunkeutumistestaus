@@ -2,7 +2,7 @@ _Kurssi: Tunkeutumistestaus ICI005AS3A-3007_
 
 _Tekijä: Henri Äikäs_
 
-_Alusta: Windows 11 / Kali Linux (VirtualBox) / Metasploitable 2 (VirtualBox)
+_Alusta: Windows 11 / Kali Linux (VirtualBox) / Metasploitable 2 (VirtualBox)_
 
 _Tämä raportti on osa Haaga-Helian Tunkeutumistestaus -kurssia syksyllä 2026. Tehtävänanto on h8 bonus. Opettajana toimi Tero Karvinen._
 
@@ -10,6 +10,7 @@ ________________________________________________________________________________
 
 
 ## H8 Bonus
+
 _Tähän raporttiin on kerätty kaikki suorittamani vapaaehtoiset tehtävät kotitehtävistä h1-7_
 
 ________________________________________________________________________________________________________________________________________________________________________________________
