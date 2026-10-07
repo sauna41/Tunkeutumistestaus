@@ -17,10 +17,7 @@ ________________________________________________________________________________
 
 ### h2
 
-#### Buuri 2026: D26 - Releasing Your Inner TIBER in Regulated Adversary Simulations. Video, 45 min. Disobey 2026.
-
 #### Sisään vaan. Pääsetkö murtautumaan Metasploitableen?
-
 
 
 #### Vapaaehtoinen bonus: jos haluat, voit jo kokeilla metasploit-hyökkäysohjelmaa omaan harjoitusmaaliisi. Tätä katsotaan myöhemmin yhdessäkin. (Muista irrottaa kone Internetistä kokeilujen ajaksi. 'sudo msfdb init', 'sudo msfconsole').
@@ -111,16 +108,45 @@ _muokattavat osat_
 <br>
 
 
-
-#### Hakupyynnön muokkaus ja lähetys
-
-
-
-
-
 ________________________________________________________________________________________________________________________________________________________________________________________
 
-#### Vapaaehtoinen: Ratkaise lisää PortSwigger Labs -tehtäviä. Kannattaa tehdä helpoimmat "Apprentice" -tason tehtävät ensin.
+### Ratkaise lisää PortSwigger Labs -tehtäviä
+
+#### Unprotected admin functionality with unpredictable URL
+
+Labrassa oli suojaamaton admin-paneeli. Se löytyi tutkimalla sivun lähdekoodia, jonka sai avattua tarkasteluun right-clikkaamalla webbisivua. Lähdekoodista löytyi suora viittaus admininiin:
+
+<img width="760" height="217" alt="image" src="https://github.com/user-attachments/assets/2e96c9f9-5dc8-452d-b31d-81a35e62f9f1" />
+
+_lähdekoodin tutkimista_
+<br>
+
+Lähdekoodista paljastui suoraan, että admin-paneeli linkkasi https://URL/admin-j8prvl osuuden takaa (``adminPanelTag.setAttribute('href', '/admin-j8prvl');``). Muuttamalla URLin loppuosa, päästiin sisään. Paneelissa voitiin hallinnoida käyttäjiä ja poistaa tehtäväannnon mukaisesti "carlos" -käyttäjä.
+
+
+<img width="608" height="229" alt="image" src="https://github.com/user-attachments/assets/4ea21324-5534-4ac2-9d8c-8548181058f0" />
+
+_käyttäjienhallinta admin-paneelissa_
+<br>
+
+#### Unprotected admin functionality
+
+Toinen labra, jossa oli suojaamaton admin-paneeli. Tällä kertaa se löytyi lisäämällä URLin loppuun _robots.txt_, joka on tarkoitettu hakukoneille. Se kertoo, mitä hakukoneet saavat indeksoida ja ne saattavat myös paljastaa admin-polkuja kuten tässä labraharjoituksessa. 
+
+
+<img width="592" height="76" alt="image" src="https://github.com/user-attachments/assets/de17b3a3-82d7-4f36-bb4d-e22b3ec93100" />
+
+_robots.txt_
+<br>
+
+Admin-paneelin polku paljastui ja sinne pystyi navigoimaan jälleen vaihtamalla URLista /robots.txt --> /administrator-panel
+
+
+<img width="608" height="229" alt="image" src="https://github.com/user-attachments/assets/4ea21324-5534-4ac2-9d8c-8548181058f0" />
+
+_käyttäjienhallinta admin-paneelissa_
+<br>
+
 
 ________________________________________________________________________________________________________________________________________________________________________________________
 
